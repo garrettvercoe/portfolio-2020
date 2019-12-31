@@ -1,11 +1,12 @@
-@import url('https://rsms.me/inter/inter.css');
+// @import url("https://fonts.googleapis.com/css?family=Space+Mono&display=swap");
 
 html {
-    font-family: 'Inter', sans-serif;
+  //   font-family: "Space Mono", monospace;
+  //   font-family: "GT-America", serif;
 }
 
-@supports (font-variation-settings: normal) {
-    html {
-        font-family: 'Inter var', sans-serif;
-    }
-}
+// @supports (font-variation-settings: normal) {
+//   html {
+//     font-family: "Space Mono var", monospace;
+//   }
+// }
