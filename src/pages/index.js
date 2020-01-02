@@ -11,8 +11,22 @@ import About from "components/About"
 import Layout from "components/Layout"
 import ProjectCard from "components/ProjectCard"
 import FeaturedProjectCard from "components/FeaturedProjectCard"
+import Masonry from "react-masonry-component"
+import "styles/projectShowcase.scss"
 
-const Hero = styled("div")``
+const Hero = styled("div")`
+  padding-left: 5%;
+  padding-right: 5%;
+  background-color: ${colors.grey100};
+  margin-bottom: 8em;
+`
+
+const filters = { marginLeft: "5%", marginBottom: "5em" }
+
+const col = {
+  width: `${100 / 3}%`,
+  paddingRight: "5%",
+}
 
 const Section = styled("div")`
   margin-bottom: 10em;
@@ -31,9 +45,10 @@ const AboutSelf = styled("div")`
   text-align: center;
   font-size: 1.25rem;
   max-width: 700px;
-  padding: 8em 0 8em 0;
+  padding: 6em 0 6em 0;
   margin: 0 auto;
 `
+
 const WorkAction = styled(Link)`
   font-weight: 600;
   text-decoration: none;
@@ -121,25 +136,35 @@ const RenderBody = ({ home, projects, meta }) => (
         <Button>{RichText.render(home.hero_button_text)}</Button>
       </a> */}
     {/* </Hero> */}
+
     <Section>
-      {projects.map((project, i) => (
-        <ProjectCard
-          key={i}
-          category={project.node.project_category}
-          title={project.node.project_title}
-          description={project.node.project_preview_description}
-          thumbnail={project.node.project_preview_thumbnail}
-          uid={project.node._meta.uid}
-        />
-      ))}
-      <WorkAction to={"/work"}>
-        See more work <span>&#8594;</span>
-      </WorkAction>
+      <Masonry style={filters}>
+        <div style={col}>
+          <h2>Projects</h2>
+        </div>
+        <div style={col}>
+          <h5>By Tag</h5>
+          <h3>All / Architecture / Data / Fabrication / Web / Development</h3>
+        </div>
+        <div style={col}></div>
+      </Masonry>
+      <Masonry className="showcase">
+        {projects.map((project, i) => (
+          <ProjectCard
+            key={i}
+            category={project.node.project_category}
+            title={project.node.project_title}
+            description={project.node.project_preview_description}
+            thumbnail={project.node.project_preview_thumbnail}
+            uid={project.node._meta.uid}
+          />
+        ))}
+      </Masonry>
     </Section>
-    <Section>
+    {/* <Section>
       {RichText.render(home.about_title)}
-      {/* <About bio={home.about_bio} socialLinks={home.about_links} /> */}
-    </Section>
+      <About bio={home.about_bio} socialLinks={home.about_links} />
+    </Section> */}
   </>
 )
 

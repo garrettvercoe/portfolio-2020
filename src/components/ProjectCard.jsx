@@ -7,20 +7,13 @@ import colors from "styles/colors"
 import PropTypes from "prop-types"
 
 const ProjectCardContainer = styled(Link)`
-  display: grid;
-  grid-template-columns: 4fr 4fr;
-  margin-bottom: 4em;
+  margin-bottom: 2em;
   transition: all 150ms ease-in-out;
   text-decoration: none;
   color: currentColor;
-
-  @media (max-width: 950px) {
-    grid-template-columns: 4.5fr 7fr;
-  }
-
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    grid-template-columns: 1fr;
-  }
+  box-sizing: border-box;
+  padding-right: 5%;
+  width: ${100 / 3}%;
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-bottom: 2em;
@@ -54,7 +47,7 @@ const ProjectCardContainer = styled(Link)`
 
 const ProjectCardContent = styled("div")`
   background: white;
-  padding: 4em 3em 2.25em 3em;
+  padding: 1em 3em 2em 0em;
   position: relative;
 
   &:before {
@@ -81,23 +74,24 @@ const ProjectCardContent = styled("div")`
 
 const ProjectCardCategory = styled("h6")`
   font-weight: 600;
+  margin-bottom: 2em;
   color: ${colors.grey600};
 `
 
-const ProjectCardTitle = styled("h1")`
+const ProjectCardTitle = styled("h3")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 `
 
-const ProjectCardBlurb = styled("div")`
-  margin-bottom: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 5em;
+// const ProjectCardBlurb = styled("div")`
+//   margin-bottom: 0.5em;
+//   margin-top: 0.5em;
+//   margin-bottom: 5em;
 
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    margin-bottom: 2.5em;
-  }
-`
+//   @media (max-width: ${dimensions.maxwidthTablet}px) {
+//     margin-bottom: 2.5em;
+//   }
+// `
 
 const ProjectCardAction = styled("div")`
   font-weight: 600;
@@ -157,19 +151,39 @@ const ProjectCardImageContainer = styled("div")`
 
 const ProjectCard = ({ category, title, description, thumbnail, uid }) => (
   <ProjectCardContainer to={`/work/${uid}`}>
+    <ProjectCardImageContainer className="ProjectCardImageContainer">
+      <img src={thumbnail.url} alt={title[0].text} />
+    </ProjectCardImageContainer>
     <ProjectCardContent className="ProjectCardContent">
-      <ProjectCardCategory>{category[0].text}</ProjectCardCategory>
       <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
-      <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb>
+      <ProjectCardCategory>{category[0].text}</ProjectCardCategory>
+      {/* <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb> */}
       <ProjectCardAction className="ProjectCardAction">
         Details <span>&#8594;</span>
       </ProjectCardAction>
     </ProjectCardContent>
-    <ProjectCardImageContainer className="ProjectCardImageContainer">
-      <img src={thumbnail.url} alt={title[0].text} />
-    </ProjectCardImageContainer>
   </ProjectCardContainer>
 )
+
+// <div key={i} className="showcase__item">
+//   <figure className="card">
+//     <Link to={`/work/nothing`} className="card__image">
+//       <Img fluid={project.node.project_preview_thumbnail} />
+//     </Link>
+//     <figcaption className="card__caption">
+//       <h6 className="card__title">
+//         <Link to={`/works/nothing`}>Test</Link>
+//       </h6>
+//       <div className="card__description">
+//         <p>{project.node.project_preview_description}</p>
+//       </div>
+//     </figcaption>
+//   </figure>
+// </div>
+
+// .showcase.is-loading {
+//   visibility: hidden;
+// }
 
 export default ProjectCard
 

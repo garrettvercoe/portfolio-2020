@@ -34,7 +34,7 @@ const More = styled("div")`
 `
 const ProjectCardContent = styled("div")`
   position: relative;
-  height: 66vh;
+  height: 75vh;
   display: flex;
   @media (max-width: 950px) {
     padding: 3.25em 2.5em 2em 2.5em;
@@ -97,7 +97,7 @@ const FeaturedTitle = styled.a`
   line-height: 1.1;
   .featured_title {
     color: transparent;
-    font-size: 48px;
+    font-size: 3.25em;
 
     &:before {
       color: #000;
@@ -142,7 +142,7 @@ const FeaturedDesc = styled("h5")`
 `
 
 const ProjectCardImageContainer = styled("div")`
-  background: ${colors.grey200};
+  background: ${colors.grey400};
   display: flex;
   justify-content: center;
   align-items: flex-end;

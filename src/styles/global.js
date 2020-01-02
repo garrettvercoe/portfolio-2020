@@ -22,13 +22,16 @@ const globalStyles = css`
 
   body {
     font-family: "GT-America-Extended-Regular";
+    overscroll-behavior-y: none;
     width: 100%;
     margin: 0 auto;
     font-size: 16px;
     line-height: 1.5;
     color: ${colors.grey900};
     -webkit-font-smoothing: antialiased;
-
+    &::-webkit-scrollbar {
+      display: none;
+    }
     @media (max-width: ${dimensions.maxwidthMobile}px) {
       font-size: 14px;
     }
@@ -37,7 +40,7 @@ const globalStyles = css`
       box-sizing: border-box;
 
       &::selection {
-        background: ${colors.orange500};
+        background: ${colors.grey500};
         color: white;
       }
     }

@@ -7,8 +7,11 @@ import Logo from "components/_ui/Logo"
 import { nonExecutableDefinitionMessage } from "graphql/validation/rules/ExecutableDefinitions"
 
 const HeaderContainer = styled("div")`
-  padding-top: 3.75em;
+  padding-top: 2em;
+  padding-left: 5%;
+  padding-right: 5%;
   padding-bottom: 3em;
+  background-color: ${colors.grey100};
 `
 
 const HeaderContent = styled("div")`
