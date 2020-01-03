@@ -93,19 +93,19 @@ const ProjectCardTitle = styled("h3")`
 //   }
 // `
 
-const ProjectCardAction = styled("div")`
-  font-weight: 600;
-  text-decoration: none;
-  color: currentColor;
-  transition: all 150ms ease-in-out;
+// const ProjectCardAction = styled("div")`
+//   font-weight: 600;
+//   text-decoration: none;
+//   color: currentColor;
+//   transition: all 150ms ease-in-out;
 
-  span {
-    margin-left: 1em;
-    transform: translateX(-8px);
-    display: inline-block;
-    transition: transform 400ms ease-in-out;
-  }
-`
+//   span {
+//     margin-left: 1em;
+//     transform: translateX(-8px);
+//     display: inline-block;
+//     transition: transform 400ms ease-in-out;
+//   }
+// `
 
 const ProjectCardImageContainer = styled("div")`
   background: ${colors.grey200};
@@ -114,8 +114,6 @@ const ProjectCardImageContainer = styled("div")`
   align-items: flex-end;
   overflow: hidden;
   position: relative;
-  padding-left: 2em;
-  padding-right: 2em;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-top: 3em;
@@ -125,23 +123,8 @@ const ProjectCardImageContainer = styled("div")`
     justify-content: flex-start;
   }
 
-  &:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: ${colors.blue500};
-    mix-blend-mode: multiply;
-    opacity: 0;
-    transition: all 150ms ease-in-out;
-  }
-
   img {
-    max-width: 400px;
     width: 100%;
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.04);
 
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       max-width: 300px;
@@ -158,9 +141,9 @@ const ProjectCard = ({ category, title, description, thumbnail, uid }) => (
       <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
       <ProjectCardCategory>{category[0].text}</ProjectCardCategory>
       {/* <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb> */}
-      <ProjectCardAction className="ProjectCardAction">
+      {/* <ProjectCardAction className="ProjectCardAction">
         Details <span>&#8594;</span>
-      </ProjectCardAction>
+      </ProjectCardAction> */}
     </ProjectCardContent>
   </ProjectCardContainer>
 )

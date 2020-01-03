@@ -79,7 +79,15 @@ const WorkAction = styled(Link)`
   }
 `
 
-const RenderBody = ({ home, projects, meta }) => (
+const ConsoleLog = ({ children }) => {
+  console.log(children)
+  return false
+}
+
+const masonryOptions = {
+  horizontalOrder: true,
+}
+const RenderBody = ({ home, projects, meta, categories }) => (
   <>
     <Helmet
       title={meta.title}
@@ -144,20 +152,25 @@ const RenderBody = ({ home, projects, meta }) => (
         </div>
         <div style={col}>
           <h5>By Tag</h5>
-          <h3>All / Architecture / Data / Fabrication / Web / Development</h3>
+          {categories.map(category => (
+            <div>{category}</div>
+          ))}
+          {/* <h3>All / Architecture / Data / Fabrication / Web / Development</h3> */}
         </div>
         <div style={col}></div>
       </Masonry>
-      <Masonry className="showcase">
+      <Masonry options={masonryOptions} className="showcase">
         {projects.map((project, i) => (
-          <ProjectCard
-            key={i}
-            category={project.node.project_category}
-            title={project.node.project_title}
-            description={project.node.project_preview_description}
-            thumbnail={project.node.project_preview_thumbnail}
-            uid={project.node._meta.uid}
-          />
+          <React.Fragment>
+            <ProjectCard
+              key={i}
+              category={project.node.project_category}
+              title={project.node.project_title}
+              description={project.node.project_preview_description}
+              thumbnail={project.node.project_preview_thumbnail}
+              uid={project.node._meta.uid}
+            />
+          </React.Fragment>
         ))}
       </Masonry>
     </Section>
@@ -174,11 +187,30 @@ export default ({ data }) => {
   const projects = data.prismic.allProjects.edges
   const meta = data.site.siteMetadata
 
+  let categories = projects.map(
+    project => project.node.project_category[0].text
+  )
+  const categoriesSet = new Set(categories)
+  const categoriesUnique = [...categoriesSet]
+  // const categories = projects.reduce((uniqueCategories, project) => {
+  //   if (!uniqueCategories.indexOf(project.node.project_category)) {
+  //     uniqueCategories.push(project.node.project_category)
+  //   }
+  //   console.log(project.node.project_category)
+  //   console.log(uniqueCategories)
+  //   return uniqueCategories
+  // }, [])
+
   if (!doc || !projects) return null
 
   return (
     <Layout>
-      <RenderBody home={doc.node} projects={projects} meta={meta} />
+      <RenderBody
+        home={doc.node}
+        projects={projects}
+        meta={meta}
+        categories={categoriesUnique}
+      />
     </Layout>
   )
 }
@@ -212,14 +244,13 @@ export const query = graphql`
           }
         }
       }
-      allProjects {
+      allProjects(sortBy: project_post_date_ASC) {
         edges {
           node {
-            project_title
-            project_preview_description
-            project_preview_thumbnail
-            project_category
             project_post_date
+            project_preview_thumbnail
+            project_title
+            project_category
             _meta {
               uid
             }
