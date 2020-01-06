@@ -9,9 +9,9 @@ import dimensions from "styles/dimensions"
 import Button from "components/_ui/Button"
 import About from "components/About"
 import Layout from "components/Layout"
-import ProjectCard from "components/ProjectCard"
+import ProjectGrid from "components/ProjectGrid"
 import FeaturedProjectCard from "components/FeaturedProjectCard"
-import Masonry from "react-masonry-component"
+
 import "styles/projectShowcase.scss"
 
 const Hero = styled("div")`
@@ -20,13 +20,6 @@ const Hero = styled("div")`
   background-color: ${colors.grey100};
   margin-bottom: 8em;
 `
-
-const filters = { marginLeft: "5%", marginBottom: "5em" }
-
-const col = {
-  width: `${100 / 3}%`,
-  paddingRight: "5%",
-}
 
 const Section = styled("div")`
   margin-bottom: 10em;
@@ -79,15 +72,7 @@ const WorkAction = styled(Link)`
   }
 `
 
-const ConsoleLog = ({ children }) => {
-  console.log(children)
-  return false
-}
-
-const masonryOptions = {
-  horizontalOrder: true,
-}
-const RenderBody = ({ home, projects, meta, categories }) => (
+const RenderBody = ({ home, projects, meta, categories, filteredProjects }) => (
   <>
     <Helmet
       title={meta.title}
@@ -128,7 +113,7 @@ const RenderBody = ({ home, projects, meta, categories }) => (
       ].concat(meta)}
     />
     <Hero>
-      <FeaturedProjectCard />
+      <FeaturedProjectCard projects={filteredProjects} />
       <AboutSelf>
         Garrett Vercoe is a product designer using data to solve problems in the
         community.
@@ -146,33 +131,7 @@ const RenderBody = ({ home, projects, meta, categories }) => (
     {/* </Hero> */}
 
     <Section>
-      <Masonry style={filters}>
-        <div style={col}>
-          <h2>Projects</h2>
-        </div>
-        <div style={col}>
-          <h5>By Tag</h5>
-          {categories.map(category => (
-            <div>{category}</div>
-          ))}
-          {/* <h3>All / Architecture / Data / Fabrication / Web / Development</h3> */}
-        </div>
-        <div style={col}></div>
-      </Masonry>
-      <Masonry options={masonryOptions} className="showcase">
-        {projects.map((project, i) => (
-          <React.Fragment>
-            <ProjectCard
-              key={i}
-              category={project.node.project_category}
-              title={project.node.project_title}
-              description={project.node.project_preview_description}
-              thumbnail={project.node.project_preview_thumbnail}
-              uid={project.node._meta.uid}
-            />
-          </React.Fragment>
-        ))}
-      </Masonry>
+      <ProjectGrid categories={categories} projects={projects} />
     </Section>
     {/* <Section>
       {RichText.render(home.about_title)}
@@ -187,6 +146,9 @@ export default ({ data }) => {
   const projects = data.prismic.allProjects.edges
   const meta = data.site.siteMetadata
 
+  const filteredProjects = projects.filter(
+    project => project.node.featured_project === "true"
+  )
   let categories = projects.map(
     project => project.node.project_category[0].text
   )
@@ -210,6 +172,7 @@ export default ({ data }) => {
         projects={projects}
         meta={meta}
         categories={categoriesUnique}
+        filteredProjects={filteredProjects}
       />
     </Layout>
   )
@@ -251,6 +214,7 @@ export const query = graphql`
             project_preview_thumbnail
             project_title
             project_category
+            featured_project
             _meta {
               uid
             }

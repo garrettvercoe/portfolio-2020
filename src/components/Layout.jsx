@@ -8,6 +8,7 @@ import typeStyles from "styles/typography"
 import dimensions from "styles/dimensions"
 import Footer from "components/Footer"
 import Header from "components/Header"
+import Cursor from "components/Cursor"
 import "styles/fonts.scss"
 
 const LayoutContainer = styled.div`
@@ -45,10 +46,14 @@ const Layout = ({ children }) => (
     render={data => (
       <LayoutContainer className="div">
         <Global styles={[globalStyles, typeStyles]} />
+
         <div className="Layout">
-          <Header />
-          <main className="Layout__content">{children}</main>
-          <Footer />
+          <Cursor>
+            <Header />
+
+            <main className="Layout__content">{children}</main>
+            <Footer />
+          </Cursor>
         </div>
       </LayoutContainer>
     )}

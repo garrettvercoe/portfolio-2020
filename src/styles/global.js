@@ -32,6 +32,7 @@ const globalStyles = css`
     &::-webkit-scrollbar {
       display: none;
     }
+    cursor: none;
     @media (max-width: ${dimensions.maxwidthMobile}px) {
       font-size: 14px;
     }

@@ -1,73 +1,73 @@
 import React from "react"
-import { Link } from "gatsby"
-import { RichText } from "prismic-reactjs"
 import styled from "@emotion/styled"
 
-const circle = styled("div")`
-position: fixed;
-background-color: #fff;
-width: 10px;
-height: 10px;
-left:-10px;
-top:-10px;
-border-radius: 100%;
-z-index: 1;
+const Cursor = styled.div`
+  position: fixed;
+  background-color: #000;
+  width: 7px;
+  height: 7px;
 
-z-index: 10000;
-transform: scale(1);
-
-  }
+  border-radius: 100%;
+  z-index: 1;
+  // user-select: none;
+  // pointer-events: none;
+  z-index: 10000;
+  transform: scale(1);
+  // &.active {
+  //     opacity: 1;
+  //     transform: scale(0);
+  // }
 `
 
-const circleFollow = styled("div")`
+const CursorFollower = styled.div`
   position: fixed;
-  border: 1px solid #fff;
-  width: 30px;
-  height: 30px;
-  left: -21px;
-  top: -21px;
+  border: 1px solid #000;
+  width: 60px;
+  height: 60px;
+
   border-radius: 100%;
   z-index: 1;
   user-select: none;
   pointer-events: none;
   z-index: 10000;
+  //overflow: hidden;
   transform: scale(1);
+  // &.active {
+  //     transform: scale(3);
+  // }
 `
 
-var $circle = $(".circle"),
-  $follow = $(".circle-follow")
+export default class Mouse extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleMouseMove = this.handleMouseMove.bind(this)
+    this.state = { x: 0, y: 0 }
+  }
 
-function moveCircle(e) {
-  TweenLite.to($circle, 0.3, {
-    x: e.clientX,
-    y: e.clientY,
-  })
-  TweenLite.to($follow, 0.7, {
-    x: e.clientX,
-    y: e.clientY,
-  })
+  handleMouseMove(event) {
+    this.setState({
+      x: event.clientX,
+      y: event.clientY,
+    })
+  }
+
+  render() {
+    return (
+      <div onMouseMove={this.handleMouseMove}>
+        <Cursor
+          style={{
+            left: this.state.x,
+            top: this.state.y,
+          }}
+        />
+        <CursorFollower
+          style={{
+            left: this.state.x - 26,
+            top: this.state.y - 26,
+          }}
+        />
+        {this.props.children}
+      </div>
+    )
+  }
 }
-
-function hoverFunc(e) {
-  TweenLite.to($circle, 0.3, {
-    opacity: 1,
-    scale: 0,
-  })
-  TweenLite.to($follow, 0.3, {
-    scale: 3,
-  })
-}
-
-function unhoverFunc(e) {
-  TweenLite.to($circle, 0.3, {
-    opacity: 1,
-    scale: 1,
-  })
-  TweenLite.to($follow, 0.3, {
-    scale: 1,
-  })
-}
-
-$(window).on("mousemove", moveCircle)
-
-$("a").hover(hoverFunc, unhoverFunc)

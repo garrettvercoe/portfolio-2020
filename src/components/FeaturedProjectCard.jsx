@@ -5,6 +5,9 @@ import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import colors from "styles/colors"
 import PropTypes from "prop-types"
+import ConsoleLog from "components/ConsoleLog"
+import FeaturedProjectText from "components/FeaturedProjectContent"
+import Slide from "components/Slide"
 
 const ProjectCardContainer = styled("div")`
   display: grid;
@@ -13,7 +16,6 @@ const ProjectCardContainer = styled("div")`
   transition: all 150ms ease-in-out;
   text-decoration: none;
   color: currentColor;
-
   @media (max-width: 950px) {
     grid-template-columns: 4.5fr 7fr;
   }
@@ -49,26 +51,7 @@ const FeaturedItems = styled("div")`
   position: relative;
   margin: auto 0;
 `
-const FeaturedItem = styled("div")`
-  position: relative;
-  padding-bottom: 3em;
-`
 
-const LinkArrow = styled.svg`
-  &:hover {
-    transform: translateY(-0.8rem);
-  }
-
-  fill: none;
-  height: 1rem;
-  margin-left: 0.75rem;
-  margin-right: -1.5rem;
-  stroke: #000;
-  transition: transform 0.4s ease;
-  width: 1rem;
-
-  //write to not show on smaller devices
-`
 const MoreArrow = styled.svg`
   &:hover {
     transform: translateY(0.8rem), rotate(45deg);
@@ -84,62 +67,6 @@ const MoreArrow = styled.svg`
 
   //write to not show on smaller devices
 `
-const FeaturedTitle = styled.a`
-  &:hover {
-    .LinkArrow {
-      transform: translateY(-0.8rem);
-    }
-  }
-  text-decoration: none;
-  padding-right: 1.5rem;
-  padding-bottom: 0rem;
-  margin-bottom: 0rem;
-  line-height: 1.1;
-  .featured_title {
-    color: transparent;
-    font-size: 3.25em;
-
-    &:before {
-      color: #000;
-      content: attr(data-text);
-      left: 0;
-      position: absolute;
-      top: 0;
-      -webkit-text-fill-color: transparent;
-      -webkit-text-stroke-width: 0.075rem;
-
-      .mix-blend-mode-unsupported & {
-        color: #fff;
-      }
-    }
-
-    &:after {
-      color: #000;
-      content: attr(data-text);
-      height: 0;
-      left: 0;
-      overflow: hidden;
-      position: absolute;
-      top: 0;
-      transition: height 0.4s ease;
-
-      .mix-blend-mode-unsupported & {
-        color: #fff;
-      }
-    }
-
-    &:hover {
-      &:after {
-        height: 100%;
-      }
-    }
-    //write to not show on smaller devices
-  }
-`
-const FeaturedDesc = styled("h5")`
-  margin: 0;
-  padding: 0;
-`
 
 const ProjectCardImageContainer = styled("div")`
   background: ${colors.grey400};
@@ -151,6 +78,7 @@ const ProjectCardImageContainer = styled("div")`
   padding-left: 2em;
   padding-right: 2em;
   margin-left: 1em;
+
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-top: 3em;
     max-height: 200px;
@@ -158,124 +86,64 @@ const ProjectCardImageContainer = styled("div")`
     align-items: center;
     justify-content: flex-start;
   }
-
-  &:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: ${colors.blue500};
-    mix-blend-mode: multiply;
-    opacity: 0;
-    transition: all 150ms ease-in-out;
-  }
-
-  img {
-    max-width: 400px;
-    width: 100%;
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.04);
-
-    @media (max-width: ${dimensions.maxwidthTablet}px) {
-      max-width: 300px;
-    }
-  }
 `
 
-const ProjectCard = () => (
-  <ProjectCardContainer to={`/work/test`}>
-    <ProjectCardContent className="ProjectCardContent">
-      <FeaturedItems className="FeaturedItems">
-        <Description>Featured Work</Description>
-        <FeaturedItem>
-          <FeaturedTitle
-            target="_blank"
-            rel="noopener"
-            href="https://soundloop.app/"
-            data-link=" "
-          >
-            <span class="featured_title" data-text="Soundloop">
-              Soundloop
-            </span>{" "}
-            <LinkArrow
-              className="LinkArrow"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 9.2 9.2"
-              data-link-arrow=""
-            >
-              <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
-            </LinkArrow>
-          </FeaturedTitle>
-          <FeaturedDesc>2019 Development + Design</FeaturedDesc>
-        </FeaturedItem>
+export default class FeaturedProjects extends React.Component {
+  constructor(props) {
+    super(props)
+    this.uids = this.props.projects.map(project => project.node._meta.uid)
+    this.state = { activeProject: this.uids[0] }
+    this.onHover = this.onHover.bind(this)
+  }
 
-        <FeaturedItem>
-          <FeaturedTitle
-            target="_blank"
-            rel="noopener"
-            href="https://soundloop.app/"
-            data-link=" "
-          >
-            <span class="featured_title" data-text="City of Charlottesville">
-              City of Charlottesville
-            </span>{" "}
-            <LinkArrow
-              className="LinkArrow"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 9.2 9.2"
-              data-link-arrow=""
-            >
-              <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
-            </LinkArrow>
-          </FeaturedTitle>
-          <FeaturedDesc>2019 Development + Design</FeaturedDesc>
-        </FeaturedItem>
-        <FeaturedItem>
-          <FeaturedTitle
-            target="_blank"
-            rel="noopener"
-            href="https://soundloop.app/"
-            data-link=" "
-          >
-            <span class="featured_title" data-text="Lessons of Venice">
-              Lessons of Venice
-            </span>{" "}
-            <LinkArrow
-              className="LinkArrow"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 9.2 9.2"
-              data-link-arrow=""
-            >
-              <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
-            </LinkArrow>
-          </FeaturedTitle>
-          <FeaturedDesc>2019 Development + Design</FeaturedDesc>
-        </FeaturedItem>
-        <Description>
-          More Work
-          <MoreArrow
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 9.2 9.2"
-            data-link-arrow=""
-          >
-            <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
-          </MoreArrow>
-        </Description>
-      </FeaturedItems>
-    </ProjectCardContent>
-    <ProjectCardImageContainer className="ProjectCardImageContainer">
-      {/* <img src={thumbnail.url} alt={title[0].text} /> */}
-    </ProjectCardImageContainer>
-  </ProjectCardContainer>
-)
+  onHover(uid) {
+    this.setState({ activeProject: uid })
+  }
+  render() {
+    return (
+      <ProjectCardContainer to={`/work/test`}>
+        <ProjectCardContent className="ProjectCardContent">
+          <FeaturedItems className="FeaturedItems">
+            <Description>Featured Work</Description>
+            {this.props.projects.map((project, i) => (
+              <div onMouseOver={() => this.onHover(project.node._meta.uid)}>
+                <FeaturedProjectText
+                  title={project.node.project_title}
+                  active={project.node._meta.uid === this.state.activeProject}
+                ></FeaturedProjectText>
+              </div>
+            ))}
 
-export default ProjectCard
-
-ProjectCard.propTypes = {
-  category: PropTypes.array.isRequired,
-  thumbnail: PropTypes.object.isRequired,
-  title: PropTypes.array.isRequired,
-  description: PropTypes.array.isRequired,
-  uid: PropTypes.string.isRequired,
+            <Description>
+              More Work
+              <MoreArrow
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 9.2 9.2"
+                data-link-arrow=""
+              >
+                <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
+              </MoreArrow>
+            </Description>
+          </FeaturedItems>
+        </ProjectCardContent>
+        <ProjectCardImageContainer className="ProjectCardImageContainer">
+          {this.props.projects.map((project, i) => (
+            <Slide
+              src={project.node.project_preview_thumbnail.url}
+              alt={project.node.project_title[0].text}
+              active={project.node._meta.uid === this.state.activeProject}
+            />
+          ))}
+        </ProjectCardImageContainer>
+      </ProjectCardContainer>
+    )
+  }
 }
+
+// ProjectCard.propTypes = {
+//   category: PropTypes.array.isRequired,
+//   thumbnail: PropTypes.object.isRequired,
+//   title: PropTypes.array.isRequired,
+//   description: PropTypes.array.isRequired,
+//   uid: PropTypes.string.isRequired,
+// }
