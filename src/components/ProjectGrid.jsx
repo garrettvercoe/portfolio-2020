@@ -2,6 +2,7 @@ import React from "react"
 import Masonry from "react-masonry-component"
 import ProjectCard from "components/ProjectCard"
 import ConsoleLog from "components/ConsoleLog"
+import scrollToComponent from "react-scroll-to-component"
 const filters = { marginLeft: "5%", marginBottom: "5em" }
 
 const col = {
@@ -23,6 +24,10 @@ export default class ProjectGrid extends React.Component {
   }
 
   handleFilterSelect(newCategory) {
+    scrollToComponent(this.Projects, {
+      offset: -50,
+      align: "top",
+    })
     this.setState({ categorySelected: newCategory })
   }
 
@@ -30,11 +35,17 @@ export default class ProjectGrid extends React.Component {
     return (
       <React.Fragment>
         <Masonry style={filters}>
-          <div style={col}>
+          <section
+            style={col}
+            ref={section => {
+              this.Projects = section
+            }}
+          >
             <h1>Projects</h1>
-          </div>
+          </section>
+
           <div style={col}>
-            <h5>By Tag</h5>
+            <h5>Filter</h5>
             {this.state.categorySelected === "All" ? (
               <div style={Selected}>All</div>
             ) : (
@@ -65,6 +76,7 @@ export default class ProjectGrid extends React.Component {
                   title={project.node.project_title}
                   description={project.node.project_preview_description}
                   thumbnail={project.node.project_preview_thumbnail}
+                  categoryOnClick={this.handleFilterSelect}
                   uid={project.node._meta.uid}
                 />
               ))}
@@ -74,7 +86,7 @@ export default class ProjectGrid extends React.Component {
               {this.props.projects
                 .filter(
                   project =>
-                    project.node.project_category[0].text ===
+                    project.node.project_category ===
                     this.state.categorySelected
                 )
                 .map((project, i) => (

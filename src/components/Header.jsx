@@ -11,7 +11,6 @@ const HeaderContainer = styled("div")`
   padding-left: 5%;
   padding-right: 5%;
   padding-bottom: 3em;
-  background-color: ${colors.grey100};
 `
 
 const HeaderContent = styled("div")`

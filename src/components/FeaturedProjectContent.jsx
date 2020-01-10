@@ -27,6 +27,8 @@ const Title = styled.a`
   padding-bottom: 0rem;
   margin-bottom: 0rem;
   line-height: 1.1;
+
+
     color: transparent;
     font-size: 3.5em;
 
@@ -37,6 +39,7 @@ const After = styled.div`
   color: #000;
   height: 0;
   left: 0;
+
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -48,6 +51,7 @@ const After = styled.div`
 
 const Before = styled.div`
   color: #000;
+
   left: 0;
   position: absolute;
   top: 0;

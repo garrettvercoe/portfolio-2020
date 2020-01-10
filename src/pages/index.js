@@ -17,7 +17,7 @@ import "styles/projectShowcase.scss"
 const Hero = styled("div")`
   padding-left: 5%;
   padding-right: 5%;
-  background-color: ${colors.grey100};
+
   margin-bottom: 8em;
 `
 
@@ -33,13 +33,6 @@ const Section = styled("div")`
   &:last-of-type {
     margin-bottom: 0;
   }
-`
-const AboutSelf = styled("div")`
-  text-align: center;
-  font-size: 1.25rem;
-  max-width: 700px;
-  padding: 6em 0 6em 0;
-  margin: 0 auto;
 `
 
 const WorkAction = styled(Link)`
@@ -114,10 +107,6 @@ const RenderBody = ({ home, projects, meta, categories, filteredProjects }) => (
     />
     <Hero>
       <FeaturedProjectCard projects={filteredProjects} />
-      <AboutSelf>
-        Garrett Vercoe is a product designer using data to solve problems in the
-        community.
-      </AboutSelf>
     </Hero>
     {/* <Hero>
       <>{RichText.render(home.hero_title)}</>
@@ -149,11 +138,10 @@ export default ({ data }) => {
   const filteredProjects = projects.filter(
     project => project.node.featured_project === "true"
   )
-  let categories = projects.map(
-    project => project.node.project_category[0].text
-  )
+  let categories = projects.map(project => project.node.project_category)
   const categoriesSet = new Set(categories)
   const categoriesUnique = [...categoriesSet]
+  console.log(categoriesUnique + "categories")
   // const categories = projects.reduce((uniqueCategories, project) => {
   //   if (!uniqueCategories.indexOf(project.node.project_category)) {
   //     uniqueCategories.push(project.node.project_category)

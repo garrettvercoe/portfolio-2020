@@ -6,11 +6,10 @@ import dimensions from "styles/dimensions"
 import colors from "styles/colors"
 import PropTypes from "prop-types"
 
-const ProjectCardContainer = styled(Link)`
+const ProjectCardContainer = styled("div")`
   margin-bottom: 2em;
   transition: all 150ms ease-in-out;
-  text-decoration: none;
-  color: currentColor;
+
   box-sizing: border-box;
   padding-right: 5%;
   width: ${100 / 3}%;
@@ -18,50 +17,15 @@ const ProjectCardContainer = styled(Link)`
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-bottom: 2em;
   }
-
-  &:hover {
-    transition: all 150ms ease-in-out;
-
-    .ProjectCardAction {
-      color: ${colors.blue500};
-      transition: all 150ms ease-in-out;
-
-      span {
-        transform: translateX(0px);
-        opacity: 1;
-        transition: transform 150ms ease-in-out;
-      }
-    }
-
-    .ProjectCardContent::before {
-      opacity: 0.02;
-      transition: all 150ms ease-in-out;
-    }
-
-    .ProjectCardImageContainer::before {
-      opacity: 0.2;
-      transition: all 150ms ease-in-out;
-    }
-  }
 `
 
+const LinkTo = styled(Link)`
+  text-decoration: none;
+  color: currentColor;
+`
 const ProjectCardContent = styled("div")`
-  background: white;
-  padding: 1em 3em 2em 0em;
+  padding: 1em 3em 0em 0em;
   position: relative;
-
-  &:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: ${colors.blue500};
-    mix-blend-mode: multiply;
-    opacity: 0;
-    transition: all 150ms ease-in-out;
-  }
 
   @media (max-width: 950px) {
     padding: 3.25em 2.5em 2em 2.5em;
@@ -73,39 +37,14 @@ const ProjectCardContent = styled("div")`
 `
 
 const ProjectCardCategory = styled("h6")`
-  font-weight: 600;
-  margin-bottom: 2em;
-  color: ${colors.grey600};
+  margin-bottom: 4em;
+  color: ${colors.grey700};
 `
 
 const ProjectCardTitle = styled("h3")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 `
-
-// const ProjectCardBlurb = styled("div")`
-//   margin-bottom: 0.5em;
-//   margin-top: 0.5em;
-//   margin-bottom: 5em;
-
-//   @media (max-width: ${dimensions.maxwidthTablet}px) {
-//     margin-bottom: 2.5em;
-//   }
-// `
-
-// const ProjectCardAction = styled("div")`
-//   font-weight: 600;
-//   text-decoration: none;
-//   color: currentColor;
-//   transition: all 150ms ease-in-out;
-
-//   span {
-//     margin-left: 1em;
-//     transform: translateX(-8px);
-//     display: inline-block;
-//     transition: transform 400ms ease-in-out;
-//   }
-// `
 
 const ProjectCardImageContainer = styled("div")`
   background: ${colors.grey200};
@@ -132,21 +71,67 @@ const ProjectCardImageContainer = styled("div")`
   }
 `
 
-const ProjectCard = ({ category, title, description, thumbnail, uid }) => (
-  <ProjectCardContainer to={`/work/${uid}`}>
-    <ProjectCardImageContainer className="ProjectCardImageContainer">
-      <img src={thumbnail.url} alt={title[0].text} />
-    </ProjectCardImageContainer>
-    <ProjectCardContent className="ProjectCardContent">
-      <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
-      <ProjectCardCategory>{category[0].text}</ProjectCardCategory>
-      {/* <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb> */}
-      {/* <ProjectCardAction className="ProjectCardAction">
-        Details <span>&#8594;</span>
-      </ProjectCardAction> */}
-    </ProjectCardContent>
-  </ProjectCardContainer>
-)
+class ProjectCard extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.categoryFilter = this.categoryFilter.bind(this)
+  }
+
+  categoryFilter = () => {
+    var category = this.props.category
+    this.props.categoryOnClick(category)
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <ProjectCardContainer>
+          <LinkTo to={`/work/${this.props.uid}`}>
+            <ProjectCardImageContainer className="ProjectCardImageContainer">
+              <img
+                src={this.props.thumbnail.url}
+                alt={this.props.title[0].text}
+              />
+            </ProjectCardImageContainer>
+            <ProjectCardContent className="ProjectCardContent">
+              <ProjectCardTitle>{this.props.title[0].text}</ProjectCardTitle>
+            </ProjectCardContent>
+          </LinkTo>
+          <ProjectCardCategory onClick={this.categoryFilter}>
+            {this.props.category}
+          </ProjectCardCategory>
+        </ProjectCardContainer>
+      </React.Fragment>
+    )
+  }
+}
+
+ProjectCard.propTypes = {
+  category: PropTypes.array.isRequired,
+  thumbnail: PropTypes.object.isRequired,
+  title: PropTypes.array.isRequired,
+  description: PropTypes.array.isRequired,
+  uid: PropTypes.string.isRequired,
+}
+
+export default ProjectCard
+
+// const ProjectCard = ({ category, title, description, thumbnail, uid }) => (
+//   <ProjectCardContainer to={`/work/${uid}`}>
+//     <ProjectCardImageContainer className="ProjectCardImageContainer">
+//       <img src={thumbnail.url} alt={title[0].text} />
+//     </ProjectCardImageContainer>
+//     <ProjectCardContent className="ProjectCardContent">
+//       <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
+//       <ProjectCardCategory onClick={this.categoryFilter} >{category}</ProjectCardCategory>
+//       {/* <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb> */}
+//       {/* <ProjectCardAction className="ProjectCardAction">
+//         Details <span>&#8594;</span>
+//       </ProjectCardAction> */}
+//     </ProjectCardContent>
+//   </ProjectCardContainer>
+// )
 
 // <div key={i} className="showcase__item">
 //   <figure className="card">
@@ -168,12 +153,4 @@ const ProjectCard = ({ category, title, description, thumbnail, uid }) => (
 //   visibility: hidden;
 // }
 
-export default ProjectCard
-
-ProjectCard.propTypes = {
-  category: PropTypes.array.isRequired,
-  thumbnail: PropTypes.object.isRequired,
-  title: PropTypes.array.isRequired,
-  description: PropTypes.array.isRequired,
-  uid: PropTypes.string.isRequired,
-}
+// export default ProjectCard

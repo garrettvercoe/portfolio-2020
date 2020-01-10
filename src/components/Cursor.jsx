@@ -3,14 +3,14 @@ import styled from "@emotion/styled"
 
 const Cursor = styled.div`
   position: fixed;
-  background-color: #000;
-  width: 7px;
-  height: 7px;
+  background-color: #fd4000;
+  width: 16px;
+  height: 16px;
 
   border-radius: 100%;
   z-index: 1;
-  // user-select: none;
-  // pointer-events: none;
+  user-select: none;
+  pointer-events: none;
   z-index: 10000;
   transform: scale(1);
   // &.active {
@@ -21,9 +21,9 @@ const Cursor = styled.div`
 
 const CursorFollower = styled.div`
   position: fixed;
-  border: 1px solid #000;
-  width: 60px;
-  height: 60px;
+  border: 1px solid transparent;
+  width: 40px;
+  height: 40px;
 
   border-radius: 100%;
   z-index: 1;
