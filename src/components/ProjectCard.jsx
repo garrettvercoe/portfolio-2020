@@ -5,7 +5,8 @@ import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import colors from "styles/colors"
 import PropTypes from "prop-types"
-
+import Cursor from "./Cursor"
+import VideoPlayer from "./VideoPlayer"
 const ProjectCardContainer = styled("div")`
   margin-bottom: 2em;
   transition: all 150ms ease-in-out;
@@ -64,7 +65,7 @@ const ProjectCardImageContainer = styled("div")`
 
   img {
     width: 100%;
-
+    height: 5%;
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       max-width: 300px;
     }
@@ -74,8 +75,23 @@ const ProjectCardImageContainer = styled("div")`
 class ProjectCard extends React.Component {
   constructor(props) {
     super(props)
+    var patt = /(?:(src=.*\/embed\/))(.*)(?=\?)/g
+    // var id = patt.exec(JSON.stringify(this.props.video.html))
+    if (this.props.video) {
+      var src = this.props.video[0].text
+    }
 
+    console.log("VIDEO" + JSON.stringify(this.props.video))
+    this.state = { source: src, active: false }
     this.categoryFilter = this.categoryFilter.bind(this)
+    this.onHover = this.onHover.bind(this)
+    this.onOut = this.onOut.bind(this)
+  }
+  onHover() {
+    this.setState({ active: true })
+  }
+  onOut() {
+    this.setState({ active: false })
   }
 
   categoryFilter = () => {
@@ -86,21 +102,34 @@ class ProjectCard extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <ProjectCardContainer>
-          <LinkTo to={`/work/${this.props.uid}`}>
-            <ProjectCardImageContainer className="ProjectCardImageContainer">
-              <img
-                src={this.props.thumbnail.url}
-                alt={this.props.title[0].text}
-              />
-            </ProjectCardImageContainer>
-            <ProjectCardContent className="ProjectCardContent">
-              <ProjectCardTitle>{this.props.title[0].text}</ProjectCardTitle>
-            </ProjectCardContent>
-          </LinkTo>
-          <ProjectCardCategory onClick={this.categoryFilter}>
-            {this.props.category}
-          </ProjectCardCategory>
+        <ProjectCardContainer
+          onMouseEnter={() => this.onHover()}
+          onMouseLeave={() => this.onOut()}
+        >
+          <Cursor show={this.state.active}>
+            <LinkTo to={`/work/${this.props.uid}`}>
+              <ProjectCardImageContainer className="ProjectCardImageContainer">
+                {this.props.video ? (
+                  <VideoPlayer
+                    src={this.state.source}
+                    id={this.state.videoId}
+                    active={this.state.active}
+                  />
+                ) : (
+                  <img
+                    src={this.props.thumbnail.url}
+                    alt={this.props.title[0].text}
+                  />
+                )}
+              </ProjectCardImageContainer>
+              <ProjectCardContent className="ProjectCardContent">
+                <ProjectCardTitle>{this.props.title[0].text}</ProjectCardTitle>
+              </ProjectCardContent>
+            </LinkTo>
+            <ProjectCardCategory onClick={this.categoryFilter}>
+              {this.props.category}
+            </ProjectCardCategory>{" "}
+          </Cursor>
         </ProjectCardContainer>
       </React.Fragment>
     )

@@ -202,6 +202,7 @@ export const query = graphql`
             project_preview_thumbnail
             project_title
             project_category
+            video_link
             featured_project
             _meta {
               uid

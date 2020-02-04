@@ -6,7 +6,7 @@ import scrollToComponent from "react-scroll-to-component"
 const filters = { marginLeft: "5%", marginBottom: "5em" }
 
 const col = {
-  width: `${100 / 3}%`,
+  width: `${100 / 2}%`,
   paddingRight: "5%",
 }
 const masonryOptions = {
@@ -76,6 +76,7 @@ export default class ProjectGrid extends React.Component {
                   title={project.node.project_title}
                   description={project.node.project_preview_description}
                   thumbnail={project.node.project_preview_thumbnail}
+                  video={project.node.video_link}
                   categoryOnClick={this.handleFilterSelect}
                   uid={project.node._meta.uid}
                 />
@@ -97,6 +98,8 @@ export default class ProjectGrid extends React.Component {
                       title={project.node.project_title}
                       description={project.node.project_preview_description}
                       thumbnail={project.node.project_preview_thumbnail}
+                      video={project.node.video_link}
+                      categoryOnClick={this.handleFilterSelect}
                       uid={project.node._meta.uid}
                     />
                   </React.Fragment>

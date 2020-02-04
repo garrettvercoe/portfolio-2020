@@ -5,10 +5,24 @@ import fontFiles from "styles/fonts"
 
 const globalStyles = css`
   @font-face {
-    font-family: "GT-America-Extended-Regular";
-    font-style: normal;
+    font-family: "GT-America-Extended";
+    font-style: 400;
     font-weight: normal;
     src: url(${fontFiles.GTExtendedRegular}) format("truetype");
+  }
+
+  @font-face {
+    font-family: "GT-America-Extended";
+    font-style: 600;
+    font-weight: bold;
+    src: url(${fontFiles.GTExtendedBold}) format("truetype");
+  }
+
+  @font-face {
+    font-family: "GT-America-Expanded";
+    font-style: bold;
+    font-weight: 600;
+    src: url(${fontFiles.GTExpandedBold}) format("truetype");
   }
 
   html,
@@ -21,18 +35,20 @@ const globalStyles = css`
   }
 
   body {
-    font-family: "GT-America-Extended-Regular";
+    font-family: "GT-America-Extended";
+    color: #131414;
     overscroll-behavior-y: none;
+    font-weight: 400;
     width: 100%;
     margin: 0 auto;
     font-size: 16px;
     line-height: 1.5;
-    color: ${colors.grey900};
+    background-color: #f6f6f6;
     -webkit-font-smoothing: antialiased;
     &::-webkit-scrollbar {
       display: none;
     }
-    cursor: none;
+
     @media (max-width: ${dimensions.maxwidthMobile}px) {
       font-size: 14px;
     }

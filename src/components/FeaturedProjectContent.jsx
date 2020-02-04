@@ -7,7 +7,7 @@ const LinkArrow = styled.svg`
 
   fill: none;
   height: 1rem;
-  margin-left: 0.75rem;
+
   margin-right: -1.5rem;
   stroke: #000;
   transition: transform 0.4s ease;
@@ -23,14 +23,14 @@ const Title = styled.a`
     }
   }
   text-decoration: none;
-  padding-right: 1.5rem;
+  padding-right: 0.5rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
   line-height: 1.1;
 
 
     color: transparent;
-    font-size: 3.5em;
+    font-size: 5.5em;
 
     //write to not show on smaller devices
   }
@@ -39,7 +39,10 @@ const After = styled.div`
   color: #000;
   height: 0;
   left: 0;
-
+  font-size: 6.67rem;
+  line-height: 1.45;
+  font-weight: 600;
+  font-family: "GT-America-Expanded";
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -51,7 +54,10 @@ const After = styled.div`
 
 const Before = styled.div`
   color: #000;
-
+  font-size: 6.67rem;
+  line-height: 1.45;
+  font-weight: 600;
+  font-family: "GT-America-Expanded";
   left: 0;
   position: absolute;
   top: 0;

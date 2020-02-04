@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Prist | Gatsby & Prismic Starter`,
-    description: `A starter powered by Gatsby and Prismic to showcase portfolios and blogs.`,
-    author: `Marguerite Roth | marguerite.io`,
+    title: `Garrett Vercoe`,
+    description: `Interactive Designer`,
+    author: `Garrett Vercoe | garrettvercoe.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -10,6 +10,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-image`,
+    `react-player`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sass`,
     `react-scroll-to-component`,

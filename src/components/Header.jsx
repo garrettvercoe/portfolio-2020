@@ -10,7 +10,7 @@ const HeaderContainer = styled("div")`
   padding-top: 2em;
   padding-left: 5%;
   padding-right: 5%;
-  padding-bottom: 3em;
+  padding-bottom: 2em;
 `
 
 const HeaderContent = styled("div")`

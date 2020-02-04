@@ -48,12 +48,10 @@ const Layout = ({ children }) => (
         <Global styles={[globalStyles, typeStyles]} />
 
         <div className="Layout">
-          <Cursor>
-            <Header />
+          <Header />
 
-            <main className="Layout__content">{children}</main>
-            <Footer />
-          </Cursor>
+          <main className="Layout__content">{children}</main>
+          <Footer />
         </div>
       </LayoutContainer>
     )}

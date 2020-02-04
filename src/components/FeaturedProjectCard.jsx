@@ -38,11 +38,10 @@ const Description = styled("div")`
 `
 
 const AboutSelf = styled("div")`
-  text-align: center;
-  font-size: 1.25rem;
+  font-size: 2.25rem;
   max-width: 700px;
-  padding: 6em 0 6em 0;
-  margin: 0 auto;
+
+  line-height: 1.1;
 `
 
 const More = styled("div")`
@@ -116,7 +115,7 @@ export default class FeaturedProjects extends React.Component {
         <ProjectCardContainer to={`/work/test`}>
           <ProjectCardContent className="ProjectCardContent">
             <FeaturedItems className="FeaturedItems">
-              <Description>Featured Work</Description>
+              {/* <Description>Featured Work</Description> */}
               {this.props.projects.map((project, i) => (
                 <div onMouseOver={() => this.onHover(project.node._meta.uid)}>
                   <FeaturedProjectText

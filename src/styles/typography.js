@@ -3,10 +3,10 @@ import dimensions from "styles/dimensions"
 
 const typeStyles = css`
   h1 {
-    font-size: 3.25em;
+    font-size: 6.67em;
     line-height: 1.45;
-    font-weight: 400;
-
+    font-weight: 600;
+    font-family: "GT-America-Expanded";
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       font-size: 2.25em;
     }
