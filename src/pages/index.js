@@ -17,10 +17,14 @@ import "styles/projectShowcase.scss"
 const Hero = styled("div")`
   padding-left: 5%;
   padding-right: 5%;
-
-  margin-bottom: 8em;
+  width: 100vw;
+  height: 75vh;
+  display: inline-block;
 `
 
+const HeroText = styled("h1")`
+  vertical-align: middle;
+`
 const Section = styled("div")`
   margin-bottom: 10em;
   display: flex;
@@ -106,8 +110,10 @@ const RenderBody = ({ home, projects, meta, categories, filteredProjects }) => (
       ].concat(meta)}
     />
     <Hero>
-      <FeaturedProjectCard projects={filteredProjects} />
+      <HeroText>Garrett Vercoe</HeroText>
     </Hero>
+    <FeaturedProjectCard projects={filteredProjects} />
+
     {/* <Hero>
       <>{RichText.render(home.hero_title)}</>
       <a

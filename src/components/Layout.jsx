@@ -27,6 +27,8 @@ const LayoutContainer = styled.div`
     padding-right: ${dimensions.paddingHorizontalMobile}em;
   }
 
+  padding-left: 2.5vw;
+padding-right: 2.5vw;
   .Layout__content {
     padding-bottom: 5em;
   }

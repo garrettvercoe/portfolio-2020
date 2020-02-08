@@ -25,8 +25,11 @@ const typeStyles = css`
 
   h3 {
     line-height: 1.2;
-    font-size: 1.5em;
-    font-weight: 400;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: "GT-America-Extended";
+    font-weight: 600;
   }
 
   h4 {
@@ -43,6 +46,10 @@ const typeStyles = css`
     font-size: 0.9em;
     font-weight: 400;
     margin: 0;
+  }
+
+  small {
+    text-transform: uppercase;
   }
 
   p {

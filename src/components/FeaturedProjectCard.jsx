@@ -9,10 +9,18 @@ import ConsoleLog from "components/ConsoleLog"
 import FeaturedProjectText from "components/FeaturedProjectContent"
 import Slide from "components/Slide"
 import scrollToComponent from "react-scroll-to-component"
-const ProjectCardContainer = styled("div")`
+import LinkArrow from "components/LinkArrow"
+const BorderWrapper = styled("div")`
+  border-bottom: 1px solid #acacac;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+  &:nth-child(1) {
+    border-top: 1px solid #acacac;
+  }
+`
+const GridLayout = styled("div")`
   display: grid;
-  grid-template-columns: 4fr 4fr;
-  margin-bottom: 4em;
+  grid-template-columns: repeat(20, 1fr);
   transition: all 150ms ease-in-out;
   text-decoration: none;
   color: currentColor;
@@ -46,18 +54,6 @@ const AboutSelf = styled("div")`
 
 const More = styled("div")`
   padding-top: 2em;
-`
-const ProjectCardContent = styled("div")`
-  position: relative;
-  height: 75vh;
-  display: flex;
-  @media (max-width: 950px) {
-    padding: 3.25em 2.5em 2em 2.5em;
-  }
-
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    grid-row: 2;
-  }
 `
 
 const FeaturedItems = styled("div")`
@@ -102,52 +98,79 @@ export default class FeaturedProjects extends React.Component {
   constructor(props) {
     super(props)
     this.uids = this.props.projects.map(project => project.node._meta.uid)
-    this.state = { activeProject: this.uids[0] }
+    this.state = { activeProject: null }
     this.onHover = this.onHover.bind(this)
   }
 
   onHover(uid) {
     this.setState({ activeProject: uid })
   }
+
+  onOut() {
+    this.setState({ activeProject: null })
+  }
   render() {
     return (
       <React.Fragment>
-        <ProjectCardContainer to={`/work/test`}>
-          <ProjectCardContent className="ProjectCardContent">
-            <FeaturedItems className="FeaturedItems">
-              {/* <Description>Featured Work</Description> */}
-              {this.props.projects.map((project, i) => (
-                <div onMouseOver={() => this.onHover(project.node._meta.uid)}>
+        <GridLayout to={`/work/test`}>
+          <h3 style={{ gridColumn: "2/span 3" }}>Featured</h3>
+          <h3>(0{this.props.projects.length})</h3>
+        </GridLayout>
+
+        <FeaturedItems className="FeaturedItems">
+          {/* <Description>Featured Work</Description> */}
+          {this.props.projects.map((project, i) => (
+            <BorderWrapper>
+              <GridLayout to={`/work/test`}>
+                <small style={{ gridColumn: "1/span 1", textAlign: "center" }}>
+                  0{i + 1}
+                </small>
+                <small style={{ gridColumn: "2/span 2" }}>
+                  {project.node.project_category}
+                </small>
+                <div
+                  style={{ gridColumn: "5/span 10" }}
+                  onMouseOver={() => this.onHover(project.node._meta.uid)}
+                  onMouseOut={() => this.onOut()}
+                >
                   <FeaturedProjectText
                     title={project.node.project_title}
                     active={project.node._meta.uid === this.state.activeProject}
-                  ></FeaturedProjectText>
+                  />
                 </div>
-              ))}
+                <div style={{ gridColumn: "18/span 2" }}>
+                  <LinkArrow
+                    active={project.node._meta.uid === this.state.activeProject}
+                  />
+                </div>
+                <p>test</p>
+              </GridLayout>
+            </BorderWrapper>
+          ))}
 
-              <Description
-                onClick={() =>
-                  scrollToComponent(this.MoreWork, {
-                    offset: 378,
-                    align: "top",
-                    duration: 1500,
-                  })
-                }
-              >
-                {" "}
-                More Projects
-                <MoreArrow
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 9.2 9.2"
-                  className="moreArrow"
-                  data-link-arrow=""
-                >
-                  <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
-                </MoreArrow>
-              </Description>
-            </FeaturedItems>
-          </ProjectCardContent>
-          <ProjectCardImageContainer className="ProjectCardImageContainer">
+          {/* <Description
+            onClick={() =>
+              scrollToComponent(this.MoreWork, {
+                offset: 378,
+                align: "top",
+                duration: 1500,
+              })
+            }
+          >
+            {" "}
+            More Projects
+            <MoreArrow
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 9.2 9.2"
+              className="moreArrow"
+              data-link-arrow=""
+            >
+              <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
+            </MoreArrow> */}
+          {/* </Description> */}
+        </FeaturedItems>
+
+        {/* <ProjectCardImageContainer className="ProjectCardImageContainer">
             {this.props.projects.map((project, i) => (
               <Slide
                 src={project.node.project_preview_thumbnail.url}
@@ -155,16 +178,16 @@ export default class FeaturedProjects extends React.Component {
                 active={project.node._meta.uid === this.state.activeProject}
               />
             ))}
-          </ProjectCardImageContainer>
-        </ProjectCardContainer>
-        <AboutSelf
+          </ProjectCardImageContainer> */}
+
+        {/* <AboutSelf
           ref={AboutSelf => {
             this.MoreWork = AboutSelf
           }}
         >
           Garrett Vercoe is a product designer using data to solve problems in
           the community.
-        </AboutSelf>
+        </AboutSelf> */}
       </React.Fragment>
     )
   }

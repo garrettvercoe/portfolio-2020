@@ -1,27 +1,19 @@
 import React from "react"
 import styled from "@emotion/styled"
-const LinkArrow = styled.svg`
-  &:hover {
-    transform: translateY(-0.8rem);
-  }
-
-  fill: none;
-  height: 1rem;
-
-  margin-right: -1.5rem;
-  stroke: #000;
-  transition: transform 0.4s ease;
-  width: 1rem;
-
-  //write to not show on smaller devices
-`
 
 const Title = styled.a`
   &:hover {
     .LinkArrow {
       transform: translateY(-0.8rem);
     }
+    .After {
+      height: 0;
+ 
+        }
   }
+
+
+
   text-decoration: none;
   padding-right: 0.5rem;
   padding-bottom: 0rem;
@@ -37,7 +29,8 @@ const Title = styled.a`
 `
 const After = styled.div`
   color: #000;
-  height: 0;
+
+  height: 100%;
   left: 0;
   font-size: 6.67rem;
   line-height: 1.45;
@@ -46,14 +39,19 @@ const After = styled.div`
   overflow: hidden;
   position: absolute;
   top: 0;
-  transition: height 0.4s ease;
+  transition: height 0.5s ease;
+
   .mix-blend-mode-unsupported & {
     color: #fff;
   }
 `
 
 const Before = styled.div`
+  &:hover {
+  }
   color: #000;
+  transition: letter-spacing 1s ease;
+
   font-size: 6.67rem;
   line-height: 1.45;
   font-weight: 600;
@@ -88,23 +86,8 @@ export default class FeaturedProjectText extends React.Component {
         >
           <Before>{this.props.title[0].text}</Before>
           <span>{this.props.title[0].text}</span>{" "}
-          <After style={this.props.active ? { height: "100%" } : { height: 0 }}>
-            {this.props.title[0].text}
-          </After>
-          <LinkArrow
-            style={
-              this.props.active ? { transform: "translateY(-0.8rem)" } : {}
-            }
-            className="LinkArrow"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 9.2 9.2"
-            data-link-arrow=""
-          >
-            <path d="M8.7,2.3v6.3H2.3 M8.7,8.7L0.4,0.4"></path>
-          </LinkArrow>
+          <After className="After">{this.props.title[0].text}</After>
         </Title>
-
-        <FeaturedDesc>2019 Development + Design</FeaturedDesc>
       </FeaturedItem>
     )
   }
