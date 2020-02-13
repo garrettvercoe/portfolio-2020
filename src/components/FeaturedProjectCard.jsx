@@ -10,32 +10,11 @@ import FeaturedProjectText from "components/FeaturedProjectContent"
 import Slide from "components/Slide"
 import scrollToComponent from "react-scroll-to-component"
 import LinkArrow from "components/LinkArrow"
-const BorderWrapper = styled("div")`
-  border-bottom: 1px solid #acacac;
-  padding-top: 3rem;
-  padding-bottom: 5rem;
-  &:nth-child(1) {
-    border-top: 1px solid #acacac;
-  }
-`
-const GridLayout = styled("div")`
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-  transition: all 150ms ease-in-out;
-  text-decoration: none;
-  color: currentColor;
-  @media (max-width: 950px) {
-    grid-template-columns: 4.5fr 7fr;
-  }
+import BorderWrapper from "components/BorderWrapper"
+import GridLayout from "components/GridLayout"
+import BorderHeader from "components/BorderHeader"
+import Cursor from "components/Cursor"
 
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (max-width: ${dimensions.maxwidthMobile}px) {
-    margin-bottom: 2em;
-  }
-`
 const Description = styled("div")`
   &:hover {
     .moreArrow {
@@ -59,6 +38,7 @@ const More = styled("div")`
 const FeaturedItems = styled("div")`
   position: relative;
   margin: auto 0;
+  margin-bottom: 20em;
 `
 
 const MoreArrow = styled.svg`
@@ -74,6 +54,15 @@ const MoreArrow = styled.svg`
   //write to not show on smaller devices
 `
 
+const SpreadOut = styled("h1")`
+  &:hover {
+    letter-spacing: 3px;
+  }
+  z-index: 1000;
+
+  letter-spacing: -0.1rem;
+  transition: letter-spacing 0.5s ease;
+`
 const ProjectCardImageContainer = styled("div")`
   background: ${colors.grey400};
   display: flex;
@@ -112,40 +101,40 @@ export default class FeaturedProjects extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <GridLayout to={`/work/test`}>
-          <h3 style={{ gridColumn: "2/span 3" }}>Featured</h3>
-          <h3>(0{this.props.projects.length})</h3>
-        </GridLayout>
-
+        <BorderHeader
+          leftSection="Featured"
+          centerSection={`(0${this.props.projects.length})`}
+        />
         <FeaturedItems className="FeaturedItems">
           {/* <Description>Featured Work</Description> */}
           {this.props.projects.map((project, i) => (
+            // <Cursor
+            //   src={project.node.project_preview_thumbnail.url}
+            //   alt={project.node.project_title[0].text}
+            //   active={project.node._meta.uid === this.state.activeProject}
+            // >
             <BorderWrapper>
               <GridLayout to={`/work/test`}>
-                <small style={{ gridColumn: "1/span 1", textAlign: "center" }}>
-                  0{i + 1}
-                </small>
-                <small style={{ gridColumn: "2/span 2" }}>
+                <small style={{ gridColumn: "1/span 1" }}>0{i + 1}</small>
+                <small style={{ gridColumn: "1/span 2" }}>
                   {project.node.project_category}
                 </small>
                 <div
-                  style={{ gridColumn: "5/span 10" }}
+                  style={{ gridColumn: "3/span 10" }}
                   onMouseOver={() => this.onHover(project.node._meta.uid)}
                   onMouseOut={() => this.onOut()}
                 >
-                  <FeaturedProjectText
-                    title={project.node.project_title}
-                    active={project.node._meta.uid === this.state.activeProject}
-                  />
+                  <SpreadOut>{project.node.project_title[0].text}</SpreadOut>
+                  {/* <FeaturedProjectText title={project.node.project_title} /> */}
                 </div>
-                <div style={{ gridColumn: "18/span 2" }}>
+                <div style={{ gridColumn: "19/span 1" }}>
                   <LinkArrow
                     active={project.node._meta.uid === this.state.activeProject}
                   />
                 </div>
-                <p>test</p>
               </GridLayout>
             </BorderWrapper>
+            // </Cursor>
           ))}
 
           {/* <Description

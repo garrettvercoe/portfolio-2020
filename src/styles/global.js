@@ -5,9 +5,22 @@ import fontFiles from "styles/fonts"
 
 const globalStyles = css`
   @font-face {
+    font-family: "CanelaRegularItalic";
+    src: url(${fontFiles.CanelaRegularItalic}) format("woff");
+  }
+  @font-face {
+    font-family: "CanelaLight";
+    src: url(${fontFiles.CanelaLight}) format("woff");
+  }
+  @font-face {
+    font-family: "CanelaLightItalic";
+    src: url(${fontFiles.CanelaLightItalic}) format("woff");
+  }
+
+  @font-face {
     font-family: "GT-America-Extended";
-    font-style: 400;
-    font-weight: normal;
+    font-weight: 400;
+    font-style: normal;
     src: url(${fontFiles.GTExtendedRegular}) format("truetype");
   }
 
@@ -25,6 +38,19 @@ const globalStyles = css`
     src: url(${fontFiles.GTExpandedBold}) format("truetype");
   }
 
+  @font-face {
+    font-family: "GT-America";
+    font-style: bold;
+    font-weight: 600;
+    src: url(${fontFiles.GTBold}) format("truetype");
+  }
+  @font-face {
+    font-family: "GT-America";
+    font-style: normal;
+    font-weight: 400;
+    src: url(${fontFiles.GTRegular}) format("truetype");
+  }
+
   html,
   body,
   #root {
@@ -35,7 +61,10 @@ const globalStyles = css`
   }
 
   body {
-    font-family: "GT-America-Extended";
+    font-family: "Gt-America-Extended";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
     color: #131414;
     overscroll-behavior-y: none;
     font-weight: 400;
@@ -43,8 +72,8 @@ const globalStyles = css`
     margin: 0 auto;
     font-size: 16px;
     line-height: 1.5;
-    background-color: #f6f6f6;
-    -webkit-font-smoothing: antialiased;
+    // background-color: #f6f6f6;
+    background-color: white;
     &::-webkit-scrollbar {
       display: none;
     }

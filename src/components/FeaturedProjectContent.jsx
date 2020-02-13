@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-
+import Cursor from "components/Cursor"
 const Title = styled.a`
   &:hover {
     .LinkArrow {
@@ -8,19 +8,13 @@ const Title = styled.a`
     }
     .After {
       height: 0;
- 
-        }
+           }
   }
-
-
-
   text-decoration: none;
   padding-right: 0.5rem;
   padding-bottom: 0rem;
   margin-bottom: 0rem;
-  line-height: 1.1;
-
-
+  line-height: 1;
     color: transparent;
     font-size: 5.5em;
 
@@ -29,11 +23,9 @@ const Title = styled.a`
 `
 const After = styled.div`
   color: #000;
-
   height: 100%;
   left: 0;
-  font-size: 6.67rem;
-  line-height: 1.45;
+  font-size: 6.33rem;
   font-weight: 600;
   font-family: "GT-America-Expanded";
   overflow: hidden;
@@ -52,8 +44,7 @@ const Before = styled.div`
   color: #000;
   transition: letter-spacing 1s ease;
 
-  font-size: 6.67rem;
-  line-height: 1.45;
+  font-size: 6.33rem;
   font-weight: 600;
   font-family: "GT-America-Expanded";
   left: 0;
@@ -77,17 +68,23 @@ export default class FeaturedProjectText extends React.Component {
   render() {
     return (
       <FeaturedItem>
-        <Title
-          className="featuredTitle"
-          target="_blank"
-          rel="noopener"
-          href="https://soundloop.app/"
-          data-link=" "
+        <Cursor
+          src={this.props.src}
+          alt={this.props.alt}
+          active={this.props.active}
         >
-          <Before>{this.props.title[0].text}</Before>
-          <span>{this.props.title[0].text}</span>{" "}
-          <After className="After">{this.props.title[0].text}</After>
-        </Title>
+          <Title
+            className="featuredTitle"
+            target="_blank"
+            rel="noopener"
+            href="https://soundloop.app/"
+            data-link=" "
+          >
+            <Before>{this.props.title[0].text}</Before>
+            <span>{this.props.title[0].text}</span>{" "}
+            <After className="After">{this.props.title[0].text}</After>
+          </Title>
+        </Cursor>
       </FeaturedItem>
     )
   }

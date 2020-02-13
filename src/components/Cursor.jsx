@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-
+import Slide from "components/Slide"
 const Cursor = styled.div`
   position: fixed;
   background-color: #fd4000;
@@ -86,6 +86,13 @@ export default class Mouse extends React.Component {
                   top: this.state.y,
                 }
           }
+        />
+        <Slide
+          src={this.props.src}
+          alt={this.props.alt}
+          active={this.props.active}
+          left={this.state.x}
+          top={this.state.y}
         />
         {this.props.children}
       </div>

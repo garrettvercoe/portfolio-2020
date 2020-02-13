@@ -8,12 +8,12 @@ import PropTypes from "prop-types"
 import Cursor from "./Cursor"
 import VideoPlayer from "./VideoPlayer"
 const ProjectCardContainer = styled("div")`
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   transition: all 150ms ease-in-out;
 
   box-sizing: border-box;
-  padding-right: 5%;
-  width: ${100 / 3}%;
+
+  width: ${100 / 2}%;
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-bottom: 2em;
@@ -25,7 +25,7 @@ const LinkTo = styled(Link)`
   color: currentColor;
 `
 const ProjectCardContent = styled("div")`
-  padding: 1em 3em 0em 0em;
+  padding: 0.5em 3em 1.5em 0em;
   position: relative;
 
   @media (max-width: 950px) {
@@ -39,10 +39,13 @@ const ProjectCardContent = styled("div")`
 
 const ProjectCardCategory = styled("h6")`
   margin-bottom: 4em;
-  color: ${colors.grey700};
+  line-height: 1.5;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  color: ${colors.grey600};
 `
 
-const ProjectCardTitle = styled("h3")`
+const ProjectCardTitle = styled("h2")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 `
