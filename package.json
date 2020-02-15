@@ -40,7 +40,6 @@
     "react-router-dom": "^5.0.0",
     "react-router-hash-link": "^1.2.1",
     "react-scroll-horizontal": "^1.6.2",
-    "react-scroll-to-component": "^1.0.2",
     "react-youtube": "^7.9.0",
     "smooth-scroll": "^16.0.3"
   },

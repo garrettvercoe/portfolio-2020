@@ -2,7 +2,6 @@ import React from "react"
 import Masonry from "react-masonry-component"
 import ProjectCard from "components/ProjectCard"
 import ConsoleLog from "components/ConsoleLog"
-import scrollToComponent from "react-scroll-to-component"
 import BorderHeader from "components/BorderHeader"
 import BorderWrapper from "components/BorderWrapper"
 import GridLayout from "components/GridLayout"
@@ -16,10 +15,10 @@ export default class ProjectGrid extends React.Component {
   }
 
   handleFilterSelect(newCategory) {
-    scrollToComponent(this.Projects, {
-      offset: -50,
-      align: "top",
-    })
+    // scrollToComponent(this.Projects, {
+    //   offset: -50,
+    //   align: "top",
+    // })
     this.setState({ categorySelected: newCategory })
   }
 

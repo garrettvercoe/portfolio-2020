@@ -14,7 +14,6 @@ module.exports = {
     `react-player`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sass`,
-    `react-scroll-to-component`,
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-emotion`,
