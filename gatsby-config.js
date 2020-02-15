@@ -10,6 +10,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-image`,
+    `react-scroll-horizontal`,
     `react-player`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-sass`,

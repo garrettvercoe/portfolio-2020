@@ -7,13 +7,11 @@ import colors from "styles/colors"
 import PropTypes from "prop-types"
 import Cursor from "./Cursor"
 import VideoPlayer from "./VideoPlayer"
+import Circle from "./Circle"
+import LinkArrow from "./LinkArrow"
 const ProjectCardContainer = styled("div")`
-  margin-bottom: 1em;
   transition: all 150ms ease-in-out;
-
   box-sizing: border-box;
-
-  width: ${100 / 2}%;
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-bottom: 2em;
@@ -25,7 +23,7 @@ const LinkTo = styled(Link)`
   color: currentColor;
 `
 const ProjectCardContent = styled("div")`
-  padding: 0.5em 3em 1.5em 0em;
+  padding: 0.5em 1em 0.5em 0em;
   position: relative;
 
   @media (max-width: 950px) {
@@ -37,17 +35,15 @@ const ProjectCardContent = styled("div")`
   }
 `
 
-const ProjectCardCategory = styled("h6")`
-  margin-bottom: 4em;
+const ProjectCardCategory = styled("h3")`
   line-height: 1.5;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  color: ${colors.grey600};
 `
 
 const ProjectCardTitle = styled("h2")`
   margin-bottom: 0.5em;
   margin-top: 0.5em;
+  display: inline-block;
+  padding-right: 1rem;
 `
 
 const ProjectCardImageContainer = styled("div")`
@@ -57,6 +53,8 @@ const ProjectCardImageContainer = styled("div")`
   align-items: flex-end;
   overflow: hidden;
   position: relative;
+  height: 225px;
+  max-width: 100%;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-top: 3em;
@@ -68,23 +66,20 @@ const ProjectCardImageContainer = styled("div")`
 
   img {
     width: 100%;
-    height: 5%;
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       max-width: 300px;
     }
   }
 `
-
 class ProjectCard extends React.Component {
   constructor(props) {
     super(props)
-    var patt = /(?:(src=.*\/embed\/))(.*)(?=\?)/g
+    // var patt = /(?:(src=.*\/embed\/))(.*)(?=\?)/g
     // var id = patt.exec(JSON.stringify(this.props.video.html))
     if (this.props.video) {
       var src = this.props.video[0].text
     }
 
-    console.log("VIDEO" + JSON.stringify(this.props.video))
     this.state = { source: src, active: false }
     this.categoryFilter = this.categoryFilter.bind(this)
     this.onHover = this.onHover.bind(this)
@@ -111,6 +106,22 @@ class ProjectCard extends React.Component {
         >
           <Cursor show={this.state.active}>
             <LinkTo to={`/work/${this.props.uid}`}>
+              <ProjectCardContent className="ProjectCardContent">
+                {this.state.active ? (
+                  <>
+                    <ProjectCardTitle>
+                      {this.props.title[0].text}
+                    </ProjectCardTitle>{" "}
+                    <LinkArrow />{" "}
+                  </>
+                ) : (
+                  <>
+                    <ProjectCardTitle>
+                      {this.props.title[0].text}
+                    </ProjectCardTitle>
+                  </>
+                )}
+              </ProjectCardContent>
               <ProjectCardImageContainer className="ProjectCardImageContainer">
                 {this.props.video ? (
                   <VideoPlayer
@@ -125,12 +136,13 @@ class ProjectCard extends React.Component {
                   />
                 )}
               </ProjectCardImageContainer>
-              <ProjectCardContent className="ProjectCardContent">
-                <ProjectCardTitle>{this.props.title[0].text}</ProjectCardTitle>
-              </ProjectCardContent>
             </LinkTo>
             <ProjectCardCategory onClick={this.categoryFilter}>
+              <Circle category={this.props.category} />
               {this.props.category}
+              <div style={{ paddingLeft: "1rem", display: "inline-block" }}>
+                {this.props.date.substring(0, 4)}
+              </div>
             </ProjectCardCategory>{" "}
           </Cursor>
         </ProjectCardContainer>

@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
+import LinkArrow from "components/LinkArrow"
 import Slide from "components/Slide"
 const Cursor = styled.div`
   position: fixed;
@@ -76,7 +77,7 @@ export default class Mouse extends React.Component {
           style={
             this.props.show
               ? {
-                  backgroundColor: "red",
+                  backgroundColor: "transparent",
                   left: this.state.x,
                   top: this.state.y,
                 }

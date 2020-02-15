@@ -5,10 +5,10 @@ const LinkArrow = styled.svg`
   &:hover {
     transform: translateY(-0.8rem);
   }
-
+  display: inline-block;
   fill: none;
-  height: 3rem;
-
+  height: 1rem;
+  transform: rotate(-90deg);
   stroke: #000;
   transition: transform 0.4s ease;
   width: 3rem;

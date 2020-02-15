@@ -7,29 +7,6 @@ import BorderHeader from "components/BorderHeader"
 import BorderWrapper from "components/BorderWrapper"
 import GridLayout from "components/GridLayout"
 import styled from "@emotion/styled"
-const filters = { marginLeft: "5%", marginBottom: "5em" }
-
-const col = {
-  width: `${100 / 3}%`,
-  paddingRight: "5%",
-}
-const masonryOptions = {
-  horizontalOrder: true,
-}
-const Spacer = styled("div")`
-  & {
-    .masonry:nth-child(odd) > :nth-child(odd) {
-      padding-right: 7.5vw;
-    }
-    .masonry:nth-child(odd) > :nth-child(even) {
-      padding-left: 7.5vw;
-    }
-  }
-`
-
-const Selected = {
-  fontWeight: 600,
-}
 
 export default class ProjectGrid extends React.Component {
   constructor(props) {
@@ -49,92 +26,23 @@ export default class ProjectGrid extends React.Component {
   render() {
     return (
       <React.Fragment>
-        {/* <Masonry style={filters}>
-          <section
-            style={col}
-            ref={section => {
-              this.Projects = section
-            }}
-          >
-            <h1>Projects</h1>
-          </section>
-
-          <div style={col}>
-            <h5>Filter</h5>
-            {this.state.categorySelected === "All" ? (
-              <div style={Selected}>All</div>
-            ) : (
-              <div onClick={() => this.handleFilterSelect("All")}>All</div>
-            )}
-
-            {this.props.categories.map(category => (
-              <React.Fragment>
-                {this.state.categorySelected === category ? (
-                  <div style={Selected}>{category}</div>
-                ) : (
-                  <div onClick={() => this.handleFilterSelect(category)}>
-                    {category}
-                  </div>
-                )}
-              </React.Fragment>
+        <div style={{ display: "inline-block" }}>
+          <GridLayout>
+            {this.props.projects.map((project, i) => (
+              <ProjectCard
+                key={i}
+                category={project.node.project_category}
+                title={project.node.project_title}
+                description={project.node.project_preview_description}
+                thumbnail={project.node.project_preview_thumbnail}
+                video={project.node.video_link}
+                date={project.node.project_post_date}
+                categoryOnClick={this.handleFilterSelect}
+                uid={project.node._meta.uid}
+              />
             ))}
-          </div>
-          <div style={col}></div>
-
-        </Masonry> */}
-        <BorderHeader
-          leftSection="Projects"
-          centerSection={`PRODUCTS  EXPERIENCES  SPACES   EXPLORATIONS  `}
-        />
-        <GridLayout>
-          <div style={{ gridColumn: "3/span 16" }}>
-            <Spacer>
-              <Masonry className="masonry" options={masonryOptions}>
-                {this.state.categorySelected === "All" ? (
-                  <React.Fragment>
-                    {this.props.projects.map((project, i) => (
-                      <ProjectCard
-                        key={i}
-                        category={project.node.project_category}
-                        title={project.node.project_title}
-                        description={project.node.project_preview_description}
-                        thumbnail={project.node.project_preview_thumbnail}
-                        video={project.node.video_link}
-                        categoryOnClick={this.handleFilterSelect}
-                        uid={project.node._meta.uid}
-                      />
-                    ))}
-                  </React.Fragment>
-                ) : (
-                  <React.Fragment>
-                    {this.props.projects
-                      .filter(
-                        project =>
-                          project.node.project_category ===
-                          this.state.categorySelected
-                      )
-                      .map((project, i) => (
-                        <React.Fragment>
-                          <ProjectCard
-                            key={i}
-                            category={project.node.project_category}
-                            title={project.node.project_title}
-                            description={
-                              project.node.project_preview_description
-                            }
-                            thumbnail={project.node.project_preview_thumbnail}
-                            video={project.node.video_link}
-                            categoryOnClick={this.handleFilterSelect}
-                            uid={project.node._meta.uid}
-                          />
-                        </React.Fragment>
-                      ))}
-                  </React.Fragment>
-                )}
-              </Masonry>
-            </Spacer>
-          </div>
-        </GridLayout>
+          </GridLayout>
+        </div>
       </React.Fragment>
     )
   }

@@ -9,7 +9,6 @@ import dimensions from "styles/dimensions"
 import Footer from "components/Footer"
 import Header from "components/Header"
 import Cursor from "components/Cursor"
-import "styles/fonts.scss"
 
 const LayoutContainer = styled.div`
 //   max-width: ${dimensions.maxwidthDesktop}px;
@@ -27,11 +26,8 @@ const LayoutContainer = styled.div`
     padding-right: ${dimensions.paddingHorizontalMobile}em;
   }
 
-  padding-left: 3.75vw;
-padding-right: 3.75vw;
-  .Layout__content {
-    padding-bottom: 5em;
-  }
+
+
 `
 
 const Layout = ({ children }) => (
@@ -50,10 +46,7 @@ const Layout = ({ children }) => (
         <Global styles={[globalStyles, typeStyles]} />
 
         <div className="Layout">
-          <Header />
-
           <main className="Layout__content">{children}</main>
-          <Footer />
         </div>
       </LayoutContainer>
     )}

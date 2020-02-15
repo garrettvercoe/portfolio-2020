@@ -5,50 +5,8 @@ import fontFiles from "styles/fonts"
 
 const globalStyles = css`
   @font-face {
-    font-family: "CanelaRegularItalic";
-    src: url(${fontFiles.CanelaRegularItalic}) format("woff");
-  }
-  @font-face {
-    font-family: "CanelaLight";
-    src: url(${fontFiles.CanelaLight}) format("woff");
-  }
-  @font-face {
-    font-family: "CanelaLightItalic";
-    src: url(${fontFiles.CanelaLightItalic}) format("woff");
-  }
-
-  @font-face {
-    font-family: "GT-America-Extended";
-    font-weight: 400;
-    font-style: normal;
-    src: url(${fontFiles.GTExtendedRegular}) format("truetype");
-  }
-
-  @font-face {
-    font-family: "GT-America-Extended";
-    font-style: 600;
-    font-weight: bold;
-    src: url(${fontFiles.GTExtendedBold}) format("truetype");
-  }
-
-  @font-face {
-    font-family: "GT-America-Expanded";
-    font-style: bold;
-    font-weight: 600;
-    src: url(${fontFiles.GTExpandedBold}) format("truetype");
-  }
-
-  @font-face {
-    font-family: "GT-America";
-    font-style: bold;
-    font-weight: 600;
-    src: url(${fontFiles.GTBold}) format("truetype");
-  }
-  @font-face {
-    font-family: "GT-America";
-    font-style: normal;
-    font-weight: 400;
-    src: url(${fontFiles.GTRegular}) format("truetype");
+    font-family: "Monument";
+    src: url(${fontFiles.Monument}) format("opentype");
   }
 
   html,
@@ -61,7 +19,7 @@ const globalStyles = css`
   }
 
   body {
-    font-family: "Gt-America-Extended";
+    font-family: "Monument";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 

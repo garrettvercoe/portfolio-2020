@@ -3,30 +3,28 @@ import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
 import dimensions from "styles/dimensions"
-import Logo from "components/_ui/Logo"
-import { nonExecutableDefinitionMessage } from "graphql/validation/rules/ExecutableDefinitions"
-
+import Filter from "./Filter"
 const HeaderContainer = styled("div")`
-  padding-top: 2em;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-bottom: 2em;
+  padding-top: 1em;
+  padding-left: 3.75vw;
 `
 
 const HeaderContent = styled("div")`
   display: flex;
-  justify-content: space-between;
 `
 
 const noStyle = {
+  borderBottom: `2px solid ${colors.text}`,
   textDecoration: "none",
+
+  color: colors.text,
 }
 
 const HeaderLinks = styled("div")`
-  display: grid;
+  display: inline-flex;
   grid-template-columns: repeat(2, auto);
-  grid-gap: 7em;
-  justify-content: flex-end;
+  grid-gap: 2em;
+
   width: 100%;
   max-width: 200px;
 
@@ -39,14 +37,12 @@ const HeaderLinks = styled("div")`
   }
 
   a {
-    color: currentColor;
+    color: ${colors.text};
     text-decoration: none;
-    border-bottom: 3px solid transparent;
-    font-weight: 600;
-    font-size: 0.95em;
+    border-bottom: 2px solid transparent;
+
     height: 100%;
-    padding-bottom: 1.25em;
-    padding-top: 0.25em;
+
     display: block;
     position: relative;
 
@@ -79,22 +75,29 @@ const HeaderLinks = styled("div")`
   }
 `
 
-const Header = () => (
-  <HeaderContainer>
-    <HeaderContent>
-      <Link style={noStyle} to="/">
-        <Logo />
-      </Link>
-      <HeaderLinks>
-        <Link activeClassName="Link--is-active" to="/work">
-          Work
-        </Link>
-        <Link activeClassName="Link--is-active" to="/blog">
-          Blog
-        </Link>
-      </HeaderLinks>
-    </HeaderContent>
-  </HeaderContainer>
-)
-
-export default Header
+export default class Header extends React.Component {
+  render() {
+    return (
+      <HeaderContainer>
+        <HeaderContent>
+          <h2>
+            Personal repo of{" "}
+            <Link style={noStyle} to="/">
+              Garrett Vercoe
+            </Link>
+            {" — "}
+            <HeaderLinks>
+              <Link activeClassName="Link--is-active" to="/work">
+                Information,
+              </Link>
+              <Link activeClassName="Link--is-active" to="/blog">
+                Contact
+              </Link>
+            </HeaderLinks>
+          </h2>
+          <Filter categories={this.props.categories}></Filter>
+        </HeaderContent>
+      </HeaderContainer>
+    )
+  }
+}

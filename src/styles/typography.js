@@ -3,11 +3,10 @@ import dimensions from "styles/dimensions"
 
 const typeStyles = css`
   h1 {
-    font-size: 10.33em;
+    font-size: 2em;
     line-height: 1;
     font-weight: 400;
     margin: 0 0 0 0;
-    font-family: "CanelaRegularItalic";
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       font-size: 2.25em;
     }
@@ -18,21 +17,16 @@ const typeStyles = css`
   }
 
   h2 {
-    margin-bottom: 2rem;
     font-size: 1.5rem;
     font-weight: 400;
 
-    font-family: "GT-America-Extended";
     line-height: 1.1;
   }
 
   h3 {
-    line-height: 1.2;
-    font-size: 0.875rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-family: "GT-America-Extended";
-    font-weight: 600;
+    line-height: 1;
+    font-size: 1.1875rem;
+    font-weight: 400;
   }
 
   h4 {
