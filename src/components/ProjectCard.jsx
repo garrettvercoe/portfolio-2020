@@ -54,6 +54,7 @@ const ProjectCardImageContainer = styled("div")`
   overflow: hidden;
   position: relative;
   height: 225px;
+
   max-width: 100%;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
@@ -65,7 +66,8 @@ const ProjectCardImageContainer = styled("div")`
   }
 
   img {
-    width: 100%;
+    height: 100%;
+    width: auto;
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       max-width: 300px;
     }

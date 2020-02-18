@@ -52,7 +52,11 @@ export default class FeaturedProjectText extends React.Component {
     return (
       <LinkArrow
         className="LinkArrow"
-        style={this.props.active ? { transform: "rotate(-45deg)" } : null}
+        style={{
+          transform: `rotate(${this.props.rotate})`,
+          height: ".6rem",
+          width: "1.5rem",
+        }}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 9.2 9.2"
         data-link-arrow=""

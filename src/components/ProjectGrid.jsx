@@ -7,6 +7,8 @@ import BorderWrapper from "components/BorderWrapper"
 import GridLayout from "components/GridLayout"
 import styled from "@emotion/styled"
 
+import NavHelp from "components/NavHelp"
+
 export default class ProjectGrid extends React.Component {
   constructor(props) {
     super(props)
@@ -26,6 +28,7 @@ export default class ProjectGrid extends React.Component {
     return (
       <React.Fragment>
         <div style={{ display: "inline-block" }}>
+          <NavHelp />
           <GridLayout>
             {this.props.projects.map((project, i) => (
               <ProjectCard

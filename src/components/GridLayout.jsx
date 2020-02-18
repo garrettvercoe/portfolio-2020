@@ -16,9 +16,11 @@ const GridLayout = styled("div")`
   //   grid-template-columns: 1fr;
   // }
 
-  // @media (max-width: ${dimensions.maxwidthMobile}px) {
-  //   margin-bottom: 2em;
-  // }
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin-bottom: 2em;
+
+    grid-template-columns: 100vw;
+  }
 `
 
 export default class Grid extends React.Component {
