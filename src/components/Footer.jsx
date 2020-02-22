@@ -12,7 +12,6 @@ const FooterContainer = styled("div")`
 
   padding-top: 1.75em;
   background-color: #131414;
-  padding-bottom: 4em;
   padding-left: 5%;
   padding-right: 5%;
 
@@ -25,7 +24,7 @@ const FooterContainer = styled("div")`
 const Footer = () => (
   <React.Fragment>
     <FooterContainer>
-      <Content title={"Get in touch."}></Content>
+      Get in touch
       {/* <NoHover>Let’s roll.</NoHover>
 
       <Wrapper className="wrapper">

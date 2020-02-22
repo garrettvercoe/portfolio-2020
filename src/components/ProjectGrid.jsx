@@ -10,20 +10,6 @@ import styled from "@emotion/styled"
 import NavHelp from "components/NavHelp"
 
 export default class ProjectGrid extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = { categorySelected: "All" }
-    this.handleFilterSelect = this.handleFilterSelect.bind(this)
-  }
-
-  handleFilterSelect(newCategory) {
-    // scrollToComponent(this.Projects, {
-    //   offset: -50,
-    //   align: "top",
-    // })
-    this.setState({ categorySelected: newCategory })
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -35,7 +21,6 @@ export default class ProjectGrid extends React.Component {
                 key={i}
                 category={project.node.project_category}
                 title={project.node.project_title}
-                description={project.node.project_preview_description}
                 thumbnail={project.node.project_preview_thumbnail}
                 video={project.node.video_link}
                 date={project.node.project_post_date}

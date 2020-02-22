@@ -2,6 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import ListItem from "./ListItem"
 import Cursor from "./Cursor"
+
 const ListWrapper = styled("il")`
   padding-bottom: 1rem;
   padding-right: 1rem;

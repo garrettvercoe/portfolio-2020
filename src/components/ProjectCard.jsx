@@ -21,6 +21,9 @@ const ProjectCardContainer = styled("div")`
 const LinkTo = styled(Link)`
   text-decoration: none;
   color: currentColor;
+  &:hover .projectCardTitle {
+    text-decoration: underline;
+  }
 `
 const ProjectCardContent = styled("div")`
   padding: 0.5em 1em 0.5em 0em;
@@ -107,22 +110,11 @@ class ProjectCard extends React.Component {
           onMouseLeave={() => this.onOut()}
         >
           <Cursor show={this.state.active}>
-            <LinkTo to={`/work/${this.props.uid}`}>
+            <LinkTo to={`/${this.props.uid}`}>
               <ProjectCardContent className="ProjectCardContent">
-                {this.state.active ? (
-                  <>
-                    <ProjectCardTitle>
-                      {this.props.title[0].text}
-                    </ProjectCardTitle>{" "}
-                    <LinkArrow />{" "}
-                  </>
-                ) : (
-                  <>
-                    <ProjectCardTitle>
-                      {this.props.title[0].text}
-                    </ProjectCardTitle>
-                  </>
-                )}
+                <ProjectCardTitle className="projectCardTitle">
+                  {this.props.title[0].text}
+                </ProjectCardTitle>
               </ProjectCardContent>
               <ProjectCardImageContainer className="ProjectCardImageContainer">
                 {this.props.video ? (
@@ -141,7 +133,7 @@ class ProjectCard extends React.Component {
             </LinkTo>
             <ProjectCardCategory onClick={this.categoryFilter}>
               <Circle category={this.props.category} />
-              {this.props.category}
+
               <div style={{ paddingLeft: "1rem", display: "inline-block" }}>
                 {this.props.date.substring(0, 4)}
               </div>
@@ -162,41 +154,3 @@ ProjectCard.propTypes = {
 }
 
 export default ProjectCard
-
-// const ProjectCard = ({ category, title, description, thumbnail, uid }) => (
-//   <ProjectCardContainer to={`/work/${uid}`}>
-//     <ProjectCardImageContainer className="ProjectCardImageContainer">
-//       <img src={thumbnail.url} alt={title[0].text} />
-//     </ProjectCardImageContainer>
-//     <ProjectCardContent className="ProjectCardContent">
-//       <ProjectCardTitle>{title[0].text}</ProjectCardTitle>
-//       <ProjectCardCategory onClick={this.categoryFilter} >{category}</ProjectCardCategory>
-//       {/* <ProjectCardBlurb>{RichText.render(description)}</ProjectCardBlurb> */}
-//       {/* <ProjectCardAction className="ProjectCardAction">
-//         Details <span>&#8594;</span>
-//       </ProjectCardAction> */}
-//     </ProjectCardContent>
-//   </ProjectCardContainer>
-// )
-
-// <div key={i} className="showcase__item">
-//   <figure className="card">
-//     <Link to={`/work/nothing`} className="card__image">
-//       <Img fluid={project.node.project_preview_thumbnail} />
-//     </Link>
-//     <figcaption className="card__caption">
-//       <h6 className="card__title">
-//         <Link to={`/works/nothing`}>Test</Link>
-//       </h6>
-//       <div className="card__description">
-//         <p>{project.node.project_preview_description}</p>
-//       </div>
-//     </figcaption>
-//   </figure>
-// </div>
-
-// .showcase.is-loading {
-//   visibility: hidden;
-// }
-
-// export default ProjectCard

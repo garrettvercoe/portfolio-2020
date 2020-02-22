@@ -5,7 +5,7 @@ import colors from "styles/colors"
 import dimensions from "styles/dimensions"
 import Filter from "./Filter"
 const HeaderContainer = styled("div")`
-  padding-top: 1em;
+  padding-top: 2vw;
   padding-left: 3.75vw;
 `
 
@@ -14,16 +14,17 @@ const HeaderContent = styled("div")`
 `
 
 const noStyle = {
-  borderBottom: `2px solid ${colors.text}`,
+  // borderBottom: `2px solid ${colors.text}`,
   textDecoration: "none",
 
   color: colors.text,
 }
 
 const HeaderLinks = styled("div")`
-  display: inline-flex;
+  display: inline-grid;
   grid-template-columns: repeat(2, auto);
-  grid-gap: 2em;
+  padding-left: 1em;
+  grid-gap: 1em;
 
   width: 100%;
   max-width: 200px;
@@ -37,7 +38,7 @@ const HeaderLinks = styled("div")`
   }
 
   a {
-    color: ${colors.text};
+    color: ${colors.grey600};
     text-decoration: none;
     border-bottom: 2px solid transparent;
 
@@ -60,15 +61,13 @@ const HeaderLinks = styled("div")`
     }
 
     &:hover {
-      &:after {
-        background: ${colors.blue500};
-        transition: 100ms ease-in-out background;
-      }
+      color: ${colors.text};
+      transition: 100ms ease-in-out background;
     }
 
     &.Link--is-active {
       &:after {
-        background: ${colors.blue500};
+        color: ${colors.text};
         transition: 100ms ease-in-out background;
       }
     }
@@ -80,22 +79,21 @@ export default class Header extends React.Component {
     return (
       <HeaderContainer>
         <HeaderContent>
-          <h2>
-            Personal repo of{" "}
+          <h2 style={{ padding: 0, margin: 0 }}>
             <Link style={noStyle} to="/">
               Garrett Vercoe
             </Link>
-            {" — "}
+
             <HeaderLinks>
               <Link activeClassName="Link--is-active" to="/work">
-                Information,
+                Information
               </Link>
               <Link activeClassName="Link--is-active" to="/blog">
                 Contact
               </Link>
             </HeaderLinks>
           </h2>
-          <Filter categories={this.props.categories}></Filter>
+          {/* <Filter categories={this.props.categories}></Filter> */}
         </HeaderContent>
       </HeaderContainer>
     )

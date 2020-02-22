@@ -5,15 +5,12 @@ import { RichText } from "prismic-reactjs"
 import { graphql, Link } from "gatsby"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
+import Footer from "components/Footer"
 import dimensions from "styles/dimensions"
 import Layout from "components/Layout"
 import ProjectGrid from "components/ProjectGrid"
-import FeaturedProjectCard from "components/FeaturedProjectCard"
-import GridLayout from "components/GridLayout"
 import Header from "components/Header"
 import HorizontalScroll from "react-scroll-horizontal"
-import Filter from "components/Filter"
-
 import ListGrid from "components/ListGrid"
 import "styles/projectShowcase.scss"
 
@@ -105,9 +102,13 @@ const RenderBody = ({
     <HorizontalContainer>
       <HorizontalScroll
         reverseScroll={true}
-        config={{ stiffness: 200, dampness: 1 }}
+        config={{ stiffness: 350, dampness: 1 }}
       >
-        <WidthDetector style={{ width: `${100 + 26 * years.length}vw` }}>
+        <WidthDetector
+          style={{
+            width: `${100 + 26 * years.length}vw`,
+          }}
+        >
           <ProjectGrid categories={categories} projects={projects} />
           <ListGrid years={years} categories={categories} projects={projects} />
         </WidthDetector>
@@ -185,12 +186,13 @@ export const query = graphql`
       allProjects(sortBy: project_post_date_DESC) {
         edges {
           node {
-            project_post_date
-            project_preview_thumbnail
+            completed
+            featured_project
             project_title
             project_category
+            project_preview_thumbnail
             video_link
-            featured_project
+            project_post_date
             _meta {
               uid
             }

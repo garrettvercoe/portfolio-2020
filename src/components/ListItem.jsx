@@ -4,6 +4,7 @@ import Circle from "./Circle"
 import VideoPlayer from "./VideoPlayer"
 import dimensions from "styles/dimensions"
 import { Link } from "gatsby"
+import LinkArrow from "./LinkArrow"
 import colors from "styles/colors"
 const ItemWrapper = styled("li")`
   padding-bottom: 0.5rem;
@@ -18,11 +19,16 @@ const LinkTo = styled(Link)`
 const ItemText = styled("h2")`
   display: inline-block;
   margin-bottom: 0rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
 const ProjectCardImageContainer = styled("div")`
   opacity: 0;
   position: absolute;
   width: 22vw;
+  padding-top: 7.5px;
   pointer-events: none;
   // transition: opacity 0.2s ease;
 
@@ -65,7 +71,7 @@ export default class ListItem extends React.Component {
     return (
       <>
         <ItemWrapper>
-          <LinkTo to={`/work/${this.props.uid}`}>
+          <LinkTo to={`/${this.props.uid}`}>
             <Circle category={this.props.category} />
             <ItemText>
               <div

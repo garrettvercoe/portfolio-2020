@@ -107,11 +107,11 @@ export default class FeaturedProjects extends React.Component {
         <FeaturedItems className="FeaturedItems">
           {/* <Description>Featured Work</Description> */}
           {this.props.projects.map((project, i) => (
-            // <Cursor
-            //   src={project.node.project_preview_thumbnail.url}
-            //   alt={project.node.project_title[0].text}
-            //   active={project.node._meta.uid === this.state.activeProject}
-            // >
+            <Cursor
+              src={project.node.project_preview_thumbnail.url}
+              alt={project.node.project_title[0].text}
+              active={project.node._meta.uid === this.state.activeProject}
+            >
             <BorderWrapper>
               <GridLayout to={`/work/test`}>
                 <small style={{ gridColumn: "1/span 1" }}>0{i + 1}</small>
@@ -133,7 +133,7 @@ export default class FeaturedProjects extends React.Component {
                 </div>
               </GridLayout>
             </BorderWrapper>
-            // </Cursor>
+            </Cursor>
           ))}
 
           {/* <Description
