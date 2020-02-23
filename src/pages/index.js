@@ -97,7 +97,7 @@ const RenderBody = ({
     />
 
     {/* <FeaturedProjectCard projects={filteredProjects} /> */}
-    <Header categories={categories} />
+    <Header />
 
     <HorizontalContainer>
       <HorizontalScroll
@@ -106,11 +106,11 @@ const RenderBody = ({
       >
         <WidthDetector
           style={{
-            width: `${100 + 26 * years.length}vw`,
+            width: `${100 + 26.5 * years.length}vw`,
           }}
         >
-          <ProjectGrid categories={categories} projects={projects} />
-          <ListGrid years={years} categories={categories} projects={projects} />
+          <ProjectGrid projects={filteredProjects} />
+          <ListGrid years={years} projects={projects} />
         </WidthDetector>
       </HorizontalScroll>
     </HorizontalContainer>
@@ -121,15 +121,18 @@ const RenderBody = ({
 export default ({ data }) => {
   //Required check for no data being returned
   const doc = data.prismic.allHomepages.edges.slice(0, 1).pop()
-  const projects = data.prismic.allProjects.edges
+  const projects = [
+    ...data.prismic.FirstTwenty.edges,
+    ...data.prismic.SecondTwenty.edges,
+  ]
+  // console.log("test" + projectsTest)
   const meta = data.site.siteMetadata
-
   const filteredProjects = projects.filter(
-    project => project.node.featured_project === "true"
+    project => project.node.featured_project === true
   )
-  let categories = projects.map(project => project.node.project_category)
-  const categoriesSet = new Set(categories)
-  const categoriesUnique = [...categoriesSet]
+  // let categories = projects.map(project => project.node.project_category)
+  // const categoriesSet = new Set(categories)
+  // const categoriesUnique = [...categoriesSet]
 
   let years = projects.map(project =>
     project.node.project_post_date.substring(0, 4)
@@ -137,7 +140,7 @@ export default ({ data }) => {
 
   const yearsSet = new Set(years)
   const yearsUnique = [...yearsSet]
-
+  console.log("years" + JSON.stringify(projects))
   if (!doc || !projects) return null
 
   return (
@@ -146,7 +149,7 @@ export default ({ data }) => {
         home={doc.node}
         projects={projects}
         meta={meta}
-        categories={categoriesUnique}
+        // categories={categoriesUnique}
         years={yearsUnique}
         filteredProjects={filteredProjects}
       />
@@ -183,7 +186,7 @@ export const query = graphql`
           }
         }
       }
-      allProjects(sortBy: project_post_date_DESC) {
+      FirstTwenty: allProjects(sortBy: project_post_date_DESC) {
         edges {
           node {
             completed
@@ -197,9 +200,31 @@ export const query = graphql`
               uid
             }
           }
+          cursor
+        }
+      }
+      SecondTwenty: allProjects(
+        after: "YXJyYXljb25uZWN0aW9uOjE5"
+        sortBy: project_post_date_DESC
+      ) {
+        edges {
+          node {
+            completed
+            featured_project
+            project_title
+            project_category
+            project_preview_thumbnail
+            video_link
+            project_post_date
+            _meta {
+              uid
+            }
+          }
+          cursor
         }
       }
     }
+
     site {
       siteMetadata {
         title

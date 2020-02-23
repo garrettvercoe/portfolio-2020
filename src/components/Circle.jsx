@@ -25,9 +25,15 @@ const colorDict = {
 export default class Border extends React.Component {
   render() {
     return (
-      <Circle style={{ background: `${colorDict[this.props.category]}` }}>
-        {this.props.category}
-      </Circle>
+      <>
+        {this.props.inactive ? (
+          <Circle style={{ background: `${colors.grey400}` }}>Soon</Circle>
+        ) : (
+          <Circle style={{ background: `${colorDict[this.props.category]}` }}>
+            {this.props.category}
+          </Circle>
+        )}
+      </>
     )
   }
 }

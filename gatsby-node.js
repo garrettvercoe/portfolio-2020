@@ -19,6 +19,38 @@ exports.createPages = async ({ graphql, actions }) => {
           allProjects {
             edges {
               node {
+                body {
+                  ... on PRISMIC_ProjectBody2_grid {
+                    type
+                    primary {
+                      left_image
+                      left_caption
+                      right_image
+                      right_caption
+                    }
+                  }
+                  ... on PRISMIC_ProjectBody4_grid {
+                    type
+                    primary {
+                      left_left
+                      left_center
+                      center_right
+                      right_right
+                      left_left_caption
+                      left_center_caption
+                      center_right_caption
+                      right_right_caption
+                    }
+                  }
+                  ... on PRISMIC_ProjectBodyFull_screen_image {
+                    type
+                    primary {
+                      full
+                      full_caption
+                    }
+                  }
+                  __typename
+                }
                 completed
                 featured_project
                 project_title

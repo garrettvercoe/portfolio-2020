@@ -22,15 +22,26 @@ export default class ListYear extends React.Component {
         <ListWrapper>
           <Year>{this.props.year} </Year>
           <h1>—</h1>
-          {this.props.projects.map((project, i) => (
-            <ListItem
-              category={project.node.project_category}
-              video={project.node.video_link}
-              title={project.node.project_title[0].text}
-              uid={project.node._meta.uid}
-              thumbnail={project.node.project_preview_thumbnail}
-            />
-          ))}
+          {this.props.projects
+            .reverse()
+            .map((project, i) =>
+              project.node.completed === true ? (
+                <ListItem
+                  category={project.node.project_category}
+                  video={project.node.video_link}
+                  title={project.node.project_title[0].text}
+                  uid={project.node._meta.uid}
+                  key={i}
+                  thumbnail={project.node.project_preview_thumbnail}
+                />
+              ) : (
+                <ListItem
+                  title={project.node.project_title[0].text}
+                  key={i}
+                  completed={false}
+                />
+              )
+            )}
         </ListWrapper>
       </>
     )

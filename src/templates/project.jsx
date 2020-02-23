@@ -10,6 +10,9 @@ import Layout from "components/Layout"
 import Circle from "components/Circle"
 import LinkItem from "components/LinkItem"
 import Close from "components/Close"
+import TwoGrid from "components/ImageGrid2"
+import OneGrid from "components/ImageGrid1"
+import FourGrid from "components/ImageGrid4"
 const ProjectHeroContainer = styled("div")`
   display: flex;
   justify-content: center;
@@ -17,7 +20,6 @@ const ProjectHeroContainer = styled("div")`
   overflow: hidden;
   position: relative;
   padding-top: 2.5em;
-  margin-bottom: 3.5em;
 
   img {
     max-width: 100%;
@@ -50,7 +52,7 @@ const Links = styled("ul")`
 `
 
 const TextContainer = styled("div")`
-  padding: 2.5rem 0 2.5rem 0;
+  padding: 7.5rem 0 7.5rem 0;
 `
 const ProjectTitle = styled("h1")`
   margin: 0 auto;
@@ -60,7 +62,7 @@ const ProjectTitle = styled("h1")`
 
 const Container = styled("div")`
   margin: 0 auto;
-  padding: 2rem 10.75vw 0 10.75vw;
+  padding: 2rem 10.75vw 10em 10.75vw;
 `
 const Grid = styled("div")`
   display: grid;
@@ -97,8 +99,8 @@ const WorkLink = styled(Link)`
   text-align: center;
 `
 const Project = ({ project, meta }) => {
-  console.log("LINKS" + JSON.stringify(project.links))
-
+  console.log("everything" + JSON.stringify(project.body))
+  project.body.map(item => console.log("item" + item))
   return (
     <>
       <Helmet
@@ -194,64 +196,32 @@ const Project = ({ project, meta }) => {
                   )}
                 </Links>
               </div>
-              {/* {[
-                {
-                  type: "list-item",
-                  text: "Firelight App",
-                  spans: [
-                    {
-                      start: 0,
-                      end: 13,
-                      type: "hyperlink",
-                      data: {
-                        link_type: "Web",
-                        url: "http://charlottesville-fire-help.herokuapp.com/",
-                        target: "_blank",
-                      },
-                    },
-                  ],
-                },
-                {
-                  type: "list-item",
-                  text: "Front-end Source",
-                  spans: [
-                    {
-                      start: 0,
-                      end: 16,
-                      type: "hyperlink",
-                      data: {
-                        link_type: "Web",
-                        url:
-                          "https://github.com/garrettvercoe/CharlottesvilleFireModel/blob/master/Application/src/app.py",
-                        target: "_blank",
-                      },
-                    },
-                  ],
-                },
-                {
-                  type: "list-item",
-                  text: "Cleaning + Machine Learning Source",
-                  spans: [
-                    {
-                      start: 0,
-                      end: 34,
-                      type: "hyperlink",
-                      data: {
-                        link_type: "Web",
-                        url:
-                          "https://github.com/garrettvercoe/CharlottesvilleFireModel/blob/master/fire_machinelearning.py",
-                        target: "_blank",
-                      },
-                    },
-                  ],
-                },
-                { type: "paragraph", text: "", spans: [] },
-              ]} */}
               <div style={{ gridColumn: "11/span 10" }}>
                 {project.project_details[0].text}
               </div>
             </Grid>
           </TextContainer>
+          {project.body.map((item, i) => (
+            <>
+              {item.type === "2_grid" && (
+                <TwoGrid
+                  left_image={item.primary.left_image}
+                  right_image={item.primary.right_image}
+                />
+              )}
+              {item.type === "4_grid" && (
+                <FourGrid
+                  left_left={item.primary.left_left}
+                  left_center={item.primary.left_center}
+                  center_right={item.primary.center_right}
+                  right_right={item.primary.right_right}
+                />
+              )}
+              {item.type === "full_screen_image" && (
+                <OneGrid image={item.primary.full} />
+              )}
+            </>
+          ))}
         </Container>
       </Layout>
     </>
@@ -274,6 +244,38 @@ export const query = graphql`
       allProjects(uid: $uid) {
         edges {
           node {
+            body {
+              ... on PRISMIC_ProjectBody2_grid {
+                type
+                primary {
+                  left_image
+                  left_caption
+                  right_image
+                  right_caption
+                }
+              }
+              ... on PRISMIC_ProjectBody4_grid {
+                type
+                primary {
+                  left_left
+                  left_center
+                  center_right
+                  right_right
+                  left_left_caption
+                  left_center_caption
+                  center_right_caption
+                  right_right_caption
+                }
+              }
+              ... on PRISMIC_ProjectBodyFull_screen_image {
+                type
+                primary {
+                  full
+                  full_caption
+                }
+              }
+              __typename
+            }
             completed
             featured_project
             project_title

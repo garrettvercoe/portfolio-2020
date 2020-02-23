@@ -19,6 +19,7 @@ export default class ListGrid extends React.Component {
         {this.props.years.map((year, i) => (
           <ListYear
             year={year}
+            key={i}
             categories={this.props.categories}
             projects={this.props.projects.filter(
               project => project.node.project_post_date.substring(0, 4) === year

@@ -24,6 +24,15 @@ const ItemText = styled("h2")`
     text-decoration: underline;
   }
 `
+
+const ItemTextInactive = styled("h2")`
+  display: inline-block;
+  margin-bottom: 0rem;
+  color: ${colors.grey500};
+  &:hover {
+    cursor: default;
+  }
+`
 const ProjectCardImageContainer = styled("div")`
   opacity: 0;
   position: absolute;
@@ -71,34 +80,43 @@ export default class ListItem extends React.Component {
     return (
       <>
         <ItemWrapper>
-          <LinkTo to={`/${this.props.uid}`}>
-            <Circle category={this.props.category} />
-            <ItemText>
-              <div
-                onMouseOver={() => this.onHover()}
-                onMouseOut={() => this.onOut()}
+          {!this.props.active ? (
+            <>
+              <Circle inactive={true} />{" "}
+              <ItemTextInactive>{this.props.title}</ItemTextInactive>
+            </>
+          ) : (
+            <>
+              <LinkTo to={`/${this.props.uid}`}>
+                <Circle category={this.props.category} />
+                <ItemText>
+                  <div
+                    onMouseOver={() => this.onHover()}
+                    onMouseOut={() => this.onOut()}
+                  >
+                    {this.props.title}
+                  </div>
+                </ItemText>
+              </LinkTo>
+              <ProjectCardImageContainer
+                style={this.state.active ? { opacity: "100%" } : null}
               >
-                {this.props.title}
-              </div>
-            </ItemText>
-          </LinkTo>
-          <ProjectCardImageContainer
-            style={this.state.active ? { opacity: "100%" } : null}
-          >
-            {" "}
-            {this.props.video ? (
-              <VideoPlayer
-                src={this.state.source}
-                id={this.state.videoId}
-                active={this.state.active}
-              />
-            ) : (
-              <img
-                src={this.props.thumbnail.url}
-                alt={this.props.title[0].text}
-              />
-            )}
-          </ProjectCardImageContainer>
+                {" "}
+                {this.props.video ? (
+                  <VideoPlayer
+                    src={this.state.source}
+                    id={this.state.videoId}
+                    active={this.state.active}
+                  />
+                ) : (
+                  <img
+                    src={this.props.thumbnail.url}
+                    alt={this.props.title[0].text}
+                  />
+                )}
+              </ProjectCardImageContainer>
+            </>
+          )}
         </ItemWrapper>
       </>
     )
