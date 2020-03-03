@@ -1,19 +1,22 @@
 import React from "react"
-import Masonry from "react-masonry-component"
 import ProjectCard from "components/ProjectCard"
-import ConsoleLog from "components/ConsoleLog"
-import BorderHeader from "components/BorderHeader"
-import BorderWrapper from "components/BorderWrapper"
+
 import GridLayout from "components/GridLayout"
 import styled from "@emotion/styled"
-
+import dimensions from "styles/dimensions"
 import NavHelp from "components/NavHelp"
 
+const InlBlk = styled("div")`
+  display: inline-block;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: block;
+  }
+`
 export default class ProjectGrid extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ display: "inline-block" }}>
+        <InlBlk>
           <NavHelp />
           <GridLayout>
             {this.props.projects.map((project, i) => (
@@ -29,7 +32,7 @@ export default class ProjectGrid extends React.Component {
               />
             ))}
           </GridLayout>
-        </div>
+        </InlBlk>
       </React.Fragment>
     )
   }

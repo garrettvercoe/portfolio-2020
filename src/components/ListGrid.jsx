@@ -2,9 +2,13 @@ import React from "react"
 import styled from "@emotion/styled"
 import Circle from "./Circle"
 import ListYear from "./ListYear"
+import dimensions from "styles/dimensions"
 const GridWrapper = styled("div")`
   padding-left: 5rem;
   display: inline-block;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding-left: 0rem;
+  }
 `
 
 export default class ListGrid extends React.Component {

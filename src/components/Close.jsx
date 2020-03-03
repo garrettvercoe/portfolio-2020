@@ -3,8 +3,8 @@ import { Link } from "gatsby"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
 import Logo from "components/_ui/Logo"
-import spooch from "images/oscar-icon.png"
 import Content from "components/FooterWhiteContent"
+import dimensions from "styles/dimensions"
 
 const Container = styled(Link)`
   svg {
@@ -20,6 +20,13 @@ const Container = styled(Link)`
     &:hover {
       //   transform: rotate(90deg);
       stroke: ${colors.text};
+    }
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+      position: inherit;
+      display: block;
+      max-width: 35px;
+      stroke: ${colors.black};
+      padding: 0 0 1em 0;
     }
   }
 `

@@ -5,32 +5,35 @@ import dimensions from "styles/dimensions"
 import colors from "styles/colors"
 const Grid = styled("div")`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 38.5vw 38.5vw;
   column-gap: 1.5rem;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: inherit;
+  }
 `
 
 const ProjectCardImageContainer = styled("div")`
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: flex-end;
   overflow: hidden;
   position: relative;
-  height: 500px;
-
+  height: 430px;
   max-width: 100%;
+  background-color: ${colors.grey200};
 
-  @media (max-width: ${dimensions.maxwidthTablet}px) {
-    padding-top: 3em;
-    max-height: 200px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    height: auto;
+    display: initial;
   }
 
   img {
     height: 100%;
     width: auto;
-    max-width: 100%;
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+      width: 100%;
+      height: auto;
+    }
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       max-width: 300px;
     }
@@ -38,9 +41,13 @@ const ProjectCardImageContainer = styled("div")`
 `
 const Description = styled("div")`
   font-size: 0.875rem;
-  padding-top: 0.5rem;
-  padding-bottom: 1rem;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
   color: ${colors.grey600};
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding-top: 0em;
+    padding-bottom: 2em;
+  }
 `
 
 export default class GridTwo extends React.Component {

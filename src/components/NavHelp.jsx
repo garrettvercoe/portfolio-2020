@@ -3,13 +3,14 @@ import styled from "@emotion/styled"
 import colors from "styles/colors"
 import LinkArrow from "./LinkArrow"
 import SpecialLinkArrow from "./SpecialLinkArrow"
+import { isMobile } from "react-device-detect"
 const More = styled.div`
   transition: all 0.5s ease;
   text-decoration: none;
   color: currentColor;
   &:hover {
     letter-spacing: 0.5px;
-    cursor: pointer;
+    cursor: default;
   }
 `
 
@@ -33,7 +34,7 @@ export default class NavHelp extends React.Component {
   //   window.scrollTo(0, this.myRef.current.offsetTop)
   // }
   render() {
-    return (
+    return !isMobile ? (
       <div
         style={{
           display: "flex",
@@ -57,6 +58,6 @@ export default class NavHelp extends React.Component {
           </div>
         </More>
       </div>
-    )
+    ) : null
   }
 }

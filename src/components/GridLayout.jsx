@@ -18,8 +18,9 @@ const GridLayout = styled("div")`
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-bottom: 2em;
-
-    grid-template-columns: 100vw;
+    padding-left: 0vw;
+    row-gap: 0rem;
+    grid-template-columns: 85vw;
   }
 `
 

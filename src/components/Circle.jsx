@@ -19,6 +19,8 @@ const colorDict = {
   Research: colors.black,
   Experience: colors.yellow,
   Space: colors.blue,
+  Resource: colors.black,
+  Person: colors.grey600,
 }
 
 //

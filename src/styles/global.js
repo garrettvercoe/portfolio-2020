@@ -18,15 +18,24 @@ const globalStyles = css`
     min-height: 100%;
   }
 
+  html {
+  }
+  video {
+    height: 100%;
+  }
+
   body {
     font-family: "Monument";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
+    scroll-behavior: smooth;
     color: #131414;
-    overscroll-behavior-y: none;
+    overflow-x: hidden;
     font-weight: 400;
+    overflow-y: scroll;
     width: 100%;
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none;
     margin: 0 auto;
     font-size: 16px;
     line-height: 1.5;

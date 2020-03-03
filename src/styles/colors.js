@@ -5,7 +5,7 @@ const colors = {
   bgDark: "#20252C",
   black: "#20252C",
   yellow: "#F1E05A",
-  red: "#E34D27",
+  red: "#EE5227",
   blue: "#3672A5",
 
   blue900: "#192c4c",

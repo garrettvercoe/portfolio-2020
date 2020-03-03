@@ -17,7 +17,7 @@ const typeStyles = css`
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.5eem;
     font-weight: 400;
 
     line-height: 1.1;
@@ -25,7 +25,7 @@ const typeStyles = css`
 
   h3 {
     line-height: 1;
-    font-size: 1.1875rem;
+    font-size: 1.1875em;
     font-weight: 400;
   }
 
@@ -33,7 +33,7 @@ const typeStyles = css`
   }
 
   h5 {
-    margin-bottom: 1.45rem;
+    margin-bottom: 1.45em;
     font-weight: 400;
     line-height: 20px;
     font-size: 0.95em;
@@ -50,8 +50,9 @@ const typeStyles = css`
   }
 
   p {
-    line-height: 1.9;
+    line-height: 1.5;
     font-weight: 300;
+    margin: 0;
   }
 
   a {

@@ -2,12 +2,17 @@ import React from "react"
 import styled from "@emotion/styled"
 import ListItem from "./ListItem"
 import Cursor from "./Cursor"
+import dimensions from "styles/dimensions"
 
 const ListWrapper = styled("il")`
   padding-bottom: 1rem;
   padding-right: 1rem;
   width: 27vw;
   display: inline-grid;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: block;
+    width: 100vw;
+  }
 `
 
 const Year = styled("h2")`
@@ -31,6 +36,11 @@ export default class ListYear extends React.Component {
                   video={project.node.video_link}
                   title={project.node.project_title[0].text}
                   uid={project.node._meta.uid}
+                  last={
+                    i === this.props.projects.length - 2 ||
+                    i === this.props.projects.length - 1
+                  }
+                  active={true}
                   key={i}
                   thumbnail={project.node.project_preview_thumbnail}
                 />
@@ -38,7 +48,7 @@ export default class ListYear extends React.Component {
                 <ListItem
                   title={project.node.project_title[0].text}
                   key={i}
-                  completed={false}
+                  active={false}
                 />
               )
             )}

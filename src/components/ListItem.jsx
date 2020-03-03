@@ -4,11 +4,14 @@ import Circle from "./Circle"
 import VideoPlayer from "./VideoPlayer"
 import dimensions from "styles/dimensions"
 import { Link } from "gatsby"
+
+import { isMobile } from "react-device-detect"
 import LinkArrow from "./LinkArrow"
 import colors from "styles/colors"
 const ItemWrapper = styled("li")`
   padding-bottom: 0.5rem;
   list-style-type: none;
+  position: relative;
 `
 
 const LinkTo = styled(Link)`
@@ -36,9 +39,36 @@ const ItemTextInactive = styled("h2")`
 const ProjectCardImageContainer = styled("div")`
   opacity: 0;
   position: absolute;
+  z-index: 100;
   width: 22vw;
   padding-top: 7.5px;
   pointer-events: none;
+  // transition: opacity 0.2s ease;
+
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    padding-top: 3em;
+    max-height: 200px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  img {
+    width: 100%;
+    @media (max-width: ${dimensions.maxwidthTablet}px) {
+      max-width: 300px;
+    }
+  }
+`
+
+const ProjectCardImageContainerLast = styled("div")`
+  opacity: 0;
+  position: absolute;
+  z-index: 100;
+  width: 22vw;
+  padding-bottom: 2.5rem;
+  pointer-events: none;
+  bottom: 0;
   // transition: opacity 0.2s ease;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
@@ -85,7 +115,7 @@ export default class ListItem extends React.Component {
               <Circle inactive={true} />{" "}
               <ItemTextInactive>{this.props.title}</ItemTextInactive>
             </>
-          ) : (
+          ) : !this.props.last ? (
             <>
               <LinkTo to={`/${this.props.uid}`}>
                 <Circle category={this.props.category} />
@@ -98,23 +128,58 @@ export default class ListItem extends React.Component {
                   </div>
                 </ItemText>
               </LinkTo>
-              <ProjectCardImageContainer
-                style={this.state.active ? { opacity: "100%" } : null}
-              >
-                {" "}
-                {this.props.video ? (
-                  <VideoPlayer
-                    src={this.state.source}
-                    id={this.state.videoId}
-                    active={this.state.active}
-                  />
-                ) : (
-                  <img
-                    src={this.props.thumbnail.url}
-                    alt={this.props.title[0].text}
-                  />
-                )}
-              </ProjectCardImageContainer>
+              {!isMobile ? (
+                <ProjectCardImageContainer
+                  style={this.state.active ? { opacity: "100%" } : null}
+                >
+                  {" "}
+                  {this.props.video ? (
+                    <VideoPlayer
+                      src={this.state.source}
+                      id={this.state.videoId}
+                      active={this.state.active}
+                    />
+                  ) : (
+                    <img
+                      src={this.props.thumbnail.url}
+                      alt={this.props.title[0].text}
+                    />
+                  )}
+                </ProjectCardImageContainer>
+              ) : null}
+            </>
+          ) : (
+            <>
+              {!isMobile ? (
+                <ProjectCardImageContainerLast
+                  style={this.state.active ? { opacity: "100%" } : null}
+                >
+                  {" "}
+                  {this.props.video ? (
+                    <VideoPlayer
+                      src={this.state.source}
+                      id={this.state.videoId}
+                      active={this.state.active}
+                    />
+                  ) : (
+                    <img
+                      src={this.props.thumbnail.url}
+                      alt={this.props.title[0].text}
+                    />
+                  )}
+                </ProjectCardImageContainerLast>
+              ) : null}
+              <LinkTo to={`/${this.props.uid}`}>
+                <Circle category={this.props.category} />
+                <ItemText>
+                  <div
+                    onMouseOver={() => this.onHover()}
+                    onMouseOut={() => this.onOut()}
+                  >
+                    {this.props.title}
+                  </div>
+                </ItemText>
+              </LinkTo>
             </>
           )}
         </ItemWrapper>

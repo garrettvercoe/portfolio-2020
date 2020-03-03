@@ -5,13 +5,19 @@ import colors from "styles/colors"
 import dimensions from "styles/dimensions"
 import Filter from "./Filter"
 const HeaderContainer = styled("div")`
-  padding-top: 2vw;
-  padding-left: 3.75vw;
+  position: fixed;
+  left: 3.75vw;
+  top: 1.8vw;
+  line-height: 4.5vw;
+  z-index: 100;
+  @media (max-width: ${dimensions.maxwidthTablet}px) {
+    padding-top: 2em;
+
+    position: inherit;
+  }
 `
 
-const HeaderContent = styled("div")`
-  display: flex;
-`
+const HeaderContent = styled("div")``
 
 const noStyle = {
   // borderBottom: `2px solid ${colors.text}`,
@@ -34,14 +40,17 @@ const HeaderLinks = styled("div")`
   }
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
-    grid-gap: 2.5em;
+    display: block;
+    padding: 0.25em 0 2em 0em;
+    line-height: 1.25;
   }
 
   a {
     color: ${colors.grey600};
     text-decoration: none;
     border-bottom: 2px solid transparent;
-
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+    }
     height: 100%;
 
     display: block;
@@ -78,23 +87,21 @@ export default class Header extends React.Component {
   render() {
     return (
       <HeaderContainer>
-        <HeaderContent>
-          <h2 style={{ padding: 0, margin: 0 }}>
-            <Link style={noStyle} to="/">
-              Garrett Vercoe
-            </Link>
+        <h2 style={{ padding: 0, margin: 0 }}>
+          <Link style={noStyle} to="/">
+            Garrett Vercoe
+          </Link>
 
-            <HeaderLinks>
-              <Link activeClassName="Link--is-active" to="/work">
-                Information
-              </Link>
-              <Link activeClassName="Link--is-active" to="/blog">
-                Contact
-              </Link>
-            </HeaderLinks>
-          </h2>
-          {/* <Filter categories={this.props.categories}></Filter> */}
-        </HeaderContent>
+          <HeaderLinks>
+            <Link activeClassName="Link--is-active" to="/information">
+              Information
+            </Link>
+            <a target="_blank" href="mailto:hello@garrettvercoe.com">
+              Contact
+            </a>
+          </HeaderLinks>
+        </h2>
+        {/* <Filter categories={this.props.categories}></Filter> */}
       </HeaderContainer>
     )
   }

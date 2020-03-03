@@ -5,6 +5,7 @@ import ConsoleLog from "./ConsoleLog"
 const NoTouch = styled("div")`
   pointer-events: none;
 `
+
 class VideoPlayer extends React.Component {
   constructor(props) {
     super(props)
@@ -19,16 +20,16 @@ class VideoPlayer extends React.Component {
   }
   render() {
     return (
-      <>
-        <ReactPlayer
-          url={this.props.src}
-          playing={this.props.active}
-          loop={true}
-          height="56.25%"
-          ref={this.ref}
-          muted={true}
-        />
-      </>
+      <ReactPlayer
+        className="reactPlayer"
+        url={this.props.src}
+        playing={this.props.active}
+        loop={true}
+        width={"auto"}
+        height={"100%"}
+        ref={this.ref}
+        muted={true}
+      />
     )
   }
 

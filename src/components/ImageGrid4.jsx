@@ -5,17 +5,20 @@ import dimensions from "styles/dimensions"
 import colors from "styles/colors"
 const Grid = styled("div")`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 18.5vw);
   column-gap: 1.5rem;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: inherit;
+  }
 `
 
 const ProjectCardImageContainer = styled("div")`
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: flex-end;
   overflow: hidden;
   position: relative;
-  height: 325px;
+  height: 350px;
   padding-bottom: 1.5rem;
   max-width: 100%;
 
@@ -27,11 +30,19 @@ const ProjectCardImageContainer = styled("div")`
     justify-content: flex-start;
   }
 
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    height: auto;
+    display: initial;
+  }
   img {
     height: 100%;
     width: auto;
     @media (max-width: ${dimensions.maxwidthTablet}px) {
       max-width: 300px;
+    }
+    @media (max-width: ${dimensions.maxwidthMobile}px) {
+      width: 100%;
+      height: auto;
     }
   }
 `
@@ -39,32 +50,51 @@ const Description = styled("div")`
   font-size: 0.875rem;
   padding-bottom: 0.5rem;
   color: ${colors.grey600};
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding-top: 0em;
+    padding-bottom: 2em;
+  }
 `
 export default class GridTwo extends React.Component {
   render() {
     return (
       <Grid>
-        <ProjectCardImageContainer>
-          <img src={this.props.left_left.url} alt={this.props.left_left.alt} />
-        </ProjectCardImageContainer>
-        <ProjectCardImageContainer>
-          <img
-            src={this.props.left_center.url}
-            alt={this.props.left_center.alt}
-          />
-        </ProjectCardImageContainer>
-        <ProjectCardImageContainer>
-          <img
-            src={this.props.center_right.url}
-            alt={this.props.center_right.alt}
-          />
-        </ProjectCardImageContainer>
-        <ProjectCardImageContainer>
-          <img
-            src={this.props.right_right.url}
-            alt={this.props.right_right.alt}
-          />
-        </ProjectCardImageContainer>
+        <div>
+          <ProjectCardImageContainer>
+            <img
+              src={this.props.left_left.url}
+              alt={this.props.left_left.alt}
+            />
+          </ProjectCardImageContainer>
+          <Description>{this.props.left_left.alt}</Description>
+        </div>
+        <div>
+          <ProjectCardImageContainer>
+            <img
+              src={this.props.left_center.url}
+              alt={this.props.left_center.alt}
+            />
+          </ProjectCardImageContainer>
+          <Description>{this.props.left_center.alt}</Description>
+        </div>
+        <div>
+          <ProjectCardImageContainer>
+            <img
+              src={this.props.center_right.url}
+              alt={this.props.center_right.alt}
+            />
+          </ProjectCardImageContainer>
+          <Description>{this.props.center_right.alt}</Description>
+        </div>
+        <div>
+          <ProjectCardImageContainer>
+            <img
+              src={this.props.right_right.url}
+              alt={this.props.right_right.alt}
+            />
+          </ProjectCardImageContainer>
+          <Description>{this.props.right_right.alt}</Description>
+        </div>
       </Grid>
     )
   }

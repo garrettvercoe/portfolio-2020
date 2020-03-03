@@ -13,6 +13,13 @@ import Close from "components/Close"
 import TwoGrid from "components/ImageGrid2"
 import OneGrid from "components/ImageGrid1"
 import FourGrid from "components/ImageGrid4"
+import dimensions from "styles/dimensions"
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect"
 const ProjectHeroContainer = styled("div")`
   display: flex;
   justify-content: center;
@@ -20,7 +27,9 @@ const ProjectHeroContainer = styled("div")`
   overflow: hidden;
   position: relative;
   padding-top: 2.5em;
-
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding-top: 3em;
+  }
   img {
     max-width: 100%;
   }
@@ -53,20 +62,36 @@ const Links = styled("ul")`
 
 const TextContainer = styled("div")`
   padding: 7.5rem 0 7.5rem 0;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding: 3em 0 3em 0;
+  }
 `
 const ProjectTitle = styled("h1")`
   margin: 0 auto;
   padding-top: 0.25rem;
   font-size: 2.5em;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin: 0;
+    display: inline-block;
+    padding-right: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 2em;
+  }
 `
 
 const Container = styled("div")`
   margin: 0 auto;
   padding: 2rem 10.75vw 10em 10.75vw;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding: 2rem 3.75vw 10em 3.75vw;
+  }
 `
 const Grid = styled("div")`
   display: grid;
   grid-template-columns: repeat(20, 1fr);
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 const Description = styled("div")`
@@ -93,14 +118,16 @@ const ProjectBody = styled("div")`
   }
 `
 
+const Spacer = styled("div")`
+  padding: 1em 0 1em 0;
+`
+
 const WorkLink = styled(Link)`
   margin-top: 3em;
   display: block;
   text-align: center;
 `
 const Project = ({ project, meta }) => {
-  console.log("everything" + JSON.stringify(project.body))
-  project.body.map(item => console.log("item" + item))
   return (
     <>
       <Helmet
@@ -143,85 +170,158 @@ const Project = ({ project, meta }) => {
       />
       <Layout>
         <Container>
-          <Grid>
-            <div style={{ gridColumn: "1/span 2" }}>
-              <Circle category={project.project_category} />
-              <Date>{project.project_post_date.substring(0, 4)}</Date>
-            </div>
-            <div style={{ gridColumn: "11/span 2" }}>
-              <Description>Challenge</Description>
-            </div>
-            <div style={{ gridColumn: "1/span 4" }}>
-              <ProjectTitle>{project.project_title[0].text}</ProjectTitle>
-            </div>
-            <div style={{ gridColumn: "11/span 10" }}>
-              <Challenge>{project.challenge[0].text}</Challenge>
-            </div>{" "}
-          </Grid>
-
-          {project.project_preview_thumbnail && (
-            <ProjectHeroContainer>
-              <img src={project.project_preview_thumbnail.url} alt="bees" />
-            </ProjectHeroContainer>
-          )}
-          <TextContainer>
-            <Close />
+          <BrowserView>
             <Grid>
-              <div style={{ gridColumn: "1/span 5" }}>
-                <Description>Outcome</Description>
+              <div style={{ gridColumn: "1/span 4" }}>
+                <Circle category={project.project_category} />
+                <Date>{project.project_post_date.substring(0, 4)}</Date>
               </div>
-              <div style={{ gridColumn: "7/span 2" }}>
-                <Description>Additional</Description>
+              <div style={{ gridColumn: "11/span 2" }}>
+                <Description>Challenge</Description>
               </div>
-              <div style={{ gridColumn: "11/span 10" }}>
-                <Description>Details</Description>
-              </div>
-              <div style={{ gridColumn: "1/span 5" }}>
-                {project.outcome[0].text}
-              </div>
-              <div style={{ gridColumn: "7/span 3" }}>
-                <Additional>
-                  {RichText.render(project.additional_info)}
-                </Additional>
-                <Description>Links</Description>
-                <Links>
-                  {project.links.map((link, i) =>
-                    link.type === "list-item" ? (
-                      <li>
-                        <LinkItem href={link.spans[0].data.url}>
-                          {link.text}
-                        </LinkItem>
-                      </li>
-                    ) : null
-                  )}
-                </Links>
+              <div style={{ gridColumn: "1/span 9" }}>
+                <ProjectTitle>{project.project_title[0].text}</ProjectTitle>
               </div>
               <div style={{ gridColumn: "11/span 10" }}>
-                {project.project_details[0].text}
-              </div>
+                <Challenge>{project.challenge[0].text}</Challenge>
+              </div>{" "}
             </Grid>
-          </TextContainer>
-          {project.body.map((item, i) => (
-            <>
-              {item.type === "2_grid" && (
-                <TwoGrid
-                  left_image={item.primary.left_image}
-                  right_image={item.primary.right_image}
-                />
-              )}
-              {item.type === "4_grid" && (
-                <FourGrid
-                  left_left={item.primary.left_left}
-                  left_center={item.primary.left_center}
-                  center_right={item.primary.center_right}
-                  right_right={item.primary.right_right}
-                />
-              )}
-              {item.type === "full_screen_image" && (
-                <OneGrid image={item.primary.full} />
-              )}
-            </>
-          ))}
+
+            {project.project_preview_thumbnail && (
+              <ProjectHeroContainer>
+                <img src={project.project_preview_thumbnail.url} alt="bees" />
+              </ProjectHeroContainer>
+            )}
+            <TextContainer>
+              <Close />
+              <Grid>
+                <div style={{ gridColumn: "1/span 5" }}>
+                  <Description>Outcome</Description>
+                </div>
+                <div style={{ gridColumn: "7/span 2" }}>
+                  <Description>Additional</Description>
+                </div>
+                <div style={{ gridColumn: "11/span 10" }}>
+                  <Description>Details</Description>
+                </div>
+                <div style={{ gridColumn: "1/span 5" }}>
+                  {project.outcome[0].text}
+                </div>
+                <div style={{ gridColumn: "7/span 3" }}>
+                  <Additional>{project.additional_info[0].text}</Additional>
+                  {project.links ? (
+                    <>
+                      <Description>Links</Description>
+
+                      <Links>
+                        {project.links.map((link, i) =>
+                          link.type === "list-item" ? (
+                            <li>
+                              <LinkItem href={link.spans[0].data.url}>
+                                {link.text}
+                              </LinkItem>
+                            </li>
+                          ) : null
+                        )}
+                      </Links>
+                    </>
+                  ) : null}
+                </div>
+                <div style={{ gridColumn: "11/span 10" }}>
+                  {project.project_details[0].text}
+                </div>
+              </Grid>
+            </TextContainer>
+            {project.body
+              ? project.body.map((item, i) => (
+                  <>
+                    {item.type === "2_grid" && (
+                      <TwoGrid
+                        left_image={item.primary.left_image}
+                        right_image={item.primary.right_image}
+                      />
+                    )}
+                    {item.type === "4_grid" && (
+                      <FourGrid
+                        left_left={item.primary.left_left}
+                        left_center={item.primary.left_center}
+                        center_right={item.primary.center_right}
+                        right_right={item.primary.right_right}
+                      />
+                    )}
+                    {item.type === "full_screen_image" && (
+                      <OneGrid image={item.primary.full} />
+                    )}
+                  </>
+                ))
+              : null}
+          </BrowserView>
+          <MobileView>
+            <Close />
+            <ProjectTitle>{project.project_title[0].text}</ProjectTitle>
+            <Circle category={project.project_category} />
+
+            {project.project_preview_thumbnail && (
+              <ProjectHeroContainer>
+                <img src={project.project_preview_thumbnail.url} alt="bees" />
+              </ProjectHeroContainer>
+            )}
+            <TextContainer>
+              <Description>Challenge</Description>
+              {project.challenge[0].text}
+              <Spacer />
+              <Description>Outcome</Description>
+              {project.outcome[0].text}
+              <Spacer />
+              {project.links ? (
+                <>
+                  <Description>Links</Description>
+
+                  <Links>
+                    {project.links.map((link, i) =>
+                      link.type === "list-item" ? (
+                        <li>
+                          <LinkItem href={link.spans[0].data.url}>
+                            {link.text}
+                          </LinkItem>
+                        </li>
+                      ) : null
+                    )}
+                  </Links>
+                  <Spacer />
+                </>
+              ) : null}
+
+              <Description>Additional</Description>
+              <Additional>{project.additional_info[0].text}</Additional>
+              <Spacer />
+              <Description>Details</Description>
+              {project.project_details[0].text}
+            </TextContainer>
+            {project.body
+              ? project.body.map((item, i) => (
+                  <>
+                    {item.type === "2_grid" && (
+                      <TwoGrid
+                        left_image={item.primary.left_image}
+                        right_image={item.primary.right_image}
+                      />
+                    )}
+                    {item.type === "4_grid" && (
+                      <FourGrid
+                        left_left={item.primary.left_left}
+                        left_center={item.primary.left_center}
+                        center_right={item.primary.center_right}
+                        right_right={item.primary.right_right}
+                      />
+                    )}
+                    {item.type === "full_screen_image" && (
+                      <OneGrid image={item.primary.full} />
+                    )}
+                  </>
+                ))
+              : null}
+          </MobileView>
         </Container>
       </Layout>
     </>
@@ -249,9 +349,8 @@ export const query = graphql`
                 type
                 primary {
                   left_image
-                  left_caption
+
                   right_image
-                  right_caption
                 }
               }
               ... on PRISMIC_ProjectBody4_grid {
@@ -261,17 +360,12 @@ export const query = graphql`
                   left_center
                   center_right
                   right_right
-                  left_left_caption
-                  left_center_caption
-                  center_right_caption
-                  right_right_caption
                 }
               }
               ... on PRISMIC_ProjectBodyFull_screen_image {
                 type
                 primary {
                   full
-                  full_caption
                 }
               }
               __typename
