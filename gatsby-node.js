@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
           FirstTwenty: allProjects(sortBy: project_post_date_DESC) {
             edges {
               node {
+                completed
                 _meta {
                   uid
                 }
@@ -32,6 +33,7 @@ exports.createPages = async ({ graphql, actions }) => {
           ) {
             edges {
               node {
+                completed
                 _meta {
                   uid
                 }
@@ -75,16 +77,18 @@ exports.createPages = async ({ graphql, actions }) => {
 
   projectsList.forEach(edge => {
     // The uid you assigned in Prismic is the slug!
-    createPage({
-      type: "Project",
-      match: "/:uid",
-      path: `/${edge.node._meta.uid}`,
-      component: projectTemplate,
-      context: {
-        // Pass the unique ID (uid) through context so the template can filter by it
-        uid: edge.node._meta.uid,
-      },
-    })
+    edge.node.completed
+      ? createPage({
+          type: "Project",
+          match: "/:uid",
+          path: `/${edge.node._meta.uid}`,
+          component: projectTemplate,
+          context: {
+            // Pass the unique ID (uid) through context so the template can filter by it
+            uid: edge.node._meta.uid,
+          },
+        })
+      : null
   })
 
   postsList.forEach(edge => {
