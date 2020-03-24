@@ -25,7 +25,7 @@ class VideoPlayer extends React.Component {
         url={this.props.src}
         playing={this.props.active}
         loop={true}
-        width={"auto"}
+        width={"22vw"}
         height={"100%"}
         ref={this.ref}
         muted={true}

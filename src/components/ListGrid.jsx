@@ -5,6 +5,7 @@ import ListYear from "./ListYear"
 import dimensions from "styles/dimensions"
 const GridWrapper = styled("div")`
   padding-left: 5rem;
+
   display: inline-block;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     padding-left: 0rem;
