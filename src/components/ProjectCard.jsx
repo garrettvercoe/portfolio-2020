@@ -57,7 +57,7 @@ const ProjectCardImageContainer = styled("div")`
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 215px;
+  height: 20vh;
 
   max-width: 100%;
 
