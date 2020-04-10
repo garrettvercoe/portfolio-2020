@@ -47,9 +47,10 @@ const ProjectCardImageContainer = styled("div")`
   }
 `
 const Description = styled("div")`
-  font-size: 0.875rem;
-  padding-bottom: 0.5rem;
-  color: ${colors.grey600};
+  font-size: 15px;
+  padding-bottom: 1.25em;
+  padding-top: 0.5rem;
+  color: #999;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     padding-top: 0em;
     padding-bottom: 2em;

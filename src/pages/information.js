@@ -24,6 +24,24 @@ const Date = styled("h3")`
   display: inline-block;
 `
 
+const BodyText = styled("div")`
+grid-column: 11/span 10;
+font-size: 1.5em;
+line-height: 1.5;
+a {
+  -webkit-transition: border-bottom  ease .1s;
+  -moz-transition: border-bottom  ease .1s;
+  -o-transition: border-bottom ease .1s;
+  transition: border-bottom ease .1s;
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+
+  &:hover {
+    border-bottom: 2px solid #000;
+  }
+`
+
 const Links = styled("ul")`
   list-style-type: none;
   margin: 0;
@@ -183,12 +201,13 @@ const RenderBody = ({ home, meta }) => (
                 <div>{service.text}</div>
               ))}
             </Links>
-            <Description>Recognitions</Description>
+            {/* Add in when you have more recognitions, already linked */}
+            {/* <Description>Recognitions</Description>
             <Links>
               {home.recognitions.map((recognition, i) => (
                 <div>{recognition.text}</div>
               ))}
-            </Links>
+            </Links> */}
             <Description>Hobbies</Description>
             <Links>
               {home.hobbies.map((hobby, i) => (
@@ -196,15 +215,7 @@ const RenderBody = ({ home, meta }) => (
               ))}
             </Links>
           </div>
-          <div
-            style={{
-              gridColumn: "11/span 10",
-              fontSize: "1.5em",
-              lineHeight: 1.5,
-            }}
-          >
-            {RichText.render(home.info)}
-          </div>
+          <BodyText>{RichText.render(home.info)}</BodyText>
         </Grid>
       </TextContainer>
     </Container>

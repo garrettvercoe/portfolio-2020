@@ -37,8 +37,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-prismic-starter-prist`,
-        short_name: `prist`,
+        name: `Garrett Vercoe Portfolio`,
+        short_name: `Garrett Vercoe`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -50,7 +50,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "YOUR_GOOGLE_ANALYTICS_TRACKING_ID",
+        trackingId: "UA-111744215-1",
         head: true,
       },
     },

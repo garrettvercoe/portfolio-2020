@@ -9,6 +9,7 @@ const GridWrapper = styled("div")`
   display: inline-block;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     padding-left: 0rem;
+    display: block;
   }
 `
 

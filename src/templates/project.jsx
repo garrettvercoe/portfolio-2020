@@ -60,8 +60,15 @@ const Links = styled("ul")`
   text-align: left;
 `
 
+const AdditionalList = styled("ul")`
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+`
+
 const TextContainer = styled("div")`
-  padding: 7.5rem 0 7.5rem 0;
+  padding: 6rem 0 7.5rem 0;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     padding: 3em 0 3em 0;
   }
@@ -70,6 +77,7 @@ const ProjectTitle = styled("h1")`
   margin: 0 auto;
   padding-top: 0.25rem;
   font-size: 2.5em;
+  padding-bottom: 1rem;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin: 0;
     display: inline-block;
@@ -89,6 +97,7 @@ const Container = styled("div")`
 const Grid = styled("div")`
   display: grid;
   grid-template-columns: repeat(20, 1fr);
+
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     grid-template-columns: 1fr 1fr;
   }
@@ -96,6 +105,7 @@ const Grid = styled("div")`
 
 const Description = styled("div")`
   font-size: 0.875rem;
+  padding-top: 1.5rem;
   padding-bottom: 0.5rem;
   color: ${colors.grey600};
 `

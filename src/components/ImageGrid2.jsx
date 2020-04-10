@@ -6,7 +6,7 @@ import colors from "styles/colors"
 const Grid = styled("div")`
   display: grid;
   grid-template-columns: 38.5vw 38.5vw;
-  column-gap: 1.5rem;
+  column-gap: 1.25rem;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     display: inherit;
   }
@@ -15,10 +15,10 @@ const Grid = styled("div")`
 const ProjectCardImageContainer = styled("div")`
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   overflow: hidden;
   position: relative;
-  height: 430px;
+  height: 43vh;
   max-width: 100%;
   background-color: ${colors.grey200};
 
@@ -28,8 +28,8 @@ const ProjectCardImageContainer = styled("div")`
   }
 
   img {
-    height: 100%;
-    width: auto;
+    height: auto;
+    width: 100%;
     @media (max-width: ${dimensions.maxwidthMobile}px) {
       width: 100%;
       height: auto;
@@ -40,10 +40,10 @@ const ProjectCardImageContainer = styled("div")`
   }
 `
 const Description = styled("div")`
-  font-size: 0.875rem;
-  padding-top: 0.5em;
-  padding-bottom: 1em;
-  color: ${colors.grey600};
+  font-size: 15px;
+  padding-bottom: 1.25em;
+  padding-top: 0.5rem;
+  color: #999;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     padding-top: 0em;
     padding-bottom: 2em;

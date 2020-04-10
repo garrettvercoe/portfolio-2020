@@ -87,7 +87,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <HeaderContainer>
-        <h2 style={{ padding: 0, margin: 0 }}>
+        <h2 style={{ fontSize: "1.5em", padding: 0, margin: 0 }}>
           <Link style={noStyle} to="/">
             Garrett Vercoe
           </Link>
