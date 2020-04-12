@@ -31,7 +31,7 @@ const ScrollContainerTouch = styled("div")`
   pointer-events: none;
 `
 const WidthDetector = styled("div")`
-  padding-top: 12vh;
+  padding-top: 10.75vh;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     width: 100vw;
   }
