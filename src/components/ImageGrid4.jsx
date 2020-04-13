@@ -7,6 +7,7 @@ const Grid = styled("div")`
   display: grid;
   grid-template-columns: repeat(4, 18.5vw);
   column-gap: 1.5rem;
+  row-gap: 1rem;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     display: inherit;
   }

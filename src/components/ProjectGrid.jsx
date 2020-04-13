@@ -1,6 +1,5 @@
 import React from "react"
 import ProjectCard from "components/ProjectCard"
-
 import GridLayout from "components/GridLayout"
 import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
@@ -17,7 +16,9 @@ export default class ProjectGrid extends React.Component {
     return (
       <React.Fragment>
         <InlBlk>
-          <NavHelp />
+          <div style={{ paddingLeft: "3.75rem" }}>
+            <NavHelp text="Featured" />
+          </div>
           <GridLayout>
             {this.props.projects.map((project, i) => (
               <ProjectCard

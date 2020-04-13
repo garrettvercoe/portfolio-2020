@@ -35,29 +35,29 @@ export default class NavHelp extends React.Component {
   // }
   render() {
     return !isMobile ? (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          paddingLeft: "3.75vw",
-        }}
-      >
-        <div>
-          Featured
-          <LinkArrow rotate={"45deg"} />
-        </div>
-        <More>
-          <div
-            onMouseOver={() => this.onHover()}
-            onMouseOut={() => this.onOut()}
-            // ref={this.myRef}
-            // onClick={window.scrollTo(0, 00)}
-          >
-            Way More
-            <SpecialLinkArrow active={this.state.active} />
-          </div>
-        </More>
+      // <div
+      //   style={{
+      //     display: "flex",
+      //     justifyContent: "space-between",
+      //     paddingLeft: "3.75vw",
+      //   }}
+      // >
+      <div>
+        {this.props.text}
+        <LinkArrow rotate={"45deg"} />
       </div>
-    ) : null
+    ) : //   {/* <More>
+    //     <div
+    //       onMouseOver={() => this.onHover()}
+    //       onMouseOut={() => this.onOut()}
+    //       // ref={this.myRef}
+    //       // onClick={window.scrollTo(0, 00)}
+    //     >
+    //       Way More
+    //       <SpecialLinkArrow active={this.state.active} />
+    //     </div>
+    //   </More> */}
+    // // </div>
+    null
   }
 }

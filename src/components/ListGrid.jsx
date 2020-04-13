@@ -1,6 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import Circle from "./Circle"
+import NavHelp from "./NavHelp"
 import ListYear from "./ListYear"
 import dimensions from "styles/dimensions"
 const GridWrapper = styled("div")`
@@ -22,6 +23,7 @@ export default class ListGrid extends React.Component {
   render() {
     return (
       <GridWrapper>
+        <NavHelp text="Way More" />
         {this.props.years.map((year, i) => (
           <ListYear
             year={year}

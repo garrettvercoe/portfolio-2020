@@ -20,7 +20,7 @@ const ProjectCardImageContainer = styled("div")`
   position: relative;
   height: 43vh;
   max-width: 100%;
-  background-color: ${colors.grey200};
+  background-color: #fff;
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     height: auto;

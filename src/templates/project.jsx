@@ -76,7 +76,7 @@ const TextContainer = styled("div")`
 const ProjectTitle = styled("h1")`
   margin: 0 auto;
   padding-top: 0.25rem;
-  font-size: 2.5em;
+  font-size: 2.75em;
   padding-bottom: 1rem;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin: 0;

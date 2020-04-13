@@ -11,6 +11,7 @@ const ProjectCardImageContainer = styled("div")`
   overflow: hidden;
   position: relative;
   max-width: 100%;
+  row-gap: 1rem;
 
   img {
     width: 100%;

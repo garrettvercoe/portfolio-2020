@@ -50,7 +50,7 @@ const ProjectCardTitle = styled("h2")`
 `
 
 const ProjectCardImageContainer = styled("div")`
-  background: ${colors.grey200};
+  background-color: #fff;
 
   display: flex;
   justify-content: center;
