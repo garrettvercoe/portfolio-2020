@@ -9,7 +9,7 @@ import { isMobile } from "react-device-detect"
 import LinkArrow from "./LinkArrow"
 import colors from "styles/colors"
 const ItemWrapper = styled("li")`
-  padding-bottom: 0.4rem;
+  padding-bottom: 0.4em;
   list-style-type: none;
   position: relative;
 `
