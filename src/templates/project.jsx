@@ -220,7 +220,7 @@ const Project = ({ project, meta }) => {
                 <div style={{ gridColumn: "7/span 3" }}>
                   <Additional>{project.additional_info[0].text}</Additional>
 
-                  {project.links[0].type === "list-item" ? (
+                  {project.links && project.links[0].type === "list-item" ? (
                     <>
                       <Description>Links</Description>
 
