@@ -9,7 +9,7 @@ import { isMobile } from "react-device-detect"
 import LinkArrow from "./LinkArrow"
 import colors from "styles/colors"
 const ItemWrapper = styled("li")`
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.4rem;
   list-style-type: none;
   position: relative;
 `
@@ -22,7 +22,6 @@ const LinkTo = styled(Link)`
 const ItemText = styled("h2")`
   display: inline-block;
   margin-bottom: 0rem;
-
   &:hover {
     text-decoration: underline;
   }

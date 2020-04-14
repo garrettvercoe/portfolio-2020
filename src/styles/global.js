@@ -48,6 +48,9 @@ const globalStyles = css`
     @media (max-width: ${dimensions.maxwidthMobile}px) {
       font-size: 14px;
     }
+    @media (max-height: 800px) {
+      font-size: 15px;
+    }
 
     * {
       box-sizing: border-box;
