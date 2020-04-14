@@ -117,7 +117,7 @@ const ProjectCardAction = styled("div")`
 `
 
 const ProjectCardImageContainer = styled("div")`
-  // background: ${colors.grey200};
+  background: ${colors.grey200};
   display: flex;
   justify-content: center;
   align-items: flex-end;
