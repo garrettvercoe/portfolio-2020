@@ -2,7 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import HorizontalScroll from "react-scroll-horizontal"
-import { isMobile, BrowserView, MobileView } from "react-device-detect"
+import { BrowserView, MobileView } from "react-device-detect"
 
 const HorizontalContainer = styled("div")`
   position: fixed;
@@ -47,19 +47,14 @@ const WidthDetector = styled("div")`
     width: 100vw;
   }
 `
-const MobileWidth = styled("div")`
-  padding-top: 10.75vh;
-  width: 100vw;
-`
 
 export default class HorizontalCalc extends React.Component {
   render() {
     return (
       <>
         <MobileView>
-          <MobileWidth>
-            <MobileContainer> HAHAHAHA{this.props.children}</MobileContainer>
-          </MobileWidth>
+          HAHAHAHA
+          <MobileContainer> {this.props.children}</MobileContainer>
         </MobileView>
         <BrowserView>
           <HorizontalContainer>
