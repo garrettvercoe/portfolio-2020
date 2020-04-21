@@ -14,27 +14,25 @@ const InlBlk = styled("div")`
 export default class ProjectGrid extends React.Component {
   render() {
     return (
-      <React.Fragment>
-        <InlBlk>
-          <div style={{ paddingLeft: "3.75rem" }}>
-            <NavHelp text="Featured" />
-          </div>
-          <GridLayout>
-            {this.props.projects.map((project, i) => (
-              <ProjectCard
-                key={i}
-                category={project.node.project_category}
-                title={project.node.project_title}
-                thumbnail={project.node.project_preview_thumbnail}
-                video={project.node.video_link}
-                date={project.node.project_post_date}
-                categoryOnClick={this.handleFilterSelect}
-                uid={project.node._meta.uid}
-              />
-            ))}
-          </GridLayout>
-        </InlBlk>
-      </React.Fragment>
+      <InlBlk>
+        <div style={{ paddingLeft: "3.75rem" }}>
+          <NavHelp text="Featured" />
+        </div>
+        <GridLayout>
+          {this.props.projects.map((project, i) => (
+            <ProjectCard
+              key={i}
+              category={project.node.project_category}
+              title={project.node.project_title}
+              thumbnail={project.node.project_preview_thumbnail}
+              video={project.node.video_link}
+              date={project.node.project_post_date}
+              categoryOnClick={this.handleFilterSelect}
+              uid={project.node._meta.uid}
+            />
+          ))}
+        </GridLayout>
+      </InlBlk>
     )
   }
 }

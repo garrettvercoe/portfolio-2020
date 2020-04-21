@@ -48,8 +48,10 @@ export default class HorizontalCalc extends React.Component {
     return (
       <>
         <MobileView>
-          HAHAHAHA
-          <MobileContainer> {this.props.children}</MobileContainer>
+          <div> HAHAHAHA</div>
+          <div>this works huh</div>
+
+          {this.props.children}
         </MobileView>
         <BrowserView>
           <HorizontalContainer>
