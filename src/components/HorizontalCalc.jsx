@@ -41,8 +41,8 @@ export default class HorizontalCalc extends React.Component {
   render() {
     return (
       <>
-        {isMobile || isIOS13 || isIPhone13 ? (
-          this.props.children
+        {isMobile ? (
+          <> Sorry, not working</>
         ) : (
           <HorizontalContainer>
             <HorizontalScroll
