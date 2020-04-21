@@ -20,12 +20,7 @@ const HorizontalContainer = styled("div")`
 
 const MobileContainer = styled("div")`
   position: inherit;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  display: block;
 `
 
 // const ScrollContainerTouch = styled("div")`
