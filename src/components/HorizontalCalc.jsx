@@ -17,24 +17,39 @@ const HorizontalContainer = styled("div")`
   -ms-flex-align: center;
   align-items: center;
 `
-const ScrollContainerTouch = styled("div")`
-  left: 0;
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: calc(100vh - 52px);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  z-index: 10;
-  -ms-flex-item-align: end;
-  align-self: flex-end;
-  pointer-events: none;
+
+const MobileContainer = styled("div")`
+  position: inherit;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 `
+
+// const ScrollContainerTouch = styled("div")`
+//   left: 0;
+//   display: block;
+//   position: absolute;
+//   width: 100%;
+//   height: calc(100vh - 52px);
+//   overflow-x: auto;
+//   -webkit-overflow-scrolling: touch;
+//   z-index: 10;
+//   -ms-flex-item-align: end;
+//   align-self: flex-end;
+//   pointer-events: none;
+// `
 const WidthDetector = styled("div")`
   padding-top: 10.75vh;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     width: 100vw;
   }
+`
+const MobileWidth = styled("div")`
+  padding-top: 10.75vh;
+  width: 100vw;
 `
 
 export default class HorizontalCalc extends React.Component {
@@ -42,7 +57,9 @@ export default class HorizontalCalc extends React.Component {
     return (
       <>
         <MobileView>
-          <div style={{ position: "inherit" }}> {this.props.children}</div>
+          <MobileWidth>
+            <MobileContainer> HAHAHAHA{this.props.children}</MobileContainer>
+          </MobileWidth>
         </MobileView>
         <BrowserView>
           <HorizontalContainer>
