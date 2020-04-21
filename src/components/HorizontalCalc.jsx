@@ -48,9 +48,7 @@ export default class HorizontalCalc extends React.Component {
     return (
       <>
         <MobileView>
-          <div> HAHAHAHA</div>
-          <div>this works huh</div>
-
+          <div> </div>
           {this.props.children}
         </MobileView>
         <BrowserView>
