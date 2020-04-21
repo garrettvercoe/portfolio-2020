@@ -42,7 +42,7 @@ export default class HorizontalCalc extends React.Component {
     return (
       <>
         {isMobile ? (
-          <> Sorry, not working</>
+          <div> {this.props.children}</div>
         ) : (
           <HorizontalContainer>
             <HorizontalScroll
