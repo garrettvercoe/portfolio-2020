@@ -2,7 +2,7 @@ import React from "react"
 import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
 import HorizontalScroll from "react-scroll-horizontal"
-import { isMobile } from "react-device-detect"
+import { isMobile, isIOS13, isIPhone13 } from "react-device-detect"
 
 const HorizontalContainer = styled("div")`
   position: fixed;
@@ -41,7 +41,9 @@ export default class HorizontalCalc extends React.Component {
   render() {
     return (
       <>
-        {!isMobile ? (
+        {isMobile || isIOS13 || isIPhone13 ? (
+          this.props.children
+        ) : (
           <HorizontalContainer>
             <HorizontalScroll
               reverseScroll={true}
@@ -57,8 +59,6 @@ export default class HorizontalCalc extends React.Component {
               </WidthDetector>
             </HorizontalScroll>
           </HorizontalContainer>
-        ) : (
-          this.props.children
         )}
       </>
     )
