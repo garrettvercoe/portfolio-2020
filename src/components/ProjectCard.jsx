@@ -59,7 +59,9 @@ const ProjectCardImageContainer = styled("div")`
   position: relative;
   height: 22.75vh;
   max-width: 100%;
-
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    height: auto;
+  }
   img {
     height: 100%;
     width: auto;
