@@ -1,7 +1,7 @@
 import React from "react"
 import ReactPlayer from "react-player"
 import styled from "@emotion/styled"
-import ConsoleLog from "./ConsoleLog"
+import { isMobile } from "react-device-detect"
 const NoTouch = styled("div")`
   pointer-events: none;
 `
@@ -20,16 +20,31 @@ class VideoPlayer extends React.Component {
   }
   render() {
     return (
-      <ReactPlayer
-        className="reactPlayer"
-        url={this.props.src}
-        playing={this.props.active}
-        loop={true}
-        width={"auto"}
-        height={"22.75vh"}
-        ref={this.ref}
-        muted={true}
-      />
+      <>
+        {isMobile ? (
+          <ReactPlayer
+            className="reactPlayer"
+            url={this.props.src}
+            playing={false}
+            loop={false}
+            width={"100vw"}
+            height={"auto"}
+            ref={this.ref}
+            muted={true}
+          />
+        ) : (
+          <ReactPlayer
+            className="reactPlayer"
+            url={this.props.src}
+            playing={this.props.active}
+            loop={true}
+            width={"auto"}
+            height={"22.75vh"}
+            ref={this.ref}
+            muted={true}
+          />
+        )}
+      </>
     )
   }
 
