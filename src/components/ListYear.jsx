@@ -37,6 +37,7 @@ export default class ListYear extends React.Component {
                   title={project.node.project_title[0].text}
                   uid={project.node._meta.uid}
                   last={
+                    i === this.props.projects.length - 3 ||
                     i === this.props.projects.length - 2 ||
                     i === this.props.projects.length - 1
                   }
