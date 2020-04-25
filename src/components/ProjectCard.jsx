@@ -1,14 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import { RichText } from "prismic-reactjs"
 import styled from "@emotion/styled"
 import dimensions from "styles/dimensions"
-import colors from "styles/colors"
 import PropTypes from "prop-types"
 import Cursor from "./Cursor"
 import VideoPlayer from "./VideoPlayer"
 import Circle from "./Circle"
-import LinkArrow from "./LinkArrow"
 const ProjectCardContainer = styled("div")`
   transition: all 150ms ease-in-out;
   box-sizing: border-box;
