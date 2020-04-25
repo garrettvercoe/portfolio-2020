@@ -12,7 +12,6 @@ const HeaderContainer = styled("div")`
   z-index: 100;
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-top: 2em;
-
     position: inherit;
   }
 `

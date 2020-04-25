@@ -16,12 +16,20 @@ import ListGrid from "components/ListGrid"
 import Close from "components/Close"
 import LinkItem from "components/LinkItem"
 import "styles/projectShowcase.scss"
-
+import {
+  BrowserView,
+  MobileView,
+  isBrowser,
+  isMobile,
+} from "react-device-detect"
 const Date = styled("h3")`
   padding: 0 0.25rem 0 0.25rem;
   margin: 0;
 
   display: inline-block;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: block;
+  }
 `
 
 const BodyText = styled("div")`
@@ -40,6 +48,9 @@ a {
   &:hover {
     border-bottom: 2px solid #000;
   }
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+ 
+  }
 `
 
 const Links = styled("ul")`
@@ -48,6 +59,9 @@ const Links = styled("ul")`
   padding: 0;
   padding-bottom: 2rem;
   text-align: left;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: block;
+  }
 `
 const ProjectCardImageContainer = styled("div")`
   display: flex;
@@ -60,7 +74,6 @@ const ProjectCardImageContainer = styled("div")`
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
     padding-top: 3em;
-    max-height: 200px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -75,21 +88,41 @@ const ProjectCardImageContainer = styled("div")`
   }
 `
 const TextContainer = styled("div")`
-  padding: 5rem 0 0rem 0;
+  padding: 6rem 0 7.5rem 0;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding: 3rem 0 3rem 0;
+  }
 `
 const ProjectTitle = styled("h1")`
   margin: 0 auto;
   padding-top: 0.25rem;
-  font-size: 2.5em;
+  font-size: 2.75em;
+  padding-bottom: 1rem;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin: 0;
+    display: inline-block;
+    padding-right: 0.5em;
+    padding-bottom: 0.5em;
+    font-size: 2em;
+  }
 `
 
 const Container = styled("div")`
   margin: 0 auto;
   padding: 2rem 10.75vw 10em 10.75vw;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    padding: 2rem 3.75vw 10em 3.75vw;
+  }
 `
 const Grid = styled("div")`
   display: grid;
   grid-template-columns: repeat(20, 1fr);
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin-bottom: 2em;
+    padding-left: 0vw;
+    row-gap: 0rem;
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 const Description = styled("div")`
@@ -104,6 +137,9 @@ const Challenge = styled("h3")`
   line-height: 1;
   font-size: 1.5em;
   display: inline;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: block;
+  }
 `
 
 const RenderBody = ({ home, meta }) => (
@@ -146,78 +182,126 @@ const RenderBody = ({ home, meta }) => (
         },
       ].concat(meta)}
     />
-    <Container>
-      <Close />
-      <Grid>
-        <div style={{ gridColumn: "1/span 4" }}>
-          <Circle category={"Person"} />
-          <Date>1998</Date>
-        </div>
-        <div style={{ gridColumn: "11/span 2" }}>
-          <Description>Challenge</Description>
-        </div>
-        <div style={{ gridColumn: "1/span 9" }}>
-          <ProjectTitle>{home.title[0].text}</ProjectTitle>
-        </div>
-        <div style={{ gridColumn: "11/span 10" }}>
-          <Challenge>{home.challenge[0].text}</Challenge>
-        </div>{" "}
-      </Grid>
-      <TextContainer>
-        <Grid>
-          <div style={{ gridColumn: "1/span 5" }}>
-            {" "}
-            <Description>Photos</Description>
-          </div>
-          <div style={{ gridColumn: "7/span 3" }}>
-            <Description>Links</Description>
-          </div>
 
+    <Container>
+      <BrowserView>
+        <Close />
+        <Grid>
+          <div style={{ gridColumn: "1/span 4" }}>
+            <Circle category={"Person"} />
+            <Date>1998</Date>
+          </div>
+          <div style={{ gridColumn: "11/span 2" }}>
+            <Description>Challenge</Description>
+          </div>
+          <div style={{ gridColumn: "1/span 9" }}>
+            <ProjectTitle>{home.title[0].text}</ProjectTitle>
+          </div>
           <div style={{ gridColumn: "11/span 10" }}>
-            <Description>Details</Description>
-          </div>
-          <div style={{ gridColumn: "1/span 5" }}>
-            {home.body[0].fields.map((item, i) => (
-              <ProjectCardImageContainer>
-                <img src={item.gallery_image.url} />
-              </ProjectCardImageContainer>
-            ))}
-          </div>
-          <div style={{ gridColumn: "7/span 3" }}>
-            <Links>
-              {home.links.map((link, i) =>
-                link.type === "list-item" ? (
-                  <li>
-                    <LinkItem href={link.spans[0].data.url}>
-                      {link.text}
-                    </LinkItem>
-                  </li>
-                ) : null
-              )}
-            </Links>
-            <Description>What I Do</Description>
-            <Links>
-              {home.services.map((service, i) => (
-                <div>{service.text}</div>
+            <Challenge>{home.challenge[0].text}</Challenge>
+          </div>{" "}
+        </Grid>
+        <TextContainer>
+          <Grid>
+            <div style={{ gridColumn: "1/span 5" }}>
+              {" "}
+              <Description>Photos</Description>
+            </div>
+            <div style={{ gridColumn: "7/span 3" }}>
+              <Description>Links</Description>
+            </div>
+
+            <div style={{ gridColumn: "11/span 10" }}>
+              <Description>Details</Description>
+            </div>
+            <div style={{ gridColumn: "1/span 5" }}>
+              {home.body[0].fields.map((item, i) => (
+                <ProjectCardImageContainer>
+                  <img src={item.gallery_image.url} />
+                </ProjectCardImageContainer>
               ))}
-            </Links>
-            {/* Add in when you have more recognitions, already linked */}
-            {/* <Description>Recognitions</Description>
+            </div>
+            <div style={{ gridColumn: "7/span 3" }}>
+              <Links>
+                {home.links.map((link, i) =>
+                  link.type === "list-item" ? (
+                    <li>
+                      <LinkItem href={link.spans[0].data.url}>
+                        {link.text}
+                      </LinkItem>
+                    </li>
+                  ) : null
+                )}
+              </Links>
+              <Description>What I Do</Description>
+              <Links>
+                {home.services.map((service, i) => (
+                  <div>{service.text}</div>
+                ))}
+              </Links>
+              {/* Add in when you have more recognitions, already linked */}
+              {/* <Description>Recognitions</Description>
             <Links>
               {home.recognitions.map((recognition, i) => (
                 <div>{recognition.text}</div>
               ))}
             </Links> */}
-            <Description>Hobbies</Description>
-            <Links>
-              {home.hobbies.map((hobby, i) => (
-                <div>{hobby.text}</div>
-              ))}
-            </Links>
-          </div>
+              <Description>Hobbies</Description>
+              <Links>
+                {home.hobbies.map((hobby, i) => (
+                  <div>{hobby.text}</div>
+                ))}
+              </Links>
+            </div>
+            <BodyText>{RichText.render(home.info)}</BodyText>
+          </Grid>
+        </TextContainer>
+      </BrowserView>
+      <MobileView>
+        <Close />
+        <ProjectTitle>{home.title[0].text}</ProjectTitle>
+        <Circle category={"Person"} />
+
+        <TextContainer>
+          <Description>Details</Description>
           <BodyText>{RichText.render(home.info)}</BodyText>
-        </Grid>
-      </TextContainer>
+          {home.body[0].fields.map((item, i) => (
+            <ProjectCardImageContainer>
+              <img src={item.gallery_image.url} />
+            </ProjectCardImageContainer>
+          ))}
+
+          <Description>Links</Description>
+          <Links>
+            {home.links.map((link, i) =>
+              link.type === "list-item" ? (
+                <li>
+                  <LinkItem href={link.spans[0].data.url}>{link.text}</LinkItem>
+                </li>
+              ) : null
+            )}
+          </Links>
+          <Description>What I Do</Description>
+          <Links>
+            {home.services.map((service, i) => (
+              <div>{service.text}</div>
+            ))}
+          </Links>
+
+          {/* <Description>Recognitions</Description>
+            <Links>
+              {home.recognitions.map((recognition, i) => (
+                <div>{recognition.text}</div>
+              ))}
+            </Links> */}
+          <Description>Hobbies</Description>
+          <Links>
+            {home.hobbies.map((hobby, i) => (
+              <div>{hobby.text}</div>
+            ))}
+          </Links>
+        </TextContainer>
+      </MobileView>
     </Container>
   </>
   //  <ListYear categories={categories} projects={projects} />
