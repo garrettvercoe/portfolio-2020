@@ -129,7 +129,7 @@ export default class ListItem extends React.Component {
               </LinkTo>
               {!isMobile ? (
                 <ProjectCardImageContainer
-                  style={this.state.active ? { opacity: "100%" } : null}
+                  style={this.state.active ? { opacity: "1" } : null}
                 >
                   {" "}
                   {this.props.video ? (
@@ -151,7 +151,7 @@ export default class ListItem extends React.Component {
             <>
               {!isMobile ? (
                 <ProjectCardImageContainerLast
-                  style={this.state.active ? { opacity: "100%" } : null}
+                  style={this.state.active ? { opacity: "1" } : null}
                 >
                   {" "}
                   {this.props.video ? (
