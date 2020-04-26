@@ -25,7 +25,8 @@ const RenderBody = ({
       meta={[
         {
           name: `description`,
-          content: meta.description,
+          content:
+            "Garrett Vercoe is a designer working with new technology interfaces and development.",
         },
         {
           property: `og:title`,
