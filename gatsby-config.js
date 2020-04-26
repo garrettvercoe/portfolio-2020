@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Garrett Vercoe | Maker`,
+    title: `Garrett Vercoe`,
     description: `Interactive Designer`,
   },
   plugins: [
