@@ -9,7 +9,7 @@ const Circle = styled("div")`
   display: inline-block;
   position: relative;
   z-index: -1;
-  font-size: 14px;
+  font-size: 0.85vw;
   top: -3px;
   color: white;
 `

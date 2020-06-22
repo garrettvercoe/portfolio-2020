@@ -17,7 +17,7 @@ const typeStyles = css`
   }
 
   h2 {
-    font-size: 1.33em;
+    font-size: 1.3vw;
     font-weight: 400;
 
     line-height: 1.1;
@@ -25,7 +25,7 @@ const typeStyles = css`
 
   h3 {
     line-height: 1;
-    font-size: 1.1875em;
+    font-size: 1.15vw;
     font-weight: 400;
   }
 
