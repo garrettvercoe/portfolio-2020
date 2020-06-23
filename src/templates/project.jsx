@@ -10,6 +10,8 @@ import Layout from "components/Layout"
 import Circle from "components/Circle"
 import LinkItem from "components/LinkItem"
 import Close from "components/Close"
+import VideoPlayer from "components/VideoGrid1"
+import VideoPlayer2 from "components/VideoGrid2"
 import TwoGrid from "components/ImageGrid2"
 import OneGrid from "components/ImageGrid1"
 import FourGrid from "components/ImageGrid4"
@@ -263,6 +265,17 @@ const Project = ({ project, meta }) => {
                     {item.type === "full_screen_image" && (
                       <OneGrid image={item.primary.full} />
                     )}
+                    {item.type === "video_full" && (
+                      <VideoPlayer
+                        src={item.primary.fullVideo.url}
+                      ></VideoPlayer>
+                    )}
+                    {item.type === "2_grid1" && (
+                      <VideoPlayer2
+                        left_src={item.primary.left_video.url}
+                        right_src={item.primary.right_video.url}
+                      ></VideoPlayer2>
+                    )}
                   </>
                 ))
               : null}
@@ -377,6 +390,34 @@ export const query = graphql`
                 type
                 primary {
                   full
+                }
+              }
+              ... on PRISMIC_ProjectBodyVideo_full {
+                type
+                primary {
+                  fullVideo {
+                    ... on PRISMIC__FileLink {
+                      _linkType
+                      url
+                    }
+                  }
+                }
+              }
+              ... on PRISMIC_ProjectBody2_grid1 {
+                type
+                primary {
+                  left_video {
+                    ... on PRISMIC__FileLink {
+                      _linkType
+                      url
+                    }
+                  }
+                  right_video {
+                    ... on PRISMIC__FileLink {
+                      _linkType
+                      url
+                    }
+                  }
                 }
               }
               __typename
