@@ -46,8 +46,11 @@ export default class GridTwo extends React.Component {
             muted={true}
           />
         </ProjectCardImageContainer>
-        {/* <Description>{this.props.image.alt}</Description> */}
-        <Description>test caption </Description>
+        {this.props.description ? (
+          <Description>{this.props.description[0].text}</Description>
+        ) : (
+          <Description></Description>
+        )}
       </>
     )
   }

@@ -268,6 +268,7 @@ const Project = ({ project, meta }) => {
                     {item.type === "video_full" && (
                       <VideoPlayer
                         src={item.primary.fullVideo.url}
+                        description={item.primary.description}
                       ></VideoPlayer>
                     )}
                     {item.type === "2_grid1" && (
@@ -401,6 +402,7 @@ export const query = graphql`
                       url
                     }
                   }
+                  description
                 }
               }
               ... on PRISMIC_ProjectBody2_grid1 {
