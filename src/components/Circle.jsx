@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "@emotion/styled"
 import colors from "styles/colors"
-
+import dimensions from "styles/dimensions"
 const Circle = styled("div")`
   border-radius: 2px;
   margin-right: 0.675rem;
@@ -12,6 +12,9 @@ const Circle = styled("div")`
   font-size: 0.85vw;
   top: -3px;
   color: white;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    font-size: 1em;
+  }
 `
 
 const colorDict = {

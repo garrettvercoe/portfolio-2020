@@ -23,6 +23,9 @@ const ItemText = styled("h2")`
   display: inline-block;
   margin-bottom: 0rem;
   margin-top: 2vh;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin-top: inherit;
+  }
   &:hover {
     text-decoration: underline;
   }
