@@ -27,7 +27,7 @@ const noStyle = {
 
 const HeaderLinks = styled("div")`
   display: inline-grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
   padding-left: 1em;
   grid-gap: 1em;
 
