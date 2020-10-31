@@ -95,6 +95,9 @@ export default class Header extends React.Component {
             <Link activeClassName="Link--is-active" to="/information">
               Information
             </Link>
+             <a  target ="_blank" href="https://notes.garrettvercoe.com/">
+              Notes
+            </a>
             <a target="_blank" href="mailto:hello@garrettvercoe.com">
               Contact
             </a>
