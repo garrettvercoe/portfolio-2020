@@ -56,6 +56,7 @@ export default class HorizontalCalc extends React.Component {
             <HorizontalScroll
               reverseScroll={true}
               config={{ stiffness: 375, dampness: 1 }}
+              animValues ={this.props.anim}
             >
               <WidthDetector
                 length={this.props.years.length}
