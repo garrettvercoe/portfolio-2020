@@ -24,17 +24,24 @@ const colorDict = {
   Space: colors.blue,
   Resource: colors.black,
   Person: colors.grey600,
+  All: colors.grey400
 }
 
 //
 export default class Border extends React.Component {
+    constructor(props) {
+    super(props)
+    // this.scrollToMyRef = this.scrollToMyRef.bind(this)
+    // this.myRef = React.createRef()
+  }
+
   render() {
     return (
       <>
-        {this.props.inactive ? (
-          <Circle style={{ background: `${colors.grey400}` }}>Soon</Circle>
+        {this.props.inactive || ( this.props.filter !== "none" && this.props.filter !== this.props.category) ? (
+          <Circle style={{ background: `${colors.grey400}` }}>{this.props.category}</Circle>
         ) : (
-          <Circle style={{ background: `${colorDict[this.props.category]}` }}>
+          <Circle style={{ background: `${ colorDict[this.props.category]}` }}>
             {this.props.category}
           </Circle>
         )}

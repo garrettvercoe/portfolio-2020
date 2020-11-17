@@ -78,7 +78,6 @@ class ProjectCard extends React.Component {
     }
 
     this.state = { source: src, active: false }
-    this.categoryFilter = this.categoryFilter.bind(this)
     this.onHover = this.onHover.bind(this)
     this.onOut = this.onOut.bind(this)
   }
@@ -89,10 +88,6 @@ class ProjectCard extends React.Component {
     this.setState({ active: false })
   }
 
-  categoryFilter = () => {
-    var category = this.props.category
-    this.props.categoryOnClick(category)
-  }
 
   render() {
     return (
@@ -124,7 +119,7 @@ class ProjectCard extends React.Component {
               </ProjectCardImageContainer>
             </LinkTo>
             <ProjectCardCategory onClick={this.categoryFilter}>
-              <Circle category={this.props.category} />
+              <Circle category={this.props.category} filter={this.props.category}/>
 
               <div style={{ paddingLeft: "1rem", display: "inline-block" }}>
                 {this.props.date.substring(0, 4)}

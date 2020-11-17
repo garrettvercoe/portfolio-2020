@@ -45,6 +45,7 @@ export default class NavHelp extends React.Component {
       <div>
         {this.props.text}
         <LinkArrow rotate={"45deg"} />
+               
       </div>
     ) : //   {/* <More>
     //     <div
