@@ -12,11 +12,9 @@ module.exports = {
     `gatsby-image`,
     `react-scroll-horizontal`,
     `react-player`,
-    `gatsby-plugin-catch-links`,
     `gatsby-plugin-transition-link`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-resolve-src`,
-    `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-emotion`,
 
     {
