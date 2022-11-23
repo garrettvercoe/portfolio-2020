@@ -76,6 +76,7 @@ export default ({ data }) => {
   const projects = [
     ...data.prismic.FirstTwenty.edges,
     ...data.prismic.SecondTwenty.edges,
+    ...data.prismic.ThirdTwenty.edges,
   ]
   // console.log("test" + projectsTest)
   const meta = data.site.siteMetadata
@@ -135,6 +136,27 @@ export const query = graphql`
       }
       SecondTwenty: allProjects(
         after: "YXJyYXljb25uZWN0aW9uOjE5"
+        sortBy: project_post_date_DESC
+      ) {
+        edges {
+          node {
+            completed
+            featured_project
+            project_title
+            project_category
+            project_preview_thumbnail
+            video_link
+            project_post_date
+            _meta {
+              uid
+            }
+          }
+          cursor
+        }
+      }
+    }
+    ThirdTwenty: allProjects(
+        after: "YXJyYXljb25uZWN0aW9uOjM5"
         sortBy: project_post_date_DESC
       ) {
         edges {
