@@ -154,7 +154,6 @@ export const query = graphql`
           cursor
         }
       }
-    }
     ThirdTwenty: allProjects(
         after: "YXJyYXljb25uZWN0aW9uOjM5"
         sortBy: project_post_date_DESC
