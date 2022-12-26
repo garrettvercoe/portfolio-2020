@@ -40,6 +40,20 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               cursor
             }
+          } 
+             ThirdTwenty: allProjects(
+            after: "YXJyYXljb25uZWN0aW9uOjM5"
+            sortBy: project_post_date_DESC
+          ) {
+            edges {
+              node {
+                completed
+                _meta {
+                  uid
+                }
+              }
+              cursor
+            }
           }
 
           allPosts {
@@ -70,6 +84,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const projectsList = [
     ...result.data.prismic.FirstTwenty.edges,
     ...result.data.prismic.SecondTwenty.edges,
+    ...result.data.prismic.ThirdTwenty.edges,
   ]
 
   const projectTemplate = require.resolve("./src/templates/project.jsx")
