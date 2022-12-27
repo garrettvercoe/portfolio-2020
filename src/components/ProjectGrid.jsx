@@ -15,9 +15,7 @@ export default class ProjectGrid extends React.Component {
   render() {
     return (
       <InlBlk>
-        <div style={{ paddingLeft: "3.75rem" }}>
-          <NavHelp text="Featured" />
-        </div>
+   
         <GridLayout>
           {this.props.projects.map((project, i) => (
             <ProjectCard

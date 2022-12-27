@@ -10,7 +10,7 @@ import LinkArrow from "./LinkArrow"
 import colors from "styles/colors"
 import { keyframes } from "@emotion/core"
 const ItemWrapper = styled("li")`
-  padding-bottom: 0.4em;
+  padding-bottom: 0.15em;
   list-style-type: none;
   position: relative;
 `

@@ -91,9 +91,9 @@ const ProjectTitle = styled("h1")`
 
 const Container = styled("div")`
   margin: 0 auto;
-  padding: 2rem 10.75vw 10em 10.75vw;
+  padding: 2rem 7.75vw 10em 7.75vw;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
-    padding: 2rem 3.75vw 10em 3.75vw;
+    padding: 2rem 3.25vw 10em 3.25vw;
   }
 `
 const Grid = styled("div")`
@@ -185,7 +185,7 @@ const Project = ({ project, meta }) => {
           <BrowserView>
             <Grid>
               <div style={{ gridColumn: "1/span 4" }}>
-                <Circle category={project.project_category} />
+                <Circle filter="none" category={project.project_category} />
                 <Date>{project.project_post_date.substring(0, 4)}</Date>
               </div>
               <div style={{ gridColumn: "11/span 2" }}>
@@ -284,7 +284,7 @@ const Project = ({ project, meta }) => {
           <MobileView>
             <Close />
             <ProjectTitle>{project.project_title[0].text}</ProjectTitle>
-            <Circle category={project.project_category} />
+            <Circle filter="none" category={project.project_category} />
 
             {project.project_preview_thumbnail && (
               <ProjectHeroContainer>

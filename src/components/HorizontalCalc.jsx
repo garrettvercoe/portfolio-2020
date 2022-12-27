@@ -37,7 +37,7 @@ const MobileContainer = styled("div")`
 //   pointer-events: none;
 // `
 const WidthDetector = styled("div")`
-  padding-top: 10.75vh;
+  padding-top: 8.75vh;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     width: 100vw;
   }
@@ -61,7 +61,7 @@ export default class HorizontalCalc extends React.Component {
               <WidthDetector
                 length={this.props.years.length}
                 style={{
-                  width: `${100 + 26.5 * this.props.years.length}vw`,
+                  width: `${95 + 26.5 * this.props.years.length}vw`,
                 }}
               >
                 {this.props.children}

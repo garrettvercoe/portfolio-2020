@@ -5,8 +5,9 @@ import { graphql, Link } from "gatsby"
 
 import Layout from "components/Layout"
 import ProjectGrid from "components/ProjectGrid"
+import PrimaryCard from "components/PrimaryCard"
 import Header from "components/Header"
-
+import NavHelp from "../components/NavHelp"
 import ListGrid from "components/ListGrid"
 import "styles/projectShowcase.scss"
 import HorizontalCalc from "components/HorizontalCalc"
@@ -64,6 +65,19 @@ const RenderBody = ({
     <Header />
       {/* Passing a click event from the way more button upwards out of project grid would allow the button scroll */}
     <HorizontalCalc years={years} anim={0}>
+         <>
+         <div style={{marginLeft: "3.25vw", position:'absolute '}}>
+             <NavHelp text="Featured" />
+ </div>
+            {/* <PrimaryCard
+              category={filteredProjects[1].node.project_category}
+              title={filteredProjects[1].node.project_title}
+              thumbnail={filteredProjects[1].node.project_preview_thumbnail}
+              video={filteredProjects[1].node.video_link}
+              date={filteredProjects[1].node.project_post_date}
+              uid={filteredProjects[1].node._meta.uid}
+            /> */}
+          </>
       <ProjectGrid projects={filteredProjects} />
       <ListGrid years={years} projects={projects} />
     </HorizontalCalc>
@@ -78,7 +92,6 @@ export default ({ data }) => {
     ...data.prismic.SecondTwenty.edges,
     ...data.prismic.ThirdTwenty.edges,
   ]
-  // console.log("test" + projectsTest)
   const meta = data.site.siteMetadata
   const filteredProjects = projects.filter(
     project => project.node.featured_project === true

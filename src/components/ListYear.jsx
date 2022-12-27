@@ -6,7 +6,7 @@ import dimensions from "styles/dimensions"
 const ListWrapper = styled("il")`
   padding-bottom: 1rem;
   padding-right: 1rem;
-  width: 27vw;
+  width: 25.5vw;
   display: inline-grid;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     display: block;

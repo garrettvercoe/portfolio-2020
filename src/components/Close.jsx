@@ -10,12 +10,12 @@ const Container = styled(Link)`
   svg {
     position: fixed;
 
-    top: 3.75vw;
-    left: 3.75vw;
-    max-width: 50px;
+    top: 2.5vw;
+    left: 2.5vw;
+    max-width: 40px;
     stroke: ${colors.grey600};
     stroke-miterlimit: 10;
-    stroke-width: 2px;
+    stroke-width: 2.5px;
     // transition: 0.5s transform ease;
     &:hover {
       //   transform: rotate(90deg);

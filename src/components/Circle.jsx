@@ -42,7 +42,7 @@ export default class Border extends React.Component {
           <Circle style={{ background: `${colors.grey400}` }}>{this.props.category}</Circle>
         ) : (
           <Circle style={{ background: `${ colorDict[this.props.category]}` }}>
-            {this.props.category}
+            <span style={{color: this.props.category == "Experience" ? colors.text : "white"}}>{this.props.category}</span>
           </Circle>
         )}
       </>

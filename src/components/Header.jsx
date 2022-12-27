@@ -6,8 +6,8 @@ import dimensions from "styles/dimensions"
 import Filter from "./Filter"
 const HeaderContainer = styled("div")`
   position: fixed;
-  left: 3.75vw;
-  top: 1.8vw;
+  left: 3.25vw;
+  top: 1.5vw;
   line-height: 4.5vw;
   z-index: 100;
   @media (max-width: ${dimensions.maxwidthTablet}px) {
@@ -86,7 +86,7 @@ export default class Header extends React.Component {
   render() {
     return (
       <HeaderContainer>
-        <h2 style={{ fontSize: "1.5em", padding: 0, margin: 0 }}>
+        <h2 style={{ fontSize: "1.3em", padding: 0, margin: 0 }}>
           <Link style={noStyle} to="/">
             Garrett Vercoe
           </Link>

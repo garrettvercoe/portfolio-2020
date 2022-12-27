@@ -4,10 +4,10 @@ import dimensions from "styles/dimensions"
 
 const GridLayout = styled("div")`
   display: grid;
-  grid-template-columns: 20vw 20vw 20vw 20vw;
-  padding-left: 3.75vw;
+  grid-template-columns: 20.5vw 20.5vw 20.5vw 20.5vw;
+  margin-left: 3.25vw;
   column-gap: 1.5rem;
-  row-gap: 1.5rem;
+  row-gap: 0rem;
   // @media (max-width: 950px) {
   //   grid-template-columns: 4.5fr 7fr;
   // }

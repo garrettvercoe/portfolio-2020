@@ -4,9 +4,9 @@ const colors = {
   bgLight: "#FFF",
   bgDark: "#20252C",
   black: "#20252C",
-  yellow: "#F1E05A",
+  yellow: "#F7DF64",
   red: "#EE5227",
-  blue: "#3672A5",
+  blue: "#3180BB",
 
   blue900: "#192c4c",
   blue800: "#2a4a7f",

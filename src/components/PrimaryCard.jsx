@@ -6,10 +6,12 @@ import PropTypes from "prop-types"
 import Cursor from "./Cursor"
 import VideoPlayer from "./VideoPlayer"
 import Circle from "./Circle"
+
 const ProjectCardContainer = styled("div")`
   transition: all 150ms ease-in-out;
+    padding-left: 3.25vw;
   box-sizing: border-box;
-
+    display:inline-flexk;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-bottom: 1em;
   }
@@ -48,20 +50,21 @@ const ProjectCardTitle = styled("h2")`
 
 const ProjectCardImageContainer = styled("div")`
   background-color: #fff;
-
+margin-right: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   position: relative;
-  height: 26vh;
+  height: 66vh;
+  width: 33vw;
   max-width: 100%;
-
-  .reactPlayer {
-    height: 100% !important;
-  }
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     height: auto;
+  }
+
+  .reactPlayer {
+    height: 65vh !important;
   }
   img {
     height: 100%;
@@ -72,7 +75,7 @@ const ProjectCardImageContainer = styled("div")`
     }
   }
 `
-class ProjectCard extends React.Component {
+class PrimaryCard extends React.Component {
   constructor(props) {
     super(props)
     // var patt = /(?:(src=.*\/embed\/))(.*)(?=\?)/g
@@ -96,6 +99,9 @@ class ProjectCard extends React.Component {
   render() {
     return (
       <React.Fragment>
+             <div style={{ paddingLeft: "3.25vw", display:'flex' }}>
+       
+        </div>
         <ProjectCardContainer
           onMouseEnter={() => this.onHover()}
           onMouseLeave={() => this.onOut()}
@@ -136,7 +142,7 @@ class ProjectCard extends React.Component {
   }
 }
 
-ProjectCard.propTypes = {
+PrimaryCard.propTypes = {
   category: PropTypes.array.isRequired,
   thumbnail: PropTypes.object.isRequired,
   title: PropTypes.array.isRequired,
@@ -144,4 +150,4 @@ ProjectCard.propTypes = {
   uid: PropTypes.string.isRequired,
 }
 
-export default ProjectCard
+export default PrimaryCard
