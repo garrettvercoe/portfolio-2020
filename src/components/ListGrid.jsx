@@ -49,6 +49,7 @@ export default class ListGrid extends React.Component {
         {this.state.filter !== "none" && <Filter onClick={() => this.setState({filter: "none"})}>Reset filter</Filter>}
        </div>
         {this.props.years.map((year, i) => (
+          year !== '2021' && 
           <ListYear
             year={year}
             key={i}
@@ -59,6 +60,7 @@ export default class ListGrid extends React.Component {
               project => project.node.project_post_date.substring(0, 4) === year 
             )}
           />
+          
         ))}
       </GridWrapper>
     )
