@@ -18,7 +18,13 @@ module.exports = {
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-emotion`,
-
+{
+    resolve: `gatsby-plugin-parsely-analytics`,
+    options: {
+      apikey: 'garrettvercoe.com',
+      enableInDevelopment: false // send page views when NODE_ENV !== prod
+    }
+  },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
