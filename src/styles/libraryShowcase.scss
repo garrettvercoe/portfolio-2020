@@ -1,0 +1,40 @@
+.library-grid.is-loading {
+  visibility: hidden;
+}
+
+.library-grid__item {
+  margin-bottom: 30px;
+}
+@media screen and (max-width: 400px) {
+  .library-grid {
+    margin: 0 15px;
+  }
+}
+@media screen and (min-width: 401px) {
+  .library-grid {
+    margin-left: 5%;
+  }
+
+  .library-grid__item {
+    box-sizing: border-box;
+    width: (100% / 2);
+    float: left;
+    padding-left: 15px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .library-grid__item {
+    width: (100% / 3);
+  }
+}
+// @media screen and (min-width: 900px) {
+//   .library-grid {
+//     padding: 40px 0 10px;
+//     margin-right: 40px;
+//   }
+// }
+@media screen and (min-width: 1100px) {
+  .library-grid__item {
+    // padding-left: 40px;
+  }
+}

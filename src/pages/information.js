@@ -185,7 +185,7 @@ const RenderBody = ({ home, meta }) => (
         <Grid>
           <div style={{ gridColumn: "1/span 4" }}>
             <Circle category={"Person"} />
-            <Date>1998</Date>
+            <Date></Date>
           </div>
           <div style={{ gridColumn: "11/span 2" }}>
             <Description>Challenge</Description>
