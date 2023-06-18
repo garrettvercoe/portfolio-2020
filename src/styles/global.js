@@ -25,7 +25,7 @@ const globalStyles = css`
   }
 
   body {
-    font-family: "Monument";
+    font-family: "Helvetica";
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
