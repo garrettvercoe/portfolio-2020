@@ -4,10 +4,6 @@ import dimensions from "styles/dimensions"
 import fontFiles from "styles/fonts"
 
 const globalStyles = css`
-  @font-face {
-    font-family: "Monument";
-    src: url(${fontFiles.Monument}) format("opentype");
-  }
 
   html,
   body,
