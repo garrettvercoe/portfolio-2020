@@ -48,11 +48,14 @@ const ItemTextGray = styled("h2")`
 `
 
 const ItemTextInactive = styled("h2")`
-  display: inline;
+  display: inline-block;
   margin-bottom: 0rem;
   color: ${colors.grey500};
   &:hover {
     cursor: default;
+  }
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    display: inline;
   }
 `
 
