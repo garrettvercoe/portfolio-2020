@@ -30,8 +30,14 @@ const Date = styled("h3")`
 
 const BodyText = styled("div")`
 grid-column: 11/span 10;
-font-size: 1.5em;
+font-size: 1.4em;
 line-height: 1.5;
+
+p {
+  font-weight: 400;
+  margin-bottom: 1em;
+}
+
 a {
   -webkit-transition: border-bottom  ease .1s;
   -moz-transition: border-bottom  ease .1s;
