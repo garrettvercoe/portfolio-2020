@@ -17,3 +17,5 @@ Run gatsby develop to start the dev site.
 The site rebuilds and deploys automatically when the CMS content is updated.
 
 Feel free to fork it and take inspiration for your own horizontal portfolio. 
+
+**note: older node 14 required, `nvm use 14.16.1`**
