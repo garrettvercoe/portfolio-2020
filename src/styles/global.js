@@ -39,7 +39,6 @@ const globalStyles = css`
     margin: 0 auto;
     font-size: 16px;
     line-height: 1.5;
-    // background-color: #f6f6f6;
     background-color: white;
     &::-webkit-scrollbar {
       display: none;

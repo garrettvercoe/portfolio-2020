@@ -13,6 +13,9 @@ const ItemWrapper = styled("li")`
   padding-bottom: 0.15em;
   list-style-type: none;
   position: relative;
+  @media (max-width: ${dimensions.maxwidthMobile}px) {
+    margin-bottom: 0.75rem;
+  }
 `
 
 const LinkTo = styled(Link)`
@@ -34,7 +37,7 @@ const ItemText = styled("h2")`
 const ItemTextGray = styled("h2")`
   display: inline-block;
   margin-bottom: 0rem;
-   color: ${colors.grey500};
+  color: ${colors.grey500};
   margin-top: 2vh;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-top: inherit;
@@ -45,15 +48,13 @@ const ItemTextGray = styled("h2")`
 `
 
 const ItemTextInactive = styled("h2")`
-  display: inline-block;
+  display: inline;
   margin-bottom: 0rem;
   color: ${colors.grey500};
   &:hover {
     cursor: default;
   }
 `
-
-
 
 const fadeIn = keyframes`
 	from {
@@ -91,14 +92,12 @@ const ProjectCardImageContainer = styled("div")`
 `
 
 const FilterHover = styled("div")`
-position:absolute;
+  position: absolute;
   color: ${colors.grey500};
-  font-size: .9em;
+  font-size: 0.9em;
   top: -3px;
-  animation: ${fadeIn} .2s ease-in;
-
- 
-  `
+  animation: ${fadeIn} 0.2s ease-in;
+`
 
 const ProjectCardImageContainerLast = styled("div")`
   opacity: 0;
@@ -128,18 +127,17 @@ const ProjectCardImageContainerLast = styled("div")`
 
 export default class ListItem extends React.Component {
   constructor(props) {
-super(props);
+    super(props)
     if (this.props.video) {
       var src = this.props.video[0].text
     }
 
-
     this.state = { source: src, active: false, filterHover: false }
     this.onHover = this.onHover.bind(this)
     this.onOut = this.onOut.bind(this)
-        this.onFilterHover = this.onFilterHover.bind(this)
+    this.onFilterHover = this.onFilterHover.bind(this)
     this.onFilterOut = this.onFilterOut.bind(this)
-        this.handleFiltering = this.handleFiltering.bind(this)
+    this.handleFiltering = this.handleFiltering.bind(this)
   }
 
   onHover() {
@@ -148,7 +146,7 @@ super(props);
   onOut() {
     this.setState({ active: false })
   }
-   onFilterHover() {
+  onFilterHover() {
     this.setState({ filterHover: true })
   }
   onFilterOut() {
@@ -156,12 +154,9 @@ super(props);
   }
 
   handleFiltering() {
-      console.log("PROPS" + JSON.stringify(this.props));
+    console.log("PROPS" + JSON.stringify(this.props))
     this.props.handleFilter(this.props.category)
   }
-
-
-
 
   render() {
     return (
@@ -174,24 +169,32 @@ super(props);
             </>
           ) : !this.props.last ? (
             <>
-            <div style={{display:'inline', cursor: 'pointer'}}
-              onMouseOver={() => this.onFilterHover()}
-                    onMouseOut={() => this.onFilterOut()}
-                    onClick={this.handleFiltering}>
-                      {this.state.filterHover && <FilterHover>Filter by</FilterHover>}
-            <Circle filter={this.props.filter} category={this.props.category} />
-            </div>
+              <div
+                style={{ display: "inline", cursor: "pointer" }}
+                onMouseOver={() => this.onFilterHover()}
+                onMouseOut={() => this.onFilterOut()}
+                onClick={this.handleFiltering}
+              >
+                {this.state.filterHover && <FilterHover>Filter by</FilterHover>}
+                <Circle
+                  filter={this.props.filter}
+                  category={this.props.category}
+                />
+              </div>
               <LinkTo to={`/${this.props.uid}`}>
-                
                 <ItemText>
                   <div
                     onMouseOver={() => this.onHover()}
                     onMouseOut={() => this.onOut()}
                   >
-                 
-                    {this.props.filter == "none" || this.props.filter === this.props.category ? this.props.title :
-                      <div style={{color: `${colors.grey500}`}}>{this.props.title}</div>
-                    }
+                    {this.props.filter == "none" ||
+                    this.props.filter === this.props.category ? (
+                      this.props.title
+                    ) : (
+                      <div style={{ color: `${colors.grey500}` }}>
+                        {this.props.title}
+                      </div>
+                    )}
                   </div>
                 </ItemText>
               </LinkTo>
@@ -236,22 +239,32 @@ super(props);
                   )}
                 </ProjectCardImageContainerLast>
               ) : null}
-                <div style={{display:'inline', cursor: 'pointer'}}
-              onMouseOver={() => this.onFilterHover()}
-                    onMouseOut={() => this.onFilterOut()}
-                    onClick={this.handleFiltering}>
-                      {this.state.filterHover && <FilterHover>Filter by</FilterHover>}
-            <Circle filter={this.props.filter} category={this.props.category} />
-            </div>
+              <div
+                style={{ display: "inline", cursor: "pointer" }}
+                onMouseOver={() => this.onFilterHover()}
+                onMouseOut={() => this.onFilterOut()}
+                onClick={this.handleFiltering}
+              >
+                {this.state.filterHover && <FilterHover>Filter by</FilterHover>}
+                <Circle
+                  filter={this.props.filter}
+                  category={this.props.category}
+                />
+              </div>
               <LinkTo to={`/${this.props.uid}`}>
-           
                 <ItemText>
                   <div
                     onMouseOver={() => this.onHover()}
                     onMouseOut={() => this.onOut()}
                   >
-                                       {this.props.filter == "none" || this.props.filter === this.props.category ? this.props.title :
-                      <div style={{color: `${colors.grey500}`}}>{this.props.title}</div>}
+                    {this.props.filter == "none" ||
+                    this.props.filter === this.props.category ? (
+                      this.props.title
+                    ) : (
+                      <div style={{ color: `${colors.grey500}` }}>
+                        {this.props.title}
+                      </div>
+                    )}
                   </div>
                 </ItemText>
               </LinkTo>

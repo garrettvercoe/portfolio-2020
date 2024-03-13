@@ -18,13 +18,13 @@ module.exports = {
     `gatsby-plugin-resolve-src`,
     `gatsby-plugin-remove-trailing-slashes`,
     `gatsby-plugin-emotion`,
-{
-    resolve: `gatsby-plugin-parsely-analytics`,
-    options: {
-      apikey: 'garrettvercoe.com',
-      enableInDevelopment: false // send page views when NODE_ENV !== prod
-    }
-  },
+    {
+      resolve: `gatsby-plugin-parsely-analytics`,
+      options: {
+        apikey: "garrettvercoe.com",
+        enableInDevelopment: false, // send page views when NODE_ENV !== prod
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -47,8 +47,8 @@ module.exports = {
         name: `Garrett Vercoe Portfolio`,
         short_name: `Garrett Vercoe`,
         start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
+        background_color: `white`,
+        theme_color: `white`,
         display: `minimal-ui`,
         icon: `src/images/logo.png`, // This path is relative to the root of the site.
       },

@@ -11,7 +11,7 @@ const ProjectCardContainer = styled("div")`
   box-sizing: border-box;
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
-    margin-bottom: 1em;
+    margin-bottom: 0em;
   }
 `
 
@@ -92,7 +92,6 @@ class ProjectCard extends React.Component {
     this.setState({ active: false })
   }
 
-
   render() {
     return (
       <React.Fragment>
@@ -123,7 +122,10 @@ class ProjectCard extends React.Component {
               </ProjectCardImageContainer>
             </LinkTo>
             <ProjectCardCategory onClick={this.categoryFilter}>
-              <Circle category={this.props.category} filter={this.props.category}/>
+              <Circle
+                category={this.props.category}
+                filter={this.props.category}
+              />
 
               <div style={{ paddingLeft: "1rem", display: "inline-block" }}>
                 {this.props.date.substring(0, 4)}
