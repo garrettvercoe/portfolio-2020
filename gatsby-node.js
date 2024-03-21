@@ -10,14 +10,7 @@ const wrapper = promise =>
   })
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage, createRedirect } = actions
-
-  // Add your redirect here
-  createRedirect({
-    fromPath: `/resume`,
-    toPath: `https://garrettvercoe.cdn.prismic.io/garrettvercoe/Zfx8Gc68zyqdRpWw_VERCOE_GARRETT.pdf`,
-    statusCode: 200,
-  })
+  const { createPage } = actions
 
   const result = await wrapper(
     graphql(`
