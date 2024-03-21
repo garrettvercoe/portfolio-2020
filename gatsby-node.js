@@ -10,15 +10,16 @@ const wrapper = promise =>
   })
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-    const { createRedirect } = actions
+  const { createPage, createRedirect } = actions
 
+  // Add your redirect here
   createRedirect({
     fromPath: `/resume`,
     toPath: `https://garrettvercoe.cdn.prismic.io/garrettvercoe/Zfx8Gc68zyqdRpWw_VERCOE_GARRETT.pdf`,
-    statusCode:200
+    statusCode: 200,
+    isPermanent: true,
+    force: true,
   })
-}
 
   const result = await wrapper(
     graphql(`
@@ -48,8 +49,8 @@ exports.createPages = async ({ graphql, actions }) => {
               }
               cursor
             }
-          } 
-             ThirdTwenty: allProjects(
+          }
+          ThirdTwenty: allProjects(
             after: "YXJyYXljb25uZWN0aW9uOjM5"
             sortBy: project_post_date_DESC
           ) {
