@@ -9,7 +9,7 @@ const Circle = styled("div")`
   display: inline-block;
   position: relative;
   z-index: -1;
-  font-size: 0.85vw;
+  font-size: 0.75rem;
   top: -3px;
   color: white;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
@@ -24,12 +24,12 @@ const colorDict = {
   Space: colors.blue,
   Resource: colors.black,
   Person: colors.grey600,
-  All: colors.grey400
+  All: colors.grey400,
 }
 
 //
 export default class Border extends React.Component {
-    constructor(props) {
+  constructor(props) {
     super(props)
     // this.scrollToMyRef = this.scrollToMyRef.bind(this)
     // this.myRef = React.createRef()
@@ -38,11 +38,22 @@ export default class Border extends React.Component {
   render() {
     return (
       <>
-        {this.props.inactive || ( this.props.filter !== "none" && this.props.filter !== this.props.category) ? (
-          <Circle style={{ background: `${colors.grey400}` }}>{this.props.category}</Circle>
+        {this.props.inactive ||
+        (this.props.filter !== "none" &&
+          this.props.filter !== this.props.category) ? (
+          <Circle style={{ background: `${colors.grey400}` }}>
+            {this.props.category}
+          </Circle>
         ) : (
-          <Circle style={{ background: `${ colorDict[this.props.category]}` }}>
-            <span style={{color: this.props.category == "Experience" ? colors.text : "white"}}>{this.props.category}</span>
+          <Circle style={{ background: `${colorDict[this.props.category]}` }}>
+            <span
+              style={{
+                color:
+                  this.props.category == "Experience" ? colors.text : "white",
+              }}
+            >
+              {this.props.category}
+            </span>
           </Circle>
         )}
       </>

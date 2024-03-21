@@ -11,6 +11,7 @@ import colors from "styles/colors"
 import { keyframes } from "@emotion/core"
 const ItemWrapper = styled("li")`
   padding-bottom: 0.15em;
+  margin-top: 0.1rem;
   list-style-type: none;
   position: relative;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
@@ -26,19 +27,6 @@ const LinkTo = styled(Link)`
 const ItemText = styled("h2")`
   display: inline-block;
   margin-bottom: 0rem;
-  margin-top: 2vh;
-  @media (max-width: ${dimensions.maxwidthMobile}px) {
-    margin-top: inherit;
-  }
-  &:hover {
-    text-decoration: underline;
-  }
-`
-const ItemTextGray = styled("h2")`
-  display: inline-block;
-  margin-bottom: 0rem;
-  color: ${colors.grey500};
-  margin-top: 2vh;
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     margin-top: inherit;
   }
