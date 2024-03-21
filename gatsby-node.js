@@ -17,8 +17,6 @@ exports.createPages = async ({ graphql, actions }) => {
     fromPath: `/resume`,
     toPath: `https://garrettvercoe.cdn.prismic.io/garrettvercoe/Zfx8Gc68zyqdRpWw_VERCOE_GARRETT.pdf`,
     statusCode: 200,
-    isPermanent: true,
-    force: true,
   })
 
   const result = await wrapper(
