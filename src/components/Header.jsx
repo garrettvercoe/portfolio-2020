@@ -36,14 +36,16 @@ const HeaderLinks = styled("div")`
   max-width: 200px;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
-    grid-gap: 2em;
+    grid-gap: 1em;
   }
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
     display: grid;
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: 1fr;
     padding: 0.25em 0 0.5em 1em;
     line-height: 1.5;
+    grid-gap: 0;
+    padding-left: 0;
   }
 
   a {
@@ -53,6 +55,7 @@ const HeaderLinks = styled("div")`
     @media (max-width: ${dimensions.maxwidthMobile}px) {
       padding: 0.5em 0;
       white-space: nowrap;
+      text-align: left;
     }
     height: 100%;
 
