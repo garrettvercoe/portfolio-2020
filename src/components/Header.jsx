@@ -11,8 +11,9 @@ const HeaderContainer = styled("div")`
   line-height: 4.5vw;
   z-index: 100;
   @media (max-width: ${dimensions.maxwidthTablet}px) {
-    padding-top: 2em;
-    position: inherit;
+    padding-top: 1em;
+    position: relative;
+    width: 100%;
   }
 `
 
@@ -35,13 +36,14 @@ const HeaderLinks = styled("div")`
   max-width: 200px;
 
   @media (max-width: ${dimensions.maxwidthTablet}px) {
-    grid-gap: 5.5em;
+    grid-gap: 2em;
   }
 
   @media (max-width: ${dimensions.maxwidthMobile}px) {
-    display: block;
-    padding: 0.25em 0 2em 0em;
-    line-height: 1.25;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    padding: 0.25em 0 0.5em 1em;
+    line-height: 1.5;
   }
 
   a {
@@ -49,6 +51,8 @@ const HeaderLinks = styled("div")`
     text-decoration: none;
     border-bottom: 2px solid transparent;
     @media (max-width: ${dimensions.maxwidthMobile}px) {
+      padding: 0.5em 0;
+      white-space: nowrap;
     }
     height: 100%;
 
